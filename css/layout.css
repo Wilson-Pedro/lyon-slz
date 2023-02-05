@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+:root {
+    --cor-fundo: linear-gradient(55deg, rgb(250, 165, 6), black);
+    --cor-submenu: rgb(172, 114, 8);
+    --cor-hover: rgb(226, 190, 30);
+    --cor-primaria: rgb(231, 241, 236);
+}
+
+body {
+    background-color: rgb(228, 228, 228);
+}
+/*
+.dp-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dp-menu ul {
+    background-color: var(--cor-fundo);
+}
+
+.dp-menu ul ul.sub-menu {
+    background-color: var(--cor-submenu);
+    z-index: 1;
+}
+
+.dp-menu ul li {
+    display: inline;
+    position: relative;
+}
+
+.dp-menu ul li a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    transition-duration: 0.3s;
+}
+
+.dp-menu ul li a:hover {
+    background-color: var(--cor-hover);
+}
+
+//sub menu
+.dp-menu ul ul {
+    display: none;
+    left: 0;
+    position: absolute;
+}
+
+.dp-menu ul li:hover ul {
+    display: block;
+}
+
+.dp-menu ul ul {
+    width: 150px
+}
+
+.dp-menu ul ul li a {
+    display: block;
+}
+*/
+.bg-gradient {
+    background: linear-gradient(55deg, rgb(250, 165, 6), black);
+}
+
+#marcado {
+    color: black;
+}
+
+/*Cabeçalho*/
+
+header>nav>ul>li>a {
+    color: white;
+    font-weight: bold;
+}
+
+header>nav>ul>li>a:hover {
+    color: rgb(0, 0, 0);
+}
+
+main {
+    background-color: white;
+    min-height: 100vh;
+    margin: auto;
+    box-shadow: 0px 3px 3px 0px black;
+}
+
+main>h2 {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+footer {
+    background-color: #343a40;
+    padding: 10px;
+}
+
+footer>p {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}

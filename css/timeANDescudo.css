@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+div.cabecalho {
+    background: linear-gradient(55deg, rgb(250, 165, 6), black);
+    background-position: right;
+}
+
+div.cabecalho>header.navbar>nav.dp-menu {
+    margin-top: 0.5vh;
+}
+
+div.cabecalho>div.nomeTime>h1 {
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, monospace, 'Arial Narrow', Arial, sans-serif, 'Lucida Sans Unicode', 'Lucida G' Trebuchet MS', sans-serif, Courier, rande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 43pt;
+    text-align: center;
+}
+
+div.cabecalho>div.timeEscudo>div.nomeTime>h1>a {
+    text-decoration: none;
+    color: white;
+}
+
+div.escudoTime,
+div.nomeTime {
+    display: inline-block;
+    margin: auto;
+    cursor: pointer;
+}

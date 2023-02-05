@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+:root {
+    --cor-fundo: linear-gradient(55deg, rgb(250, 165, 6), black);
+    --cor-submenu: rgb(172, 114, 8);
+    --cor-hover: rgb(226, 190, 30);
+    --cor-primaria: rgb(231, 241, 236);
+}
+
+#marcado {
+    color: black;
+}
+
+.dp-menu ul li a {
+    font-weight: bold;
+}
+
+.dp-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.dp-menu ul {
+    background-color: var(--cor-fundo);
+}
+
+.dp-menu ul ul.sub-menu {
+    background-color: var(--cor-submenu);
+    z-index: 1;
+}
+
+.dp-menu ul li {
+    display: inline;
+    position: relative;
+}
+
+.dp-menu ul li a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    transition-duration: 0.3s;
+}
+
+.dp-menu ul li a:hover {
+    background-color: var(--cor-hover);
+}
+
+/*sub menu*/
+.dp-menu ul ul {
+    display: none;
+    left: 0;
+    position: absolute;
+}
+
+.dp-menu ul li:hover ul {
+    display: block;
+}
+
+.dp-menu ul ul {
+    width: 150px
+}
+
+.dp-menu ul ul li a {
+    display: block;
+}
+
+a.nav-link:hover {
+    color: rgb(0, 0, 0);
+}

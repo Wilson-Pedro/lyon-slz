@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+.email{
+    border-radius: 5vh;
+    width: 100%;
+    height: 3vh;
+    font-size: large;
+}
+.senha{
+    border-radius: 5vh;
+    width: 100%;
+    height: 3vh;
+    font-size: large;
+}
+.email:hover{
+    box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+    border-color: gold;
+}
+.senha:hover{
+    box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+    border-color: gold;
+}
+.logar{
+    text-align: left;
+}
+.btn-entrar{
+    border-radius: 5vh;
+    width: fit-content;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    height: 5vh;
+    border: transparent;
+    background-color: rgba(255, 136, 0, 0.8);
+    color: black;
+    font-size: large;
+    cursor: pointer;
+}
+.btn-cadastrar{
+    border-radius: 5vh;
+    width: fit-content;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    height: 5vh;
+    border: transparent;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: large;
+    cursor: pointer;
+}
+.dados{
+    display: inline;
+}
+.senha{
+    display: inline;
+    width: 50vh;
+}
+.olho{
+    width: 10vh;
+    padding-left: 2vh;
+}
+#aviso{
+    border-radius: 2vh;
+    background-color: red;
+    color: white;
+    margin-bottom: -2vh;
+}
+.msg{
+    padding: 2vh;
+}
+.lembrar:hover{
+    border-color: gold;
+}
+.btn-entrar:hover{
+    background: gold;
+    box-shadow: 20vh;
+    box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+}
+.btn-cadastrar:hover{
+    background: gold;
+    box-shadow: 20vh;
+    box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+}
+.login:hover{
+    box-shadow: 20vh;
+    box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+}

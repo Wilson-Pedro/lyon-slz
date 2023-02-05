@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+/*header>nav {
+    width: 100vw;
+
+  }*/
+
+a.nav-link {
+    color: white;
+    font-weight: bold;
+    font-size: 85%;
+}
+
+a.nav-link:hover {
+    color: rgb(0, 0, 0);
+}
+
+footer {
+    background-color: #343a40;
+    padding: 10px;
+}
+
+footer>p {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+div.placar {
+    text-align: center;
+}
+
+div#calendar>a {
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    margin-left: 3vw;
+}
+
+div#calendar>h1 {
+    margin-top: 28vh;
+    cursor: pointer;
+}
+
+div#calendar>a:hover {
+    background-color: rgb(230, 150, 3);
+}
+
+div#jogosToday {
+    text-align: center;
+}
+
+div.barra {
+    width: 100%;
+    height: 3vh;
+    background-color: rgb(230, 150, 3);
+}
+
+.div-img {
+    max-width: 50%;
+}
+
+#img-calendar {
+    height: 400px;
+}
+/*a.navbar-brand,
+  a.nav-link {
+    color: white;
+  }
+
+  a.navbar-brand:hover,
+  a.nav-link:hover {
+    color: rgb(211, 208, 208);
+  }*/

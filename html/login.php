@@ -1,20 +1,63 @@
 <?php
-ob_start();
-require('db/conexao.php');
+/*
+session_start();
+if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-$sql = $pdo->prepare("SELECT * FROM tblloginn");
-$sql->execute();
-$dados = $sql->fetchAll();
+    $servidor="localhost";
+    $usuario="root";
+    $senha="";
+    $banco="escolinha_de_futebol";
+    $con = mysqli_connect($servidor, $usuario, $senha, $banco);
+ 
+    // Verifique se a conexão foi bem sucedida
+    if (mysqli_connect_errno()) {
+       echo "Falha ao conectar com o MySQL: " . mysqli_connect_error();
+    }
+
+   // Coleta as informações de nome e senha do formulário de login
+   $nome = mysqli_real_escape_string($con,$_POST['nameLog']);
+   $senha = mysqli_real_escape_string($con,$_POST['senhaLog']);
+
+   // Consulta SQL para verificar se o usuário e a senha existem no banco de dados
+   $query = "SELECT id FROM tblloginn WHERE usuario = '$nome' and senha = '$senha'";
+   $result = mysqli_query($con,$query);
+   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+   $count = mysqli_num_rows($result);
+
+   // Se o usuário e a senha existem, redirecione para a página principal do site
+   if($count == 1) {
+      $_SESSION['login_user'] = $nome;
+      echo "<script type='text/javascript'> window.location = '../admin/homeAdmin' </script>";
+   }else {
+      $error = "Nome de usuário ou senha inválidos.";
+   }
+}
+*/
+$servidor="localhost";
+$usuario="root";
+$senha="";
+$banco="escolinha_de_futebol";
+
+$conn = new mysqli($servidor, $usuario, $senha, $banco);
 
 if (isset($_POST['nameLog']) && $_POST['senhaLog']) {
     $nome = $_POST['nameLog'];
     $senha = $_POST['senhaLog'];
-    $adm = 1;
-    foreach ($dados as $chaves => $valor) {
-        if (password_verify($senha, $valor['senha'])) {
-            header('Location: ../admin/homeAdmin.php');
-        }
+
+    $sql = "SELECT * FROM tblloginn WHERE usuario = '$nome'";
+
+    $sql_exec = $conn->query($sql);
+
+    $usuario = $sql_exec->fetch_assoc();
+
+    if(password_verify($senha, $usuario['senha'])){
+        echo "<script type='text/javascript'> window.location = '../admin/homeAdmin.php' </script>";
+    } else {
+        echo "<script> alert('Nome ou Senha estão errados.') </script>";
+        echo "<script type='text/javascript'> window.location = 'login.php' </script>";
     }
+
+    
 }
 
 ?>

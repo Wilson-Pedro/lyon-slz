@@ -296,6 +296,8 @@ $dados = $sql->fetchAll();
 
     });
 
+    //CANCELAR
+
     $('#cancelar').click(function() {
       $('#form_atualiza').addClass('oculto');
       $('#form_deleta').addClass('oculto');

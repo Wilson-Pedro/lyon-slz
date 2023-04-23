@@ -13,7 +13,7 @@ while($arquivo = $diretorio->read()) {
 }*/
 require('../html/db/conexao.php');
 
-$pasta = "../img/imgArquivos/";
+$pasta = "../admin/imgArquivos/";
 $sql = $pdo->prepare("SELECT * FROM tblfotoss");
 $sql->execute();
 $dados = $sql->fetchAll();

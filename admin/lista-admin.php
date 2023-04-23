@@ -23,7 +23,7 @@ if (isset($_POST['deletar_foto']) && isset($_POST['id_deleta']) && isset($_POST[
 
     $sql->execute(array($id, $arquivo));
 
-    unlink("../img/imgArquivos/" . $arquivo);
+    unlink("imgArquivos/" . $arquivo);
 
     //echo "<script type='text/javascript'> window.location = 'fotos-admin.php' </script>";
 }
@@ -42,7 +42,14 @@ while($arquivo = $diretorio->read()) {
 }*/
 require('../html/db/conexao.php');
 
-$pasta = "../img/imgArquivos/";
+$pasta = "imgArquivos";
+
+if(!is_dir($pasta)){
+    mkdir($pasta);
+}
+
+$pasta = "imgArquivos/";
+
 $sql = $pdo->prepare("SELECT * FROM tblfotoss");
 $sql->execute();
 $dados = $sql->fetchAll();

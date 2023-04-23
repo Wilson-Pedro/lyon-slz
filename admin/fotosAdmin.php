@@ -7,11 +7,12 @@ $sql->execute();
 $dados = $sql->fetchAll();
 
 if (isset($_POST['deletar'])) {
+  
   $sql = $pdo->prepare("DELETE FROM tblfotoss");
   $sql->execute();
   if (count($dados) > 0) {
     foreach ($dados as $chaves => $valor) {
-      unlink("../img/imgArquivos/" . $valor['arquivo']);
+      unlink("imgArquivos/" . $valor['arquivo']);
     }
   }
 }

@@ -206,7 +206,9 @@ $dados = $sql->fetchAll();
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <p>O <strong>LyonSLZ</strong> é um time formado por meninos e meninas cheios de energia e entusiasmo. Eles treinam duro todos os dias, aprendendo técnicas de passe, chute e dribles com seu treinador experiente. O time é composto por jogadores talentosos, cada um com suas próprias habilidades e personalidades únicas. Mas, apesar das diferenças, eles trabalham juntos em equipe para alcançar a vitória. Os jogos são sempre emocionantes, com muita ação e estratégia, e a torcida está sempre presente para apoiar o time. </p>
+              <p>Além disso, o time é unido e solidário, compartilhando vitórias e derrotas como uma equipe. Eles não apenas jogam juntos, mas também criam amizades duradouras e aprendem valiosas lições sobre trabalho em equipe e liderança.</p>
+              <p> Em resumo, o time LyonSLZ é um grupo incrível de jovens atletas talentosos e apaixonados que amam jogar futebol e trabalhar juntos em busca da vitória.</p>
               </div>
             </div>
           </div>
@@ -218,7 +220,9 @@ $dados = $sql->fetchAll();
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              <p>O técnico do time da escolinha de futebol é um profissional dedicado e experiente. Ele está sempre presente nos treinos e jogos, orientando os jogadores e ensinando novas habilidades. Ele é um líder inspirador que motiva o time a dar o melhor de si em campo, mesmo quando as coisas estão difíceis. </p>
+              <p>Além disso, ele é respeitado e querido pelos jogadores, criando um ambiente de confiança e respeito mútuo. Seu objetivo é formar atletas completos e ensinar valores importantes, como trabalho em equipe, respeito e disciplina. </p>
+              <p>Em resumo, o técnico do time da escolinha de futebol é um profissional incrível que ajuda a moldar jovens jogadores de futebol e prepará-los para uma vida de sucesso dentro e fora do campo.</p>
               </div>
             </div>
           </div>

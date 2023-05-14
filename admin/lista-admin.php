@@ -40,7 +40,7 @@ while($arquivo = $diretorio->read()) {
         echo "<img src='".$pasta.$arquivo."' class='img-fluid'><br>";
     }
 }*/
-require('../html/db/conexao.php');
+require('../user/db/conexao.php');
 
 $pasta = "imgArquivos";
 

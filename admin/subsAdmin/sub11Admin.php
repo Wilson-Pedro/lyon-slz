@@ -1,5 +1,5 @@
 <?php
-require('../../html/db/conexao.php');
+require('../../user/db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tbljogadoress");
 $sql->execute();
@@ -100,7 +100,7 @@ $dados = $sql->fetchAll();
               <li>
                 <a href="../cadastroDeJogador.php">Cadastrar Jogador</a>
                 <a href="../cadastroDePartidas.php">Cadastrar partida</a>
-                <a href="../../html/home.php">Sair</a>
+                <a href="../../user/home.php">Sair</a>
               </li>
             </ul>
           </li>

@@ -4,6 +4,15 @@
  Bem-vindo ao site da nossa Escolinha de Futebol, o seu site para descobrir e explorar o emocionante mundo do futebol! Nosso site foi cuidadosamente projetado para oferecer uma experiência completa e informativa aos pais e alunos interessados em fazer parte dessa jornada esportiva.
 
 ![logo](https://github.com/Wilson-Pedro/images/blob/main/lyonslz/lyonSlzEscudo.png)
+
+## Layout web
+![Web 1](https://github.com/Wilson-Pedro/images/blob/main/lyonslz/img1.png)
+
+![Web 2](https://github.com/Wilson-Pedro/images/blob/main/lyonslz/img2.png)
+
+![Web 3](https://github.com/Wilson-Pedro/images/blob/main/lyonslz/img3.png)
+
+
 ## Funcionalidades
 
 - Feed de notícias: permite aos usuários visualizarem e acompanhar as últimas notícias em tempo real em uma plataforma online.

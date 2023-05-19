@@ -1,7 +1,3 @@
-<?php
-session_start();
-ob_start();
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 

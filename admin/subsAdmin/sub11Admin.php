@@ -68,7 +68,7 @@ $dados = $sql->fetchAll();
             <a class="nav-link" href="../homeAdmin.php">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" id="marcado">JOGADORES</a>
+            <a class="nav-link" href="#" id="marcado">CATEGORIAS</a>
             <ul class="sub-menu" id="sobrepor">
               <li>
                 <a href="sub09Admin.php">sub09</a>

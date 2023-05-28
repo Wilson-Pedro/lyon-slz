@@ -70,7 +70,7 @@ $dados = $sql->fetchAll();
             <a class="nav-link" href="../homeAdmin.php">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" id="marcado">JOGADORES</a>
+            <a class="nav-link" href="#" id="marcado">CATEGORIAS</a>
             <ul class="sub-menu" id="sobrepor">
               <li>
                 <a href="sub09Admin.php" id="marcado">sub09</a>
@@ -213,9 +213,11 @@ $dados = $sql->fetchAll();
         if ($valor['idade'] > 7 && $valor['idade'] <= 9) {
           $sub9++;
         }
-      } if($sub9 == 0){
+      }
+      if ($sub9 == 0) {
         echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
-      } else  {
+      } else {
+        //echo "<div class='container-fluid'>";
         echo "<table class='table table-striped'>
         <thead class=table-dark>
         <tr>
@@ -223,24 +225,25 @@ $dados = $sql->fetchAll();
             <th>Idade</th>
             <th>Posição</th>
             <th>Gols</th>
-            <th>Atuaizar | Deletar</th>
+            <th>Editar</th>
         </tr>
         </thead>";
 
-      foreach ($dados as $chaves => $valor) {
-        if ($valor['idade'] > 7 && $valor['idade'] <= 9) {
-          echo "<tr>
+        foreach ($dados as $chaves => $valor) {
+          if ($valor['idade'] > 7 && $valor['idade'] <= 9) {
+            echo "<tr>
                         <td>" . $valor['nome'] . "</td>
                         <td>" . $valor['idade'] . "</td>
                         <td>" . $valor['posicao'] . "</td>
                         <td>" . $valor['gols'] . "</td>
                         <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Deletar</a></td>
                     </tr>";
+          }
         }
-      }
 
 
-      echo "</table>";
+        echo "</table>";
+        //echo "</div>";
       }
     } else {
       echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";

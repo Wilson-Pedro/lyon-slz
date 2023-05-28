@@ -1,65 +1,97 @@
 <?php
-/*
 session_start();
-if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $servidor="localhost";
-    $usuario="root";
-    $senha="";
-    $banco="escolinha_de_futebol";
-    $con = mysqli_connect($servidor, $usuario, $senha, $banco);
- 
-    // Verifique se a conexão foi bem sucedida
-    if (mysqli_connect_errno()) {
-       echo "Falha ao conectar com o MySQL: " . mysqli_connect_error();
-    }
-
-   // Coleta as informações de nome e senha do formulário de login
-   $nome = mysqli_real_escape_string($con,$_POST['nameLog']);
-   $senha = mysqli_real_escape_string($con,$_POST['senhaLog']);
-
-   // Consulta SQL para verificar se o usuário e a senha existem no banco de dados
-   $query = "SELECT id FROM tblloginn WHERE usuario = '$nome' and senha = '$senha'";
-   $result = mysqli_query($con,$query);
-   $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-   $count = mysqli_num_rows($result);
-
-   // Se o usuário e a senha existem, redirecione para a página principal do site
-   if($count == 1) {
-      $_SESSION['login_user'] = $nome;
-      echo "<script type='text/javascript'> window.location = '../admin/homeAdmin' </script>";
-   }else {
-      $error = "Nome de usuário ou senha inválidos.";
-   }
-}
-*/
 $servidor="localhost";
 $usuario="root";
 $senha="";
 $banco="escolinha_de_futebol";
 
-$conn = new mysqli($servidor, $usuario, $senha, $banco);
+$mysqli = new mysqli($servidor, $usuario, $senha, $banco);
 
-if (isset($_POST['nameLog']) && $_POST['senhaLog']) {
-    $nome = $_POST['nameLog'];
-    $senha = $_POST['senhaLog'];
-
-    $sql = "SELECT * FROM tblloginn WHERE usuario = '$nome'";
-
-    $sql_exec = $conn->query($sql);
-
-    $usuario = $sql_exec->fetch_assoc();
-
-    if(password_verify($senha, $usuario['senha'])){
-        echo "<script type='text/javascript'> window.location = '../admin/homeAdmin.php' </script>";
-    } else {
-        echo "<script> alert('Nome ou Senha estão errados.') </script>";
-        echo "<script type='text/javascript'> window.location = 'login.php' </script>";
-    }
-
-    
+// Verifica se houve erro na conexão com o banco de dados
+if ($mysqli->connect_error) {
+    die("Falha ao conectar no banco de dados: " . $mysqli->connect_error);
 }
 
+if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
+    if (empty($_POST['nameLog']) || empty($_POST['senhaLog'])) {
+        echo "<script>alert('Preencha os campos corretamente')</script>";
+    } else {
+        $nome = $mysqli->real_escape_string($_POST['nameLog']);
+        $senha = $mysqli->real_escape_string($_POST['senhaLog']);
+
+        $sql_code = "SELECT * FROM tblloginn WHERE usuario = ? LIMIT 1";
+        $stmt = $mysqli->prepare($sql_code);
+        $stmt->bind_param("s", $nome);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows == 1) {
+            $usuario = $result->fetch_assoc();
+
+            if (password_verify($senha, $usuario['senha'])) {
+                $_SESSION['id'] = $usuario['id'];
+                $_SESSION['usuario'] = $usuario['usuario'];
+                header("Location: ../admin/homeAdmin.php");
+                exit();
+            }
+        } else {
+            $invalid = "Ops... e-mail ou senha incorretos!";
+        }
+    }
+}
+
+/*$servidor="localhost";
+$usuario="root";
+$senha="";
+$banco="escolinha_de_futebol";
+
+$mysqli = new mysqli($servidor, $usuario, $senha, $banco);
+
+if($mysqli->error){
+    die("Falha ao conectar no banco de dados: ". $mysqli->error);
+}
+
+if (isset($_POST['nameLog']) || isset($_POST['senhaLog'])) {
+    if (strlen($_POST['nameLog']) == 0 || strlen($_POST['senhaLog']) == 0) {
+        echo "<script>alert('Preencha os campos corretamente')</script>";
+    } else {
+
+        $nome = $mysqli->real_escape_string($_POST['nameLog']);
+        $senha = $mysqli->real_escape_string($_POST['senhaLog']);
+
+        $sql_code = "SELECT * FROM tblloginn WHERE usuario = '$nome' LIMIT 1";
+        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do codigo SQL: " . $mysqli->error);
+
+        $quantidade = $sql_query->num_rows;
+
+        if($quantidade == 1){
+            $usuario = $sql_query->fetch_assoc();
+            if(!isset($_SESSION)){
+                session_start();
+            }
+            if(password_verify($senha, $usuario['senha'])){
+                $_SESSION['id'] = $usuario['id'];
+                $_SESSION['usuario'] = $usuario['usuario'];
+
+                header("Location: ../admin/homeAdmin.php");
+            }
+        }else{
+            // SERIALIZA A STRING INVALID PARA RETORNAR NO FORM DE HTML
+            $invalid = "Ops... e-mail ou senha incorretos!";
+        }
+
+        //
+
+        // if (password_verify($senha, $usuario['senha'])) {
+        //     echo "<script type='text/javascript'> window.location = '../admin/homeAdmin.php' </script>";
+        // } else {
+        //     echo "<script> alert('Nome ou Senha estão errados.') </script>";
+        //     echo "<script type='text/javascript'> window.location = 'login.php' </script>";
+        // }
+    }
+}
+*/
 ?>
 
 <!DOCTYPE html>
@@ -126,11 +158,9 @@ if (isset($_POST['nameLog']) && $_POST['senhaLog']) {
                 <span class="senha">
                     <input type="password" name="senhaLog" id="senhaLog" class="senha">
                 </span>
-                <span class="olho" id="olho"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                        fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                <span class="olho" id="olho"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                         <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
-                        <path
-                            d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z">
+                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z">
                         </path>
                     </svg>
                 </span>
@@ -187,11 +217,11 @@ if (isset($_POST['nameLog']) && $_POST['senhaLog']) {
     var senha = $('#senhaLog');
     var olho = $("#olho");
 
-    olho.mousedown(function () {
+    olho.mousedown(function() {
         senha.attr("type", "text");
     });
 
-    olho.mouseup(function () {
+    olho.mouseup(function() {
         senha.attr("type", "password");
     });
 
@@ -199,11 +229,11 @@ if (isset($_POST['nameLog']) && $_POST['senhaLog']) {
     //     $("#senhaLog").attr("type", "password");
     // });
     const eye = document.getElementById('olho');
-    eye.addEventListener("touchstart", function () {
+    eye.addEventListener("touchstart", function() {
         senha.attr("type", "text")
     });
 
-    eye.addEventListener("touchend", function () {
+    eye.addEventListener("touchend", function() {
         senha.attr("type", "password")
     });
 

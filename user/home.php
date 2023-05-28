@@ -89,7 +89,7 @@
             <a class="nav-link" id="marcado" href="home.php">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">JOGADORES</a>
+            <a class="nav-link" href="#">CATEGORIAS</a>
             <ul class="sub-menu" id="sobrepor">
               <li>
                 <a href="subs/sub09.php">sub09</a>

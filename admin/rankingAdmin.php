@@ -69,7 +69,7 @@ $dados = $sql->fetchAll();
             <a class="nav-link" href="homeAdmin.php">HOME</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" id="marcado">JOGADORES</a>
+            <a class="nav-link" href="#" id="marcado">CATEGORIAS</a>
             <ul class="sub-menu" id="sobrepor">
               <li>
                 <a href="subsAdmin/sub09Admin.php">sub09</a>
@@ -156,8 +156,6 @@ $dados = $sql->fetchAll();
         <tr>
             <th>Posição</th>
             <th>Nome</th>
-            <th>Idade</th>
-            <th>Posição</th>
             <th>Gols</th>
             <th>Atualizar gols</th>
         </tr>
@@ -182,8 +180,6 @@ $dados = $sql->fetchAll();
             echo "<tr>
                         <td>" . $ranking . "</td>
                         <td>" . $valor['nome'] . "</td>
-                        <td>" . $valor['idade'] . "</td>
-                        <td>" . $valor['posicao'] . "</td>
                         <td>" . $valor['gols'] . "</td>
                         <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a></td>
                     </tr>";

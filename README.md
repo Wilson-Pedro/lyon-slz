@@ -51,7 +51,7 @@ http://localhost/LyonSLZ/user/home.php
 Você pode estar acessando todo o nosso projeto do lyonslz sintracema no seguinte link:
 
 ```txt
-http://18.229.54.49/LyonSLZ/html/home.php
+http://18.229.54.49/LyonSLZ/user/home.php
 ```
 
 

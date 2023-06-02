@@ -58,6 +58,10 @@ $dados = $sql->fetchAll();
     .oculto {
       display: none;
     }
+
+    main {
+      width: 99.5%;
+    }
   </style>
 </head>
 
@@ -118,48 +122,47 @@ $dados = $sql->fetchAll();
   </div>
 
   <main>
-    <h1 class="categoria">Categoria Sub-13</h1>
-    <hr>
-    <br>
-    <?php
-    $sub13 = 0;
-    if (count($dados) > 0) {
-      foreach ($dados as $chaves => $valor) {
-        if ($valor['idade'] > 11 && $valor['idade'] <= 13) {
-          $sub13++;
-        }
-      }
-      if ($sub13 == 0) {
-        echo "<br><p class='mt-4' style='text-align:center'>Nenhuma jogador desta foi cadastrado</p>";
-      } else {
-        echo "<table class='table table-striped'>
-        <thead class=table-dark>
-        <tr>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Posição</th>
-            <th>Gols</th>
-        </tr>
-        </thead>";
-
+    <div class="container-fluid">
+      <h1 class="categoria">Categoria Sub-13</h1>
+      <hr>
+      <br>
+      <?php
+      $sub13 = 0;
+      if (count($dados) > 0) {
         foreach ($dados as $chaves => $valor) {
           if ($valor['idade'] > 11 && $valor['idade'] <= 13) {
-            echo "<tr>
-                        <td>" . $valor['nome'] . "</td>
-                        <td>" . $valor['idade'] . "</td>
-                        <td>" . $valor['posicao'] . "</td>
-                        <td>" . $valor['gols'] . "</td>
-                    </tr>";
+            $sub13++;
           }
         }
+        if ($sub13 == 0) {
+          echo "<br><p class='mt-4' style='text-align:center'>Nenhuma jogador desta foi cadastrado</p>";
+        } else {
+          echo "<table class='table table-striped'>
+          <thead class=table-dark>
+          <tr>
+              <th>Nome</th>
+              <th>Idade</th>
+              <th>Posição</th>
+              <th>Gols</th>
+          </tr>
+          </thead>";
+          foreach ($dados as $chaves => $valor) {
+            if ($valor['idade'] > 11 && $valor['idade'] <= 13) {
+              echo "<tr>
+                          <td>" . $valor['nome'] . "</td>
+                          <td>" . $valor['idade'] . "</td>
+                          <td>" . $valor['posicao'] . "</td>
+                          <td>" . $valor['gols'] . "</td>
+                      </tr>";
+            }
+          }
+        }
+        echo "</table>";
+      } else {
+        echo "<br><p class='mt-4' style='text-align:center'>Nenhuma jogador desta foi cadastrado</p>";
       }
-
-      echo "</table>";
-    } else {
-      echo "<br><p class='mt-4' style='text-align:center'>Nenhuma jogador desta foi cadastrado</p>";
-    }
-
-    ?>
+      ?>
+    </div>
   </main>
 
   <footer>

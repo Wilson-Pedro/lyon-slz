@@ -153,106 +153,92 @@ $dados = $sql->fetchAll();
     </div>
 
     <main>
-        <h1 id="calendarioDeJogos">HISTÓRICO DE PARTIDAS</h1>
-        <hr>
-        <!-- ATUALIZAR -->
-
-        <form class="oculto" id="form_atualiza" method="post">
-            <div id="div-update" class="oculto">
-
-                <h5>ID:</h5>
-                <input type="text" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
-
-                <h5>Gols do Lyon:</h5>
-                <input type="number" id="gols_lyon_editado" name="gols_lyon_editado" placeholder="Editar time gols" required><br><br>
-
-                <h5>Gols do Adversário:</h5>
-                <input type="number" id="gols_adv_editado" name="gols_adv_editado" placeholder="Editar gols" required><br><br>
-
-                <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
-
-                <button type="button" id="cancelar" name="cancelar">Cancelar</button>
-                <hr>
-            </div>
-        </form>
-
-        <!-- DELETAR -->
-
-        <form class="oculto" id="form_deleta" method="post">
-            <div id="div-delete" class="oculto">
-                <input type="hidden " id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
-                <input type="hidden" id="localidade_deleta" name="localidade_deleta" placeholder="Editar local" required> <br><br>
-                <input type="hidden" id="timeb_deleta" name="timeb_deleta" placeholder="Editar Time B" required><br><br>
-                <input type="hidden" id="data_partida_deleta" name="data_partida_deleta" placeholder="Editar Data" required> <br><br>
-                <h5 id="timeb_deleta" name="timeb_deleta"> <?php $timeb; ?></h5>
-                <h4>Tem certeza que quer deletar partida? <span id="cliente"></span></h4><br>
-                <button type="submit" id="btn-deletar" name="deletar">Confirmar</button>
-                <button type="button" id="cancelar_delete" name="cancelar_delete">Cancelar</button>
-                <hr>
-            </div>
-        </form>
-        <br><br>
-        <?php
-        //PROCESSO DE ATUALIZAÇÃO
-        if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['gols_lyon_editado']) && isset($_POST['gols_adv_editado'])) {
-
-            $id = $_POST['id_editado'];
-            $gols_lyon = $_POST['gols_lyon_editado'];
-            $gols_adv = $_POST['gols_adv_editado'];
-
-            $sql = $pdo->prepare("UPDATE tblpartidass SET gols_lyon = :gols_lyon, gols_adv = :gols_adv WHERE id= :id");
-            $sql->bindValue(':gols_lyon', $gols_lyon);
-            $sql->bindValue(':gols_adv', $gols_adv);
-            $sql->bindValue(':id', $id);
-            $sql->execute();
-        }
-        ?>
-
-        <?php
-        //DELETAR DADOS
-        if (isset($_POST['deletar']) && isset($_POST['id_deleta']) && isset($_POST['localidade_deleta']) && isset($_POST['timeb_deleta']) && isset($_POST['data_partida_deleta'])) {
-
-            $id = $_POST['id_deleta'];
-            $localidade = $_POST['localidade_deleta'];
-            $timeb = $_POST['timeb_deleta'];
-            $data_partida = $_POST['data_partida_deleta'];
-
-            //COMANDO PARA DELETAR
-            $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND timeb=? AND data_partida=?");
-            $sql->execute(array($id, $localidade, $timeb, $data_partida));
-        }
-        ?>
-        <?php
-        $data_Atual = date("Y-m-d");
-        if (count($dados) > 0) {
-            echo "<table class='table table-striped'>
-      <thead class=table-dark>
-      <tr>
-          <th>JOGOS</th>
-          <th>RESULTADO</th>
-          <th>DATA</th>
-          <th>Atuaizar | Deletar</th>
-      </tr>
-      </thead>";
-
-            foreach ($dados as $chaves => $valor) {
-                $dataJogo = $valor['data_partida'];
-                if (strtotime($dataJogo) <= strtotime($data_Atual)) {
-                    echo "<tr>
-              <td>" . "Lyon X " . $valor['timeb'] . "</td>
-              <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
-              <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-              <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-gols_lyon='" . $valor['gols_lyon'] . "'data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-localidade='" . $valor['localidade'] . "' data-timeb='" . $valor['timeb'] . "'data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
-
-        </tr>";
-                }
+        <div class="container-fluid">
+            <h1 id="calendarioDeJogos">HISTÓRICO DE PARTIDAS</h1>
+            <hr>
+            <!-- ATUALIZAR -->
+            <form class="oculto" id="form_atualiza" method="post">
+                <div id="div-update" class="oculto">
+                    <h5>ID:</h5>
+                    <input type="text" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
+                    <h5>Gols do Lyon:</h5>
+                    <input type="number" id="gols_lyon_editado" name="gols_lyon_editado" placeholder="Editar time gols" required><br><br>
+                    <h5>Gols do Adversário:</h5>
+                    <input type="number" id="gols_adv_editado" name="gols_adv_editado" placeholder="Editar gols" required><br><br>
+                    <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
+                    <button type="button" id="cancelar" name="cancelar">Cancelar</button>
+                    <hr>
+                </div>
+            </form>
+            <!-- DELETAR -->
+            <form class="oculto" id="form_deleta" method="post">
+                <div id="div-delete" class="oculto">
+                    <input type="hidden " id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
+                    <input type="hidden" id="localidade_deleta" name="localidade_deleta" placeholder="Editar local" required> <br><br>
+                    <input type="hidden" id="timeb_deleta" name="timeb_deleta" placeholder="Editar Time B" required><br><br>
+                    <input type="hidden" id="data_partida_deleta" name="data_partida_deleta" placeholder="Editar Data" required> <br><br>
+                    <h5 id="timeb_deleta" name="timeb_deleta"> <?php $timeb; ?></h5>
+                    <h4>Tem certeza que quer deletar partida? <span id="cliente"></span></h4><br>
+                    <button type="submit" id="btn-deletar" name="deletar">Confirmar</button>
+                    <button type="button" id="cancelar_delete" name="cancelar_delete">Cancelar</button>
+                    <hr>
+                </div>
+            </form>
+            <br><br>
+            <?php
+            //PROCESSO DE ATUALIZAÇÃO
+            if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['gols_lyon_editado']) && isset($_POST['gols_adv_editado'])) {
+                $id = $_POST['id_editado'];
+                $gols_lyon = $_POST['gols_lyon_editado'];
+                $gols_adv = $_POST['gols_adv_editado'];
+                $sql = $pdo->prepare("UPDATE tblpartidass SET gols_lyon = :gols_lyon, gols_adv = :gols_adv WHERE id= :id");
+                $sql->bindValue(':gols_lyon', $gols_lyon);
+                $sql->bindValue(':gols_adv', $gols_adv);
+                $sql->bindValue(':id', $id);
+                $sql->execute();
             }
-
-            echo "</table>";
-        } else {
-            echo "<p class='mt-4' style='text-align:center'>Nenhuma partida foi <a href='cadastroDePartidas.php'>cadastrada</a></p>";
-        }
-        ?>
+            ?>
+            <?php
+            //DELETAR DADOS
+            if (isset($_POST['deletar']) && isset($_POST['id_deleta']) && isset($_POST['localidade_deleta']) && isset($_POST['timeb_deleta']) && isset($_POST['data_partida_deleta'])) {
+                $id = $_POST['id_deleta'];
+                $localidade = $_POST['localidade_deleta'];
+                $timeb = $_POST['timeb_deleta'];
+                $data_partida = $_POST['data_partida_deleta'];
+                //COMANDO PARA DELETAR
+                $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND timeb=? AND data_partida=?");
+                $sql->execute(array($id, $localidade, $timeb, $data_partida));
+            }
+            ?>
+            <?php
+            $data_Atual = date("Y-m-d");
+            if (count($dados) > 0) {
+                echo "<table class='table table-striped'>
+                  <thead class=table-dark>
+                  <tr>
+              <th>JOGOS</th>
+              <th>RESULTADO</th>
+              <th>DATA</th>
+              <th>Editar</th>
+                  </tr>
+                  </thead>";
+                foreach ($dados as $chaves => $valor) {
+                    $dataJogo = $valor['data_partida'];
+                    if (strtotime($dataJogo) <= strtotime($data_Atual)) {
+                        echo "<tr>
+                  <td>" . "Lyon X " . $valor['timeb'] . "</td>
+                  <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
+                  <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                  <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-gols_lyon='" . $valor['gols_lyon'] . "'data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-localidade='" . $valor['localidade'] . "' data-timeb='" . $valor['timeb'] . "'data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
+            </tr>";
+                    }
+                }
+                echo "</table>";
+            } else {
+                echo "<p class='mt-4' style='text-align:center'>Nenhuma partida foi <a href='cadastroDePartidas.php'>cadastrada</a></p>";
+            }
+            ?>
+        </div>
     </main>
     <footer>
         <p class="mb-0">Escolinha de Futebol LYON SLZ</p>

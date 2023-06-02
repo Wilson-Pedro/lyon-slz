@@ -163,59 +163,56 @@ if (isset($_POST['salvar'])) {
     </div>
 
     <section class="form-jogador">
-        <h1 class="display-5">Cadastro de jogador</h1>
-        <hr>
-        <br>
-        <form method="post" action="">
-            <div class="row">
-
-                <!-- NOME -->
-                <div class="form-floating col-md-8">
-                    <input type="text" class="form-control" id="jogadorNome" name="jogadorNome" placeholder="Ex.: José F. Marques">
-                    <label for="floatingInput text-center">Nome completo</label>
-                </div>
-                <button type="button" class="btn btn-warning col " id="limpaNome" onclick="limpaCampos0()">Limpar</button>
-            </div><br>
-
-            <!-- CATEGORIA -->
-            <div class="row">
-                <div class="form-floating col-md-8">
-                    <input type="text" class="form-control" id="jogadorIdade" name="jogadorIdade" placeholder="Ex.: Sub-14" maxlength="6">
-                    <label for="floatingInput text-center">Idade</label>
-                </div>
-                <button type="button" class="btn btn-warning col btn-lg" id="limpaIdade" onclick="limpaCampos1()">Limpar</button>
-            </div><br>
-            <dialog id="cad-jogadorConfirmMsg" class="MsgSucesso">
-                <p class="cad-jogadorMsgSucesso">Cadastro feito com Sucesso!</p>
-                <a href="cadastro-de-jogador.php"><input type="submit" name="salvar" value="Ok" class="btn-MsgSucesso"></a>
-            </dialog>
-            <dialog id="cad-jogadorConfirmMsgErro" class="MsgErro">
-                <p class="cad-jogadorMsgErro">Erro ao realizar o cadastro!</p>
-                <a href="cadastro.php"><input type="button" value="Ok" class="btn-MsgErro"></a>
-            </dialog>
-            <div class="row">
-
-                <!-- POSIÇÃO -->
-                <div class="form-floating col-md-8">
-                    <input type="text" class="form-control" id="jogadorPosicao" name="jogadorPosicao" placeholder="Ex.: Atacante">
-                    <label for="floatingInput text-center">Posição</label>
-                </div>
-                <button type="button" class="btn btn-warning col btn-lg" id="limpaPosicao" onclick="limpaCampos2()">Limpar</button>
-            </div><br>
-            <div class="row">
-
-                <!-- GOLS -->
-                <div class="form-floating col-md-8">
-                    <input type="text" class="form-control" id="jogadorGols" name="jogadorGols" placeholder="Ex.: 27">
-                    <label for="floatingInput text-center">Gols</label>
-                </div>
-                <button type="button" class="btn btn-warning col btn-lg" id="limpaGols" onclick="limpaCampos3()">Limpar</button>
-            </div><br>
-
-            <!-- CADASTRAR JOGADOR -->
-            <input type="submit" id="btn-cadastrar" value="Cadastrar jogador" class="btn btn-success btn-lg" onclick="validaCampos(event)">
-            <input type="reset" value="Limpar campos" name="btn-cadastrar" id="btn-cadastrar" class="btn btn-danger btn-lg">
-        </form>
+        <div class="container-fluid">
+            <h1 class="display-5">Cadastro de jogador</h1>
+            <hr>
+            <br>
+            <form method="post" action="">
+                <div class="row">
+                    <!-- NOME -->
+                    <div class="form-floating col-md-8">
+                        <input type="text" class="form-control" id="jogadorNome" name="jogadorNome" placeholder="Ex.: José F. Marques">
+                        <label for="floatingInput text-center">Nome completo</label>
+                    </div>
+                    <button type="button" class="btn btn-warning col " id="limpaNome" onclick="limpaCampos0()">Limpar</button>
+                </div><br>
+                <!-- CATEGORIA -->
+                <div class="row">
+                    <div class="form-floating col-md-8">
+                        <input type="text" class="form-control" id="jogadorIdade" name="jogadorIdade" placeholder="Ex.: Sub-14" maxlength="6">
+                        <label for="floatingInput text-center">Idade</label>
+                    </div>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaIdade" onclick="limpaCampos1()">Limpar</button>
+                </div><br>
+                <dialog id="cad-jogadorConfirmMsg" class="MsgSucesso">
+                    <p class="cad-jogadorMsgSucesso">Cadastro feito com Sucesso!</p>
+                    <a href="cadastro-de-jogador.php"><input type="submit" name="salvar" value="Ok" class="btn-MsgSucesso"></a>
+                </dialog>
+                <dialog id="cad-jogadorConfirmMsgErro" class="MsgErro">
+                    <p class="cad-jogadorMsgErro">Erro ao realizar o cadastro!</p>
+                    <a href="cadastro.php"><input type="button" value="Ok" class="btn-MsgErro"></a>
+                </dialog>
+                <div class="row">
+                    <!-- POSIÇÃO -->
+                    <div class="form-floating col-md-8">
+                        <input type="text" class="form-control" id="jogadorPosicao" name="jogadorPosicao" placeholder="Ex.: Atacante">
+                        <label for="floatingInput text-center">Posição</label>
+                    </div>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaPosicao" onclick="limpaCampos2()">Limpar</button>
+                </div><br>
+                <div class="row">
+                    <!-- GOLS -->
+                    <div class="form-floating col-md-8">
+                        <input type="text" class="form-control" id="jogadorGols" name="jogadorGols" placeholder="Ex.: 27">
+                        <label for="floatingInput text-center">Gols</label>
+                    </div>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaGols" onclick="limpaCampos3()">Limpar</button>
+                </div><br>
+                <!-- CADASTRAR JOGADOR -->
+                <input type="submit" id="btn-cadastrar" value="Cadastrar jogador" class="btn btn-success btn-lg" onclick="validaCampos(event)">
+                <input type="reset" value="Limpar campos" name="btn-cadastrar" id="btn-cadastrar" class="btn btn-danger btn-lg">
+            </form>
+        </div>
     </section>
     <script src="../js/cadastro-jogador.js"></script>
     <!-- JavaScript Bundle with Popper -->

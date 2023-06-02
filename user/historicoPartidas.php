@@ -59,7 +59,7 @@ $dados = $sql->fetchAll();
     }
 
     main {
-        width: 95vw;
+        width: 99.5%;
     }
 </style>
 
@@ -120,37 +120,38 @@ $dados = $sql->fetchAll();
     </div>
 
     <main>
-        <h1 id="calendarioDeJogos">HISTÓRICO DE PARTIDAS</h1>
-        <?php
-        $data_Atual = date("Y-m-d");
-        if (count($dados) > 0) {
-            echo "<table class='table table-striped'>
-        <thead class=table-dark>
-        <tr>
-            <th>JOGOS</th>
-            <th>RESULTADO</th>
-            <th>DATA</th>
-        </tr>
-        </thead>";
-
-            foreach ($dados as $chaves => $valor) {
-                $dataJogo = $valor['data_partida'];
-                if (strtotime($dataJogo) <= strtotime($data_Atual)) {
-                    echo "<tr>
-          <td>" . "Lyon X " . $valor['timeb'] . "</td>
-          <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
-          <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-
-    </tr>";
+        <div class="container-fluid">
+            <div class="container-fluid">
+                <h1 id="calendarioDeJogos">HISTÓRICO DE PARTIDAS</h1>
+            </div>
+            <?php
+            $data_Atual = date("Y-m-d");
+            if (count($dados) > 0) {
+                echo "<table class='table table-striped'>
+            <thead class=table-dark>
+            <tr>
+                <th>JOGOS</th>
+                <th>RESULTADO</th>
+                <th>DATA</th>
+            </tr>
+            </thead>";
+                foreach ($dados as $chaves => $valor) {
+                    $dataJogo = $valor['data_partida'];
+                    if (strtotime($dataJogo) <= strtotime($data_Atual)) {
+                        echo "<tr>
+              <td>" . "Lyon X " . $valor['timeb'] . "</td>
+              <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
+              <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+            
+                </tr>";
+                    }
                 }
+                echo "</table>";
+            } else {
+                echo "<br><p class='mt-4' style='text-align:center' >Nenhum jogador cadastrado</p>";
             }
-
-            echo "</table>";
-        } else {
-            echo "<br><p class='mt-4' style='text-align:center' >Nenhum jogador cadastrado</p>";
-        }
-
-        ?>
+            ?>
+        </div>
     </main>
     <footer>
         <p class="mb-0">Escolinha de Futebol LYON SLZ</p>

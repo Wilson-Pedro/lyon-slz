@@ -110,141 +110,115 @@ $dados = $sql->fetchAll();
 
 
   <main>
-    <h1 class="categoria">Categoria Sub-15</h1>
-    <hr>
-
-    <!-- ATUALIZAR -->
-
-    <form class="oculto" id="form_atualiza" method="post">
-      <div id="div-update" class="oculto">
-        <h5 class="inputTitulo">ID:</h5>
-        <input type="text" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
-
-        <h5 class="inputTitulo">Nome:</h5>
-        <input type="text" id="nome_editado" name="nome_editado" placeholder="Editar nome" required> <br><br>
-
-        <h5 class="inputTitulo">Idade:</h5>
-        <input type="number" id="idade_editado" name="idade_editado" placeholder="Editar idade" required><br><br>
-
-        <h5 class="inputTitulo">Posição:</h5>
-        <input type="text" id="posicao_editado" name="posicao_editado" placeholder="Editar posicao" required><br><br>
-
-        <h5 class="inputTitulo">Gols:</h5>
-        <input type="number" id="gols_editado" name="gols_editado" placeholder="Editar gols" required><br><br>
-
-        <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
-
-        <button type="button" id="cancelar" name="cancelar">Cancelar</button>
-        <hr>
-      </div>
-    </form>
-
-    <!-- DELETAR -->
-
-    <form class="oculto" id="form_deleta" method="post">
-      <div id="div-delete" class="oculto">
-
-        <input type="hidden " id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
-
-        <input type="hidden" id="nome_deleta" name="nome_deleta" placeholder="Editar nome" required> <br><br>
-
-        <input type="hidden" id="idade_deleta" name="idade_deleta" placeholder="Editar idade" required><br><br>
-
-        <input type="hidden" id="posicao_deleta" name="posicao_deleta" placeholder="Editar posicao" required><br><br>
-
-        <input type="hidden" id="gols_deleta" name="gols_deleta" placeholder="Editar gols" required>
-        <b>Tem certeza que quer deletar Jogador <span id="cliente"></span></b>
-
-        <button type="submit" id="btn-deletar" name="deletar">Confirmar</button>
-
-        <button type="button" id="cancelar_delete" name="cancelar_delete">Cancelar</button>
-        <hr>
-      </div>
-    </form>
-    <br><br>
-    <?php
-    //PROCESSO DE ATUALIZAÇÃO
-    if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['nome_editado']) && isset($_POST['idade_editado']) && isset($_POST['posicao_editado']) && isset($_POST['gols_editado'])) {
-
-      $id = $_POST['id_editado'];
-      $nome = $_POST['nome_editado'];
-      $idade = $_POST['idade_editado'];
-      $posicao = $_POST['posicao_editado'];
-      $gols = $_POST['gols_editado'];
-
-
-      $sql = $pdo->prepare("UPDATE tbljogadoress SET nome = :nome ,idade = :idade, posicao = :posicao, gols = :gols WHERE id= :id");
-      $sql->bindValue(':nome', $nome);
-      $sql->bindValue(':idade', $idade);
-      $sql->bindValue(':posicao', $posicao);
-      $sql->bindValue(':gols', $gols);
-      $sql->bindValue(':id', $id);
-      $sql->execute();
-      /*
-        $sql = $pdo->prepare("UPDATE tbljogadores SET nome=?,idade=?, posicao=?, gols=? WHERE id=?");
-        $sql->execute(array($nome, $idade, $posicao, $gols, $id));
-
-        echo "Atualizado " . $sql->rowCount() . "registros!";*/
-    }
-    ?>
-
-    <?php
-    //DELETAR DADOS
-    if (isset($_POST['deletar']) && isset($_POST['id_deleta']) && isset($_POST['nome_deleta']) && isset($_POST['idade_deleta']) && isset($_POST['posicao_deleta']) && isset($_POST['gols_deleta'])) {
-
-      $id = $_POST['id_deleta'];
-      $nome = $_POST['nome_deleta'];
-      $idade = $_POST['idade_deleta'];
-      $posicao = $_POST['posicao_deleta'];
-      $gols = $_POST['gols_deleta'];
-
-      //COMANDO PARA DELETAR
-      $sql = $pdo->prepare("DELETE FROM tbljogadoress WHERE id=? AND nome=? AND idade=? AND posicao=? AND gols=?");
-      $sql->execute(array($id, $nome, $idade, $posicao, $gols));
-
-      echo "Deletado com sucesso!";
-    }
-    ?>
-    <?php
-    $sub15 = 0;
-    if (count($dados) > 0) {
-      foreach ($dados as $chaves => $valor) {
-        if ($valor['idade'] > 13 && $valor['idade'] <= 15) {
-          $sub15++;
+    <div class="container-fluid">
+      <h1 class="categoria">Categoria Sub-15</h1>
+      <hr>
+      <!-- ATUALIZAR -->
+      <form class="oculto" id="form_atualiza" method="post">
+        <div id="div-update" class="oculto">
+          <h5 class="inputTitulo">ID:</h5>
+          <input type="text" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
+          <h5 class="inputTitulo">Nome:</h5>
+          <input type="text" id="nome_editado" name="nome_editado" placeholder="Editar nome" required> <br><br>
+          <h5 class="inputTitulo">Idade:</h5>
+          <input type="number" id="idade_editado" name="idade_editado" placeholder="Editar idade" required><br><br>
+          <h5 class="inputTitulo">Posição:</h5>
+          <input type="text" id="posicao_editado" name="posicao_editado" placeholder="Editar posicao" required><br><br>
+          <h5 class="inputTitulo">Gols:</h5>
+          <input type="number" id="gols_editado" name="gols_editado" placeholder="Editar gols" required><br><br>
+          <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
+          <button type="button" id="cancelar" name="cancelar">Cancelar</button>
+          <hr>
+        </div>
+      </form>
+      <!-- DELETAR -->
+      <form class="oculto" id="form_deleta" method="post">
+        <div id="div-delete" class="oculto">
+          <input type="hidden " id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
+          <input type="hidden" id="nome_deleta" name="nome_deleta" placeholder="Editar nome" required> <br><br>
+          <input type="hidden" id="idade_deleta" name="idade_deleta" placeholder="Editar idade" required><br><br>
+          <input type="hidden" id="posicao_deleta" name="posicao_deleta" placeholder="Editar posicao" required><br><br>
+          <input type="hidden" id="gols_deleta" name="gols_deleta" placeholder="Editar gols" required>
+          <b>Tem certeza que quer deletar Jogador <span id="cliente"></span></b>
+          <button type="submit" id="btn-deletar" name="deletar">Confirmar</button>
+          <button type="button" id="cancelar_delete" name="cancelar_delete">Cancelar</button>
+          <hr>
+        </div>
+      </form>
+      <br><br>
+      <?php
+      //PROCESSO DE ATUALIZAÇÃO
+      if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['nome_editado']) && isset($_POST['idade_editado']) && isset($_POST['posicao_editado']) && isset($_POST['gols_editado'])) {
+        $id = $_POST['id_editado'];
+        $nome = $_POST['nome_editado'];
+        $idade = $_POST['idade_editado'];
+        $posicao = $_POST['posicao_editado'];
+        $gols = $_POST['gols_editado'];
+        $sql = $pdo->prepare("UPDATE tbljogadoress SET nome = :nome ,idade = :idade, posicao = :posicao, gols = :gols WHERE id= :id");
+        $sql->bindValue(':nome', $nome);
+        $sql->bindValue(':idade', $idade);
+        $sql->bindValue(':posicao', $posicao);
+        $sql->bindValue(':gols', $gols);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+        /*
+          $sql = $pdo->prepare("UPDATE tbljogadores SET nome=?,idade=?, posicao=?, gols=? WHERE id=?");
+          $sql->execute(array($nome, $idade, $posicao, $gols, $id));
+          echo "Atualizado " . $sql->rowCount() . "registros!";*/
+      }
+      ?>
+      <?php
+      //DELETAR DADOS
+      if (isset($_POST['deletar']) && isset($_POST['id_deleta']) && isset($_POST['nome_deleta']) && isset($_POST['idade_deleta']) && isset($_POST['posicao_deleta']) && isset($_POST['gols_deleta'])) {
+        $id = $_POST['id_deleta'];
+        $nome = $_POST['nome_deleta'];
+        $idade = $_POST['idade_deleta'];
+        $posicao = $_POST['posicao_deleta'];
+        $gols = $_POST['gols_deleta'];
+        //COMANDO PARA DELETAR
+        $sql = $pdo->prepare("DELETE FROM tbljogadoress WHERE id=? AND nome=? AND idade=? AND posicao=? AND gols=?");
+        $sql->execute(array($id, $nome, $idade, $posicao, $gols));
+        echo "Deletado com sucesso!";
+      }
+      ?>
+      <?php
+      $sub15 = 0;
+      if (count($dados) > 0) {
+        foreach ($dados as $chaves => $valor) {
+          if ($valor['idade'] > 13 && $valor['idade'] <= 15) {
+            $sub15++;
+          }
+        } if($sub15 == 0){
+          echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
+        } else  {
+          echo "<table class='table table-striped'>
+          <thead class=table-dark>
+          <tr>
+              <th>Nome</th>
+              <th>Idade</th>
+              <th>Posição</th>
+              <th>Gols</th>
+              <th>Editar</th>
+          </tr>
+          </thead>";
+        foreach ($dados as $chaves => $valor) {
+          if ($valor['idade'] > 13 && $valor['idade'] <= 15) {
+            echo "<tr>
+                          <td>" . $valor['nome'] . "</td>
+                          <td>" . $valor['idade'] . "</td>
+                          <td>" . $valor['posicao'] . "</td>
+                          <td>" . $valor['gols'] . "</td>
+                          <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Deletar</a></td>
+                      </tr>";
+          }
         }
-      } if($sub15 == 0){
+        echo "</table>";
+        }
+      } else {
         echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
-      } else  {
-        echo "<table class='table table-striped'>
-        <thead class=table-dark>
-        <tr>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Posição</th>
-            <th>Gols</th>
-            <th>Atuaizar | Deletar</th>
-        </tr>
-        </thead>";
-
-      foreach ($dados as $chaves => $valor) {
-        if ($valor['idade'] > 13 && $valor['idade'] <= 15) {
-          echo "<tr>
-                        <td>" . $valor['nome'] . "</td>
-                        <td>" . $valor['idade'] . "</td>
-                        <td>" . $valor['posicao'] . "</td>
-                        <td>" . $valor['gols'] . "</td>
-                        <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Deletar</a></td>
-                    </tr>";
-        }
       }
-
-
-      echo "</table>";
-      }
-    } else {
-      echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
-    }
-    ?>
+      ?>
+    </div>
   </main>
   <footer>
     <p class="mb-0">Escolinha de Futebol LYON SLZ</p>

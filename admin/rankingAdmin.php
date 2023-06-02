@@ -111,95 +111,84 @@ $dados = $sql->fetchAll();
   </div>
 
   <main>
-    <!-- ATUALIZAR -->
-    <br><br>
-    <form class="oculto" id="form_atualiza" method="post">
-      <div id="div-update" class="oculto">
-        <h5 class="inputTitulo">ID:</h5>
-        <input type="text" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
-
-        <h5 class="inputTitulo">Gols:</h5>
-        <input type="number" id="gols_editado" name="gols_editado" placeholder="Editar gols" required><br><br>
-
-        <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
-
-        <button type="button" id="cancelar" name="cancelar">Cancelar</button>
-        <hr>
-      </div>
-    </form>
-
-    <?php
-    //PROCESSO DE ATUALIZAÇÃO
-    if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['gols_editado'])) {
-
-      $id = $_POST['id_editado'];
-      $gols = $_POST['gols_editado'];
-
-
-      $sql = $pdo->prepare("UPDATE tbljogadoress SET gols = :gols WHERE id= :id");
-      $sql->bindValue(':gols', $gols);
-      $sql->bindValue(':id', $id);
-      $sql->execute();
-      /*
-        $sql = $pdo->prepare("UPDATE tbljogadores SET nome=?,idade=?, posicao=?, gols=? WHERE id=?");
-        $sql->execute(array($nome, $idade, $posicao, $gols, $id));
-
-        echo "Atualizado " . $sql->rowCount() . "registros!";*/
-    }
-    ?>
-
-    <br><br><br>
-    <?php
-    if (count($dados) > 0) {
-      echo "<table class='table table-striped'>
-        <thead class=table-dark>
-        <tr>
-            <th>Posição</th>
-            <th>Nome</th>
-            <th>Gols</th>
-            <th>Atualizar gols</th>
-        </tr>
-        </thead>";
-      $maior = 0;
-      foreach ($dados as $chaves => $valor) {
-        if ($valor['gols'] > $maior) {
-          $maior = $valor['gols'];
-        }
+    <div class="container-fluid">
+      <!-- ATUALIZAR -->
+      <br><br>
+      <form class="oculto" id="form_atualiza" method="post">
+        <div id="div-update" class="oculto">
+          <h5 class="inputTitulo">ID:</h5>
+          <input type="text" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
+          <h5 class="inputTitulo">Gols:</h5>
+          <input type="number" id="gols_editado" name="gols_editado" placeholder="Editar gols" required><br><br>
+          <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
+          <button type="button" id="cancelar" name="cancelar">Cancelar</button>
+          <hr>
+        </div>
+      </form>
+      <?php
+      //PROCESSO DE ATUALIZAÇÃO
+      if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['gols_editado'])) {
+        $id = $_POST['id_editado'];
+        $gols = $_POST['gols_editado'];
+        $sql = $pdo->prepare("UPDATE tbljogadoress SET gols = :gols WHERE id= :id");
+        $sql->bindValue(':gols', $gols);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+        /*
+          $sql = $pdo->prepare("UPDATE tbljogadores SET nome=?,idade=?, posicao=?, gols=? WHERE id=?");
+          $sql->execute(array($nome, $idade, $posicao, $gols, $id));
+          echo "Atualizado " . $sql->rowCount() . "registros!";*/
       }
-
-      $aux = 0;
-      $contMaior = 0;
-      $cont = 0;
-      $ranking = 1;
-      while ($cont < 11) {
+      ?>
+      <br><br><br>
+      <?php
+      if (count($dados) > 0) {
+        echo "<table class='table table-striped'>
+          <thead class=table-dark>
+          <tr>
+              <th>Posição</th>
+              <th>Nome</th>
+              <th>Gols</th>
+              <th>Atualizar</th>
+          </tr>
+          </thead>";
+        $maior = 0;
         foreach ($dados as $chaves => $valor) {
-          if ($valor['gols'] == $maior) {
-            if ($ranking == 11) {
-              break;
-            }
-            echo "<tr>
-                        <td>" . $ranking . "</td>
-                        <td>" . $valor['nome'] . "</td>
-                        <td>" . $valor['gols'] . "</td>
-                        <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a></td>
-                    </tr>";
-            $ranking += 1;
+          if ($valor['gols'] > $maior) {
+            $maior = $valor['gols'];
           }
         }
-        $maior -= 1;
-        $cont += 1;
-        if ($cont == 10) {
-          break;
+        $aux = 0;
+        $contMaior = 0;
+        $cont = 0;
+        $ranking = 1;
+        while ($cont < 11) {
+          foreach ($dados as $chaves => $valor) {
+            if ($valor['gols'] == $maior) {
+              if ($ranking == 11) {
+                break;
+              }
+              echo "<tr>
+                          <td>" . $ranking . "</td>
+                          <td>" . $valor['nome'] . "</td>
+                          <td>" . $valor['gols'] . "</td>
+                          <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a></td>
+                      </tr>";
+              $ranking += 1;
+            }
+          }
+          $maior -= 1;
+          $cont += 1;
+          if ($cont == 10) {
+            break;
+          }
         }
+        echo "</table>";
+      } else {
+        echo "<p style='text-align:center'>Nenhuma jogador foi <a href='cadastroDeJogador.php'>cadastrado</a></p>";
       }
-
-
-      echo "</table>";
-    } else {
-      echo "<p style='text-align:center'>Nenhuma jogador foi <a href='cadastroDeJogador.php'>cadastrado</a></p>";
-    }
-
-    ?>
+      ?>
+    </div>
   </main>
   <footer>
     <p class="mb-0">EscolinhaDeJutebol LYON SLZ</p>

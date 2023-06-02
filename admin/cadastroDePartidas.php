@@ -187,66 +187,61 @@ if (isset($_POST['salvar'])) {
 <body>
 
     <section class="form-partida">
-        <h1 class="display-5">Cadastro de partidas</h1>
-        <hr>
-        <br>
-        <form method="post" action="">
-
-            <!-- LOCAL -->
-            <div class="row">
-                <div class="form-floating col-md-8">
-                    <input type="text" class="form-control" id="partidaLocal" name="partidaLocal" placeholder="Ex.: Estádio Lourenço Farias. Centro.">
-                    <label for="floatingInput text-center">Local</label>
-                </div>
-                <button type="button" class="btn btn-warning col btn-lg" id="limpaLocal" onclick="limpaCampos0()">Limpar</button>
-            </div><br>
-
-
-            <!-- JANELAS DE CONFIRMAÇÃO -->
-            <dialog id="cad-partidaConfirmMsg" class="MsgSucesso">
-                <p class="cad-partidaMsgSucesso">Cadastro feito com Sucesso!</p>
-                <a href="cadastro-de-partidas.php"><input type="submit" name="salvar" value="Ok" class="btn-MsgSucesso"></a>
-            </dialog>
-            <dialog id="cad-partidaConfirmMsgErro" class="MsgErro">
-                <p class="cad-partidaMsgErro">Erro ao realizar o cadastro!</p>
-                <input type="button" id="cancel" value="Ok" class="btn-MsgErro">
-            </dialog>
-
-            <!-- TIME B -->
-            <div class="row">
-                <div class="form-floating col-md-8">
-                    <input type="text" class="form-control" id="partidaTimeB" name="partidaTimeB" placeholder="Ex.: Manchester United do Maranhão">
-                    <label for="floatingInput text-center">Time Adversário</label>
-                </div>
-                <button type="button" class="btn btn-warning col btn-lg" id="limpaTimeB" onclick="limpaCampos2()">Limpar</button>
-            </div><br>
-
-            <!-- DATA -->
-            <div class="row">
-                <div class="col-md-8">
-                    <label for="text-center" class="form-label">Data</label>
-                    <div class="input-group input-group-lg">
-                        <input type="date" class="form-control" name="data" id="partidaHorarioData" placeholder="14/10/2023">
+        <div class="container-fluid">
+            <h1 class="display-5">Cadastro de partidas</h1>
+            <hr>
+            <br>
+            <form method="post" action="">
+                <!-- LOCAL -->
+                <div class="row">
+                    <div class="form-floating col-md-8">
+                        <input type="text" class="form-control" id="partidaLocal" name="partidaLocal" placeholder="Ex.: Estádio Lourenço Farias. Centro.">
+                        <label for="floatingInput text-center">Local</label>
                     </div>
-                </div>
-                <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
-            </div><br>
-
-            <!-- HORÁRIO -->
-            <div class="row">
-                <div class="col-md-8">
-                    <label for="text-center" class="form-label">Horário</label>
-                    <div class="input-group input-group-lg">
-                        <input type="time" class="form-control" name="horario" id="partidaHorarioData" placeholder="14/10/2023 às 11:30">
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaLocal" onclick="limpaCampos0()">Limpar</button>
+                </div><br>
+                <!-- JANELAS DE CONFIRMAÇÃO -->
+                <dialog id="cad-partidaConfirmMsg" class="MsgSucesso">
+                    <p class="cad-partidaMsgSucesso">Cadastro feito com Sucesso!</p>
+                    <a href="cadastro-de-partidas.php"><input type="submit" name="salvar" value="Ok" class="btn-MsgSucesso"></a>
+                </dialog>
+                <dialog id="cad-partidaConfirmMsgErro" class="MsgErro">
+                    <p class="cad-partidaMsgErro">Erro ao realizar o cadastro!</p>
+                    <input type="button" id="cancel" value="Ok" class="btn-MsgErro">
+                </dialog>
+                <!-- TIME B -->
+                <div class="row">
+                    <div class="form-floating col-md-8">
+                        <input type="text" class="form-control" id="partidaTimeB" name="partidaTimeB" placeholder="Ex.: Manchester United do Maranhão">
+                        <label for="floatingInput text-center">Time Adversário</label>
                     </div>
-                </div>
-                <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
-            </div><br>
-
-            <!-- CADASTRAR PARTIDA -->
-            <input type="submit" id="btn-cadastrar-partida" value="Cadastrar partida" class="btn btn-success btn-lg" onclick="validaCampos(event)">
-            <input type="reset" value="Limpar todos os campos" name="btn-cadastrar" id="btn-cadastrar-partida" class="btn btn-danger btn-lg">
-        </form>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaTimeB" onclick="limpaCampos2()">Limpar</button>
+                </div><br>
+                <!-- DATA -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="text-center" class="form-label">Data</label>
+                        <div class="input-group input-group-lg">
+                            <input type="date" class="form-control" name="data" id="partidaHorarioData" placeholder="14/10/2023">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
+                </div><br>
+                <!-- HORÁRIO -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="text-center" class="form-label">Horário</label>
+                        <div class="input-group input-group-lg">
+                            <input type="time" class="form-control" name="horario" id="partidaHorarioData" placeholder="14/10/2023 às 11:30">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
+                </div><br>
+                <!-- CADASTRAR PARTIDA -->
+                <input type="submit" id="btn-cadastrar-partida" value="Cadastrar partida" class="btn btn-success btn-lg" onclick="validaCampos(event)">
+                <input type="reset" value="Limpar todos os campos" name="btn-cadastrar" id="btn-cadastrar-partida" class="btn btn-danger btn-lg">
+            </form>
+        </div>
     </section>
     <script src="../js/cadastro-partidas.js"></script>
 </body>

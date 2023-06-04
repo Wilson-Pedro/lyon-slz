@@ -29,20 +29,20 @@ $dados = $sql->fetchAll();
     }
 
     body {
-      max-width: 100%;
+      width: 100%;
       background-color: rgb(214, 168, 100);
     }
 
     table {
-      border-collapse: collapse;
       width: 100%;
     }
 
     th,
     td {
-      padding: 10px;
+      padding: 5px;
       text-align: center;
       border: solid 1px black;
+      font-size: 13px;
     }
 
     .oculto {
@@ -50,11 +50,6 @@ $dados = $sql->fetchAll();
     }
   </style>
 </head>
-<style>
-  table {
-    width: 100%;
-  }  
-</style>
 
 <body>
   <!-- CABEÇALHO -->
@@ -197,7 +192,7 @@ $dados = $sql->fetchAll();
         if ($sub9 == 0) {
           echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
         } else {
-          //echo "<div class='container-fluid'>";
+          echo "<div class='table table-responsive table-striped'>";
           echo "<table class='table table-striped'>
           <thead class=table-dark>
           <tr>
@@ -215,12 +210,12 @@ $dados = $sql->fetchAll();
                           <td>" . $valor['idade'] . "</td>
                           <td>" . $valor['posicao'] . "</td>
                           <td>" . $valor['gols'] . "</td>
-                          <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Deletar</a></td>
+                          <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> </td>
                       </tr>";
             }
           }
           echo "</table>";
-          //echo "</div>";
+          echo "</div>";
         }
       } else {
         echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";

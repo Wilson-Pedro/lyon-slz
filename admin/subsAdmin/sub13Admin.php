@@ -33,15 +33,15 @@ $dados = $sql->fetchAll();
     }
 
     table {
-      border-collapse: collapse;
       width: 100%;
     }
 
     th,
     td {
-      padding: 10px;
+      padding: 5px;
       text-align: center;
       border: solid 1px black;
+      font-size: 13px;
     }
 
     .oculto {
@@ -192,6 +192,7 @@ $dados = $sql->fetchAll();
         } if($sub13 == 0){
           echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
         } else  {
+          echo "<div class='table table-responsive table-striped'>";
           echo "<table class='table table-striped'>
           <thead class=table-dark>
           <tr>
@@ -214,6 +215,7 @@ $dados = $sql->fetchAll();
           }
         }
         echo "</table>";
+        echo "</div>";
         }
       } else {
         echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";

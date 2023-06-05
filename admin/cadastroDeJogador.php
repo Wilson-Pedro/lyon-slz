@@ -1,5 +1,5 @@
 <?php
-require('../user/db/conexao.php');
+require('../db/conexao.php');
 
 if (isset($_POST['salvar'])) {
     $nome = $_POST['jogadorNome'];
@@ -153,7 +153,7 @@ if (isset($_POST['salvar'])) {
                             <li>
                                 <a href="cadastroDeJogador.php" id="marcado">Cadastrar Jogador</a>
                                 <a href="cadastroDePartidas.php">Cadastrar partida</a>
-                                <a href="../user/home.php">Sair</a>
+                                <a href="../home.php">Sair</a>
                             </li>
                         </ul>
                     </li>

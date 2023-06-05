@@ -1,5 +1,5 @@
 <?php
-include('../user/db/conexao.php');
+include('../db/conexao.php');
 
 $pasta = "../img/imgArquivos/";
 $sql = $pdo->prepare("SELECT * FROM tblfotoss");
@@ -211,7 +211,7 @@ if (isset($_POST['deletar'])) {
               <li>
                 <a href="cadastroDeJogador.php">Cadastrar Jogador</a>
                 <a href="cadastroDePartidas.php">Cadastrar partida</a>
-                <a href="../user/home.php">Sair</a>
+                <a href="../home.php">Sair</a>
               </li>
             </ul>
           </li>

@@ -16,13 +16,13 @@ $dados = $sql->fetchAll();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="lyon.jpg">
-  <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/calendario.css">
-  <link rel="stylesheet" href="../css/timeANDescudo.css">
-  <link rel="stylesheet" href="../css/navegacao.css">
-  <link rel="stylesheet" href="../css/navResponsivo.css">
+  <link rel="shortcut icon" href="img/favicon/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/calendario.css">
+  <link rel="stylesheet" href="css/timeANDescudo.css">
+  <link rel="stylesheet" href="css/navegacao.css">
+  <link rel="stylesheet" href="css/navResponsivo.css">
   <title>Calendario</title>
 </head>
 <style>
@@ -72,11 +72,11 @@ $dados = $sql->fetchAll();
   <!-- CABEÇALHO -->
   <div class="cabecalho">
     <picture>
-      <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png'>
-      <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png'>
-      <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png'>
-      <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
-      <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+      <source media="(max-width: 261px)" srcset='img/imgLogo/lyonSlzEscudo5.png'>
+      <source media="(max-width: 269px)" srcset='img/imgLogo/lyonSlzEscudo4.png'>
+      <source media="(max-width: 311px)" srcset='img/imgLogo/lyonSlzEscudo3.png'>
+      <source media="(max-width: 375px)" srcset='img/imgLogo/lyonSlzEscudo2.png'>
+      <img src="img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
     </picture>
     <header class="navbar ">
       <nav class="dp-menu mt-4">

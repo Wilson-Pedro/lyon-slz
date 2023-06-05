@@ -14,20 +14,15 @@ $dados = $sql->fetchAll();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="../../css/layout.css">
-  <link rel="stylesheet" href="../../css/timeANDescudo.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/timeANDescudo.css">
   <link rel="stylesheet" href="lyon.jpg">
-  <link rel="shortcut icon" href="../../img/favicon/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../../css/update-e-delete.css">
-  <link rel="stylesheet" href="../../css/navegacao.css">
-  <link rel="stylesheet" href="../../css/navResponsivo.css">
-  <title>Sub13</title>
+  <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="../css/update-e-delete.css">
+  <link rel="stylesheet" href="../css/navegacao.css">
+  <link rel="stylesheet" href="../css/navResponsivo.css">
+  <title>Sub15</title>
   <style>
-    body {
-      max-width: 100%;
-      background-color: rgb(214, 168, 100);
-    }
-
     h1.categoria {
       text-align: center;
       font-weight: bold;
@@ -40,7 +35,8 @@ $dados = $sql->fetchAll();
     }
 
     body {
-      font-family: 'Arial';
+      max-width: 100%;
+      background-color: rgb(214, 168, 100);
     }
 
     table {
@@ -69,11 +65,11 @@ $dados = $sql->fetchAll();
   <!-- CABEÇALHO -->
   <div class="cabecalho">
     <picture>
-      <source media="(max-width: 261px)" srcset='../../img/imgLogo/lyonSlzEscudo5.png'>
-      <source media="(max-width: 269px)" srcset='../../img/imgLogo/lyonSlzEscudo4.png'>
-      <source media="(max-width: 311px)" srcset='../../img/imgLogo/lyonSlzEscudo3.png'>
-      <source media="(max-width: 375px)" srcset='../../img/imgLogo/lyonSlzEscudo2.png'>
-      <img src="../../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+      <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png'>
+      <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png'>
+      <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png'>
+      <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
+      <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
     </picture>
     <header class="navbar ">
       <nav class="dp-menu mt-4">
@@ -87,8 +83,8 @@ $dados = $sql->fetchAll();
               <li>
                 <a href="sub09.php">sub09</a>
                 <a href="sub11.php">sub11</a>
-                <a href="sub13.php" id="marcado">sub13</a>
-                <a href="sub15.php">sub15</a>
+                <a href="sub13.php">sub13</a>
+                <a href="sub15.php" id="marcado">sub15</a>
                 <a href="sub17.php">sub17</a>
               </li>
               <li>
@@ -123,18 +119,18 @@ $dados = $sql->fetchAll();
 
   <main>
     <div class="container-fluid">
-      <h1 class="categoria">Categoria Sub-13</h1>
+      <h1 class="categoria">Categoria Sub-15</h1>
       <hr>
       <br>
       <?php
-      $sub13 = 0;
+      $sub15 = 0;
       if (count($dados) > 0) {
         foreach ($dados as $chaves => $valor) {
-          if ($valor['idade'] > 11 && $valor['idade'] <= 13) {
-            $sub13++;
+          if ($valor['idade'] > 13 && $valor['idade'] <= 15) {
+            $sub15++;
           }
         }
-        if ($sub13 == 0) {
+        if ($sub15 == 0) {
           echo "<br><p class='mt-4' style='text-align:center'>Nenhuma jogador desta foi cadastrado</p>";
         } else {
           echo "<table class='table table-striped'>
@@ -147,7 +143,7 @@ $dados = $sql->fetchAll();
           </tr>
           </thead>";
           foreach ($dados as $chaves => $valor) {
-            if ($valor['idade'] > 11 && $valor['idade'] <= 13) {
+            if ($valor['idade'] > 13 && $valor['idade'] <= 15) {
               echo "<tr>
                           <td>" . $valor['nome'] . "</td>
                           <td>" . $valor['idade'] . "</td>
@@ -164,7 +160,6 @@ $dados = $sql->fetchAll();
       ?>
     </div>
   </main>
-
   <footer>
     <p class="mb-0">Escolinha de Futebol LYON SLZ</p>
   </footer>

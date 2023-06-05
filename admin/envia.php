@@ -1,6 +1,6 @@
 <?php
 
-require('../user/db/conexao.php');
+require('../db/conexao.php');
 
 $data_atual = date('Y-m-d');
 

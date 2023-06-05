@@ -32,7 +32,7 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
             if (password_verify($senha, $usuario['senha'])) {
                 $_SESSION['id'] = $usuario['id'];
                 $_SESSION['usuario'] = $usuario['usuario'];
-                header("Location: ../admin/homeAdmin.php");
+                header("Location: admin/homeAdmin.php");
                 exit();
             }
         } else {
@@ -74,7 +74,7 @@ if (isset($_POST['nameLog']) || isset($_POST['senhaLog'])) {
                 $_SESSION['id'] = $usuario['id'];
                 $_SESSION['usuario'] = $usuario['usuario'];
 
-                header("Location: ../admin/homeAdmin.php");
+                header("Location: admin/homeAdmin.php");
             }
         }else{
             // SERIALIZA A STRING INVALID PARA RETORNAR NO FORM DE HTML
@@ -84,7 +84,7 @@ if (isset($_POST['nameLog']) || isset($_POST['senhaLog'])) {
         //
 
         // if (password_verify($senha, $usuario['senha'])) {
-        //     echo "<script type='text/javascript'> window.location = '../admin/homeAdmin.php' </script>";
+        //     echo "<script type='text/javascript'> window.location = 'admin/homeAdmin.php' </script>";
         // } else {
         //     echo "<script> alert('Nome ou Senha estão errados.') </script>";
         //     echo "<script type='text/javascript'> window.location = 'login.php' </script>";
@@ -102,9 +102,9 @@ if (isset($_POST['nameLog']) || isset($_POST['senhaLog'])) {
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon/favicon.png" type="image/x-icon">
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="css/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 </head>
 <style>
@@ -169,7 +169,7 @@ if (isset($_POST['nameLog']) || isset($_POST['senhaLog'])) {
             <div>
                 <button id='submeter' class='hidden' type="submit" name="entrar"></button>
             </div><br>
-            <a href="../admin/index.php"></a>
+            <a href="admin/index.php"></a>
         </form>
         <button class="btn-entrar" onclick="validaCampos()">Entrar</button>
         <input type="button" value="Limpar" class="btn-entrar" onclick="limpaCampos()">

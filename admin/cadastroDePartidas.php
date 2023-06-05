@@ -1,5 +1,5 @@
 <?php
-require('../user/db/conexao.php');
+require('../db/conexao.php');
 
 if (isset($_POST['salvar'])) {
     $local = $_POST['partidaLocal'];
@@ -175,7 +175,7 @@ if (isset($_POST['salvar'])) {
                         <li>
                             <a href="cadastroDeJogador.php">Cadastrar Jogador</a>
                             <a href="cadastroDePartidas.php" id="marcado">Cadastrar partida</a>
-                            <a href="../user/home.php">Sair</a>
+                            <a href="../home.php">Sair</a>
                         </li>
                     </ul>
                 </li>

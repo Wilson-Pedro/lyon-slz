@@ -93,7 +93,7 @@
               <li>
                 <a href="cadastroDeJogador.php">Cadastrar Jogador</a>
                 <a href="cadastroDePartidas.php">Cadastrar partida</a>
-                <a href="../user/home.php">Sair</a>
+                <a href="../home.php">Sair</a>
               </li>
             </ul>
           </li>

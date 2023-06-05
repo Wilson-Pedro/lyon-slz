@@ -8,12 +8,12 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/timeANDescudo.css">
-  <link rel="stylesheet" href="../fonts/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="../css/layout.css">
-  <link rel="stylesheet" href="../css/navegacao.css">
+  <link rel="stylesheet" href="css/timeANDescudo.css">
+  <link rel="stylesheet" href="fonts/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/navegacao.css">
   <link rel="stylesheet" href="lyon.jpg">
-  <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="img/favicon/favicon.png" type="image/x-icon">
 
   <title>Escolinha de futebol</title>
   <style>
@@ -76,11 +76,11 @@
   <!-- CABEÇALHO -->
   <div class="cabecalho">
     <picture>
-      <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png'>
-      <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png'>
-      <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png'>
-      <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
-      <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+      <source media="(max-width: 261px)" srcset='img/imgLogo/lyonSlzEscudo5.png'>
+      <source media="(max-width: 269px)" srcset='img/imgLogo/lyonSlzEscudo4.png'>
+      <source media="(max-width: 311px)" srcset='img/imgLogo/lyonSlzEscudo3.png'>
+      <source media="(max-width: 375px)" srcset='img/imgLogo/lyonSlzEscudo2.png'>
+      <img src="img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
     </picture>
     <header class="navbar ">
       <nav class="dp-menu mt-4">
@@ -143,15 +143,15 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <!--IMAGEM 1-->
-          <img class="d-block w-100" src="../img/imgTime/imgTime01.png" alt="calendario">
+          <img class="d-block w-100" src="img/imgTime/imgTime01.png" alt="calendario">
         </div>
         <div class="carousel-item">
           <!--IMAGEM 2-->
-          <img class="d-block w-100" src="../img/imgTime/imgTime02.png" alt="galeria de fotos">
+          <img class="d-block w-100" src="img/imgTime/imgTime02.png" alt="galeria de fotos">
         </div>
         <!--IMAGEM 3-->
         <div class="carousel-item">
-          <img class="d-block w-100" src="../img/imgTime/imgTime04.png" alt="historico de partidas">
+          <img class="d-block w-100" src="img/imgTime/imgTime04.png" alt="historico de partidas">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -178,7 +178,7 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="card border-success mt-4">
-            <img class="card-img-top" src="../img/imagens/imagem8.png">
+            <img class="card-img-top" src="img/imagens/imagem8.png">
 
             <!-- CARD 1 -->
             <div class="card-body">
@@ -190,7 +190,7 @@
         </div>
         <div class="col-sm-4">
           <div class="card border-success mt-4">
-            <img class="card-img-top" src="../img/imagens/imagem21.jpg">
+            <img class="card-img-top" src="img/imagens/imagem21.jpg">
 
             <!-- CARD 2 -->
             <div class="card-body">
@@ -205,7 +205,7 @@
         <!-- CARD 3 -->
         <div class="col-sm-4">
           <div class="card border-success mt-4">
-            <img class="card-img-top" src="../img/imagens/imagem7.jpg">
+            <img class="card-img-top" src="img/imagens/imagem7.jpg">
             <div class="card-body">
               <h5 class="card-title">ULTIMAS NOTICIAS</h5>
               <p class="card-text">Local destinado a informacoes extras sobre partidas e acontecimentos</p>

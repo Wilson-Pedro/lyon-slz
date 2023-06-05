@@ -14,20 +14,16 @@ $dados = $sql->fetchAll();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="../../css/layout.css">
-  <link rel="stylesheet" href="../../css/timeANDescudo.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/timeANDescudo.css">
   <link rel="stylesheet" href="lyon.jpg">
-  <link rel="shortcut icon" href="../../img/favicon/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../../css/update-e-delete.css">
-  <link rel="stylesheet" href="../../css/navegacao.css">
-  <link rel="stylesheet" href="../../css/navResponsivo.css">
-  <title>Sub09</title>
-  <style>
-    body {
-      max-width: 100%;
-      background-color: rgb(214, 168, 100);
-    }
+  <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="../css/update-e-delete.css">
+  <link rel="stylesheet" href="../css/navegacao.css">
+  <link rel="stylesheet" href="../css/navResponsivo.css">
 
+  <title>Sub17</title>
+  <style>
     h1.categoria {
       text-align: center;
       font-weight: bold;
@@ -40,7 +36,8 @@ $dados = $sql->fetchAll();
     }
 
     body {
-      font-family: 'Arial';
+      max-width: 100%;
+      background-color: rgb(214, 168, 100);
     }
 
     table {
@@ -58,10 +55,6 @@ $dados = $sql->fetchAll();
     .oculto {
       display: none;
     }
-
-    main {
-      width: 99.5%;
-    }
   </style>
 </head>
 
@@ -69,11 +62,11 @@ $dados = $sql->fetchAll();
   <!-- CABEÇALHO -->
   <div class="cabecalho">
     <picture>
-      <source media="(max-width: 261px)" srcset='../../img/imgLogo/lyonSlzEscudo5.png'>
-      <source media="(max-width: 269px)" srcset='../../img/imgLogo/lyonSlzEscudo4.png'>
-      <source media="(max-width: 311px)" srcset='../../img/imgLogo/lyonSlzEscudo3.png'>
-      <source media="(max-width: 375px)" srcset='../../img/imgLogo/lyonSlzEscudo2.png'>
-      <img src="../../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+      <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png'>
+      <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png'>
+      <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png'>
+      <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
+      <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
     </picture>
     <header class="navbar ">
       <nav class="dp-menu mt-4">
@@ -85,11 +78,11 @@ $dados = $sql->fetchAll();
             <a class="nav-link" href="#" id="marcado">CATEGORIAS</a>
             <ul class="sub-menu" id="sobrepor">
               <li>
-                <a href="sub09.php" id="marcado">sub09</a>
+                <a href="sub09.php">sub09</a>
                 <a href="sub11.php">sub11</a>
                 <a href="sub13.php">sub13</a>
                 <a href="sub15.php">sub15</a>
-                <a href="sub17.php">sub17</a>
+                <a href="sub17.php" id="marcado">sub17</a>
               </li>
               <li>
                 <a href="../ranking.php">RANKING</a>
@@ -123,18 +116,18 @@ $dados = $sql->fetchAll();
 
   <main>
     <div class="container-fluid">
-      <h1 class="categoria">Categoria Sub-09</h1>
+      <h1 class="categoria">Categoria Sub-17</h1>
       <hr>
       <br>
       <?php
-      $sub9 = 0;
+      $sub17 = 0;
       if (count($dados) > 0) {
         foreach ($dados as $chaves => $valor) {
-          if ($valor['idade'] > 7 && $valor['idade'] <= 9) {
-            $sub9++;
+          if ($valor['idade'] > 15 && $valor['idade'] <= 17) {
+            $sub17++;
           }
         }
-        if ($sub9 == 0) {
+        if ($sub17 == 0) {
           echo "<br><p class='mt-4' style='text-align:center'>Nenhuma jogador desta foi cadastrado</p>";
         } else {
           echo "<table class='table table-striped'>
@@ -147,7 +140,7 @@ $dados = $sql->fetchAll();
           </tr>
           </thead>";
           foreach ($dados as $chaves => $valor) {
-            if ($valor['idade'] > 7 && $valor['idade'] <= 9) {
+            if ($valor['idade'] > 15 && $valor['idade'] <= 17) {
               echo "<tr>
                           <td>" . $valor['nome'] . "</td>
                           <td>" . $valor['idade'] . "</td>

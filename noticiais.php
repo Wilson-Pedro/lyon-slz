@@ -17,13 +17,13 @@ $dados = $sql->fetchAll();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="../fonts/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="../css/timeANDescudo.css">
+  <link rel="stylesheet" href="fonts/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/timeANDescudo.css">
   <link rel="stylesheet" href="lyon.jpg">
-  <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/news.css">
-  <link rel="stylesheet" href="../css/navegacao.css">
-  <link rel="stylesheet" href="../css/navResponsivo.css">
+  <link rel="shortcut icon" href="img/favicon/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/news.css">
+  <link rel="stylesheet" href="css/navegacao.css">
+  <link rel="stylesheet" href="css/navResponsivo.css">
   <title>Notícias</title>
 </head>
 <style>
@@ -54,11 +54,11 @@ $dados = $sql->fetchAll();
   <!-- CABEÇALHO -->
   <div class="cabecalho">
     <picture>
-      <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png'>
-      <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png'>
-      <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png'>
-      <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
-      <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+      <source media="(max-width: 261px)" srcset='img/imgLogo/lyonSlzEscudo5.png'>
+      <source media="(max-width: 269px)" srcset='img/imgLogo/lyonSlzEscudo4.png'>
+      <source media="(max-width: 311px)" srcset='img/imgLogo/lyonSlzEscudo3.png'>
+      <source media="(max-width: 375px)" srcset='img/imgLogo/lyonSlzEscudo2.png'>
+      <img src="img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
     </picture>
     <header class="navbar ">
       <nav class="dp-menu mt-4">
@@ -138,7 +138,7 @@ $dados = $sql->fetchAll();
             <!-- CARROSSEL 1 -->
 
             <div class="carousel-item active">
-              <img src="../img/imgTime/imgTime03.png" class="d-block w-100" alt="...">
+              <img src="img/imgTime/imgTime03.png" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Informações sobre os jogos</h5>
                 <!--<p>Some representative placeholder content for the first slide.</p>-->
@@ -148,7 +148,7 @@ $dados = $sql->fetchAll();
             <!-- CARROSSEL 2 -->
 
             <div class="carousel-item">
-              <img src="../img/imgTime/imgTime05.png" class="d-block w-100" alt="...">
+              <img src="img/imgTime/imgTime05.png" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Jogaddores</h5>
 
@@ -158,7 +158,7 @@ $dados = $sql->fetchAll();
             <!-- CARROSSEL 3 -->
 
             <div class="carousel-item">
-              <img src="../img/imgTime/imgTime06.png" class="d-block w-100" alt="...">
+              <img src="img/imgTime/imgTime06.png" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Veja os Gols</h5>
 
@@ -225,7 +225,7 @@ $dados = $sql->fetchAll();
 
     <div class="row">
       <div class="col-lg-4" id="calendar">
-        <img src="../img/imagens/matchCalendar.PNG" id="img-calendar" class="img-thumbnail img-fluid" alt="imafem de um calendário">
+        <img src="img/imagens/matchCalendar.PNG" id="img-calendar" class="img-thumbnail img-fluid" alt="imafem de um calendário">
         <a href="calendarioAdmin.php" id="btn-jogos" class="btn btn-warning mt-4">Confira os futuros jogos.</a>
       </div>
 
@@ -311,7 +311,7 @@ $dados = $sql->fetchAll();
 
       <div class="col-lg-4">
         <div class="placar">
-          <img src="../img/imagens/imagem10.png" class="img-fluid" alt="">
+          <img src="img/imagens/imagem10.png" class="img-fluid" alt="">
         </div>
       </div>
     </div>

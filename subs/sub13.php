@@ -1,5 +1,5 @@
 <?php
-require('db/conexao.php');
+require('../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tbljogadoress");
 $sql->execute();
@@ -13,21 +13,34 @@ $dados = $sql->fetchAll();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/timeANDescudo.css">
+  <link rel="stylesheet" href="lyon.jpg">
   <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/navResponsivo.css">
+  <link rel="stylesheet" href="../css/update-e-delete.css">
   <link rel="stylesheet" href="../css/navegacao.css">
-  <title>Ranking</title>
+  <link rel="stylesheet" href="../css/navResponsivo.css">
+  <title>Sub13</title>
   <style>
     body {
-      font-family: 'Arial';
+      max-width: 100%;
+      background-color: rgb(214, 168, 100);
+    }
+
+    h1.categoria {
+      text-align: center;
+      font-weight: bold;
+      padding-top: 6vh;
+      padding-bottom: 4vh;
     }
 
     .dp-menu ul li a {
       font-weight: bold;
+    }
+
+    body {
+      font-family: 'Arial';
     }
 
     table {
@@ -47,7 +60,7 @@ $dados = $sql->fetchAll();
     }
 
     main {
-      width: 98vw;
+      width: 99.5%;
     }
   </style>
 </head>
@@ -66,20 +79,20 @@ $dados = $sql->fetchAll();
       <nav class="dp-menu mt-4">
         <ul class="nav">
           <li class="nav-item ">
-            <a class="nav-link" href="home.php">HOME</a>
+            <a class="nav-link" href="../home.php">HOME</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="marcado">CATEGORIAS</a>
             <ul class="sub-menu" id="sobrepor">
               <li>
-                <a href="subs/sub09.php">sub09</a>
-                <a href="subs/sub11.php">sub11</a>
-                <a href="subs/sub13.php">sub13</a>
-                <a href="subs/sub15.php">sub15</a>
-                <a href="subs/sub17.php">sub17</a>
+                <a href="sub09.php">sub09</a>
+                <a href="sub11.php">sub11</a>
+                <a href="sub13.php" id="marcado">sub13</a>
+                <a href="sub15.php">sub15</a>
+                <a href="sub17.php">sub17</a>
               </li>
               <li>
-                <a href="ranking.php" id="marcado">RANKING</a>
+                <a href="../ranking.php">RANKING</a>
               </li>
             </ul>
           </li>
@@ -87,19 +100,19 @@ $dados = $sql->fetchAll();
             <a class="nav-link" href="#">PARTIDAS</a>
             <ul class="sub-menu">
               <li>
-                <a href="calendario.php">CALENDÁRIO DE JOGOS</a>
-                <a href="historicoPartidas.php">HISTÓRICO DE PARTIDAS</a>
+                <a href="../calendario.php">CALENDÁRIO DE JOGOS</a>
+                <a href="../historicoPartidas.php">HISTÓRICO DE PARTIDAS</a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="noticiais.php">NOTÍCIAS</a>
+            <a class="nav-link" href="../noticiais.php">NOTÍCIAS</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">MAIS</a>
             <ul class="sub-menu" id="sobrepor">
               <li>
-                <a href="login.php">Logar</a>
+                <a href="../login.php">Logar</a>
               </li>
             </ul>
           </li>
@@ -110,54 +123,48 @@ $dados = $sql->fetchAll();
 
   <main>
     <div class="container-fluid">
-      <br><br><br>
+      <h1 class="categoria">Categoria Sub-13</h1>
+      <hr>
+      <br>
       <?php
+      $sub13 = 0;
       if (count($dados) > 0) {
-        echo "<table class='table table-striped'>
+        foreach ($dados as $chaves => $valor) {
+          if ($valor['idade'] > 11 && $valor['idade'] <= 13) {
+            $sub13++;
+          }
+        }
+        if ($sub13 == 0) {
+          echo "<br><p class='mt-4' style='text-align:center'>Nenhuma jogador desta foi cadastrado</p>";
+        } else {
+          echo "<table class='table table-striped'>
           <thead class=table-dark>
           <tr>
-              <th>Posição</th>
               <th>Nome</th>
+              <th>Idade</th>
+              <th>Posição</th>
               <th>Gols</th>
           </tr>
           </thead>";
-        $maior = 0;
-        foreach ($dados as $chaves => $valor) {
-          if ($valor['gols'] > $maior) {
-            $maior = $valor['gols'];
-          }
-        }
-        $aux = 0;
-        $contMaior = 0;
-        $cont = 0;
-        $ranking = 1;
-        while ($cont < 11) {
           foreach ($dados as $chaves => $valor) {
-            if ($valor['gols'] == $maior) {
-              if ($ranking == 11) {
-                break;
-              }
+            if ($valor['idade'] > 11 && $valor['idade'] <= 13) {
               echo "<tr>
-                          <td>" . $ranking . "</td>
                           <td>" . $valor['nome'] . "</td>
+                          <td>" . $valor['idade'] . "</td>
+                          <td>" . $valor['posicao'] . "</td>
                           <td>" . $valor['gols'] . "</td>
                       </tr>";
-              $ranking += 1;
             }
-          }
-          $maior -= 1;
-          $cont += 1;
-          if ($cont == 10) {
-            break;
           }
         }
         echo "</table>";
       } else {
-        echo "<br><br><p class='mt-4' style='text-align:center' >Nenhum Jogador cadastrado</p>";
+        echo "<br><p class='mt-4' style='text-align:center'>Nenhuma jogador desta foi cadastrado</p>";
       }
       ?>
     </div>
   </main>
+
   <footer>
     <p class="mb-0">Escolinha de Futebol LYON SLZ</p>
   </footer>

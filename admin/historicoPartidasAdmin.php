@@ -36,17 +36,15 @@ $dados = $sql->fetchAll();
     }
 
     table {
-        border-collapse: collapse;
-        background-color: rgb(243, 231, 231);
-        color: black;
-        margin: auto;
-        margin-top: 6vh;
+        width: 100%;
     }
 
     td,
     th {
+        padding: 5px;
         text-align: center;
-        border: 1px solid rgb(0, 0, 0);
+        border: solid 1px black;
+        font-size: 12px;
     }
 
     .dp-menu ul li a {
@@ -213,6 +211,7 @@ $dados = $sql->fetchAll();
             <?php
             $data_Atual = date("Y-m-d");
             if (count($dados) > 0) {
+                echo "<div class='table table-responsive table-striped'>";
                 echo "<table class='table table-striped'>
                   <thead class=table-dark>
                   <tr>
@@ -234,6 +233,7 @@ $dados = $sql->fetchAll();
                     }
                 }
                 echo "</table>";
+                echo "</div>";
             } else {
                 echo "<p class='mt-4' style='text-align:center'>Nenhuma partida foi <a href='cadastroDePartidas.php'>cadastrada</a></p>";
             }

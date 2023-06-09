@@ -33,18 +33,15 @@ $dados = $sql->fetchAll();
     }
 
     table {
-        width: 80vw;
-        border-collapse: collapse;
-        background-color: rgb(243, 231, 231);
-        color: black;
-        margin: auto;
-        margin-top: 6vh;
+        width: 100%;
     }
 
     td,
     th {
+        padding: 5px;
         text-align: center;
-        border: 1px solid rgb(0, 0, 0);
+        border: solid 1px black;
+        font-size: 13px;
     }
 
     #calendarioDeJogos {
@@ -126,29 +123,30 @@ $dados = $sql->fetchAll();
             </div>
             <?php
             $data_Atual = date("Y-m-d");
+
             if (count($dados) > 0) {
                 echo "<table class='table table-striped'>
-            <thead class=table-dark>
-            <tr>
-                <th>JOGOS</th>
-                <th>RESULTADO</th>
-                <th>DATA</th>
-            </tr>
-            </thead>";
+                <thead class=table-dark>
+                <tr>
+                    <th>JOGOS</th>
+                    <th>RESULTADO</th>
+                    <th>DATA</th>
+                </tr>
+                </thead>";
                 foreach ($dados as $chaves => $valor) {
                     $dataJogo = $valor['data_partida'];
                     if (strtotime($dataJogo) <= strtotime($data_Atual)) {
                         echo "<tr>
-              <td>" . "Lyon X " . $valor['timeb'] . "</td>
-              <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
-              <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-            
-                </tr>";
+                  <td>" . "Lyon X " . $valor['timeb'] . "</td>
+                  <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
+                  <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                
+                    </tr>";
                     }
                 }
                 echo "</table>";
             } else {
-                echo "<br><p class='mt-4' style='text-align:center' >Nenhum jogador cadastrado</p>";
+                echo "<br><p class='mt-4' style='text-align:center'>Sem histórico de Partidas</p>";
             }
             ?>
         </div>

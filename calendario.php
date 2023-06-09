@@ -33,18 +33,15 @@ $dados = $sql->fetchAll();
   }
 
   table {
-    width: 80vw;
-    border-collapse: collapse;
-    background-color: rgb(243, 231, 231);
-    color: black;
-    margin: auto;
-    margin-top: 6vh;
+    width: 100%;
   }
 
   td,
   th {
-    text-align: center;
-    border: 1px solid rgb(0, 0, 0);
+    padding: 5px;
+      text-align: center;
+      border: solid 1px black;
+      font-size: 13px;
   }
 
   #calendarioDeJogos {
@@ -128,32 +125,36 @@ $dados = $sql->fetchAll();
     <div class="container-fluid">
       <h1 id="calendarioDeJogos">CALENDÁRIO DE JOGOS</h1>
       <?php
+      $num = 0;
       $data_Atual = date("Y-m-d");
+
       if (count($dados) > 0) {
+        echo "<div class='table table-responsive table-striped'>";
         echo "<table class='table table-striped'>
-        <thead class=table-dark>
-        <tr>
-            <th>LOCAL</th>
-            <th>JOGOS</th>
-            <th>DATA</th>
-            <th>HORARIO</th>
-        </tr>
-        </thead>";
+          <thead class=table-dark>
+          <tr>
+              <th>LOCAL</th>
+              <th>JOGOS</th>
+              <th>DATA</th>
+              <th>HORARIO</th>
+          </tr>
+          </thead>";
         foreach ($dados as $chaves => $valor) {
           $dataJogo = $valor['data_partida'];
           if (strtotime($dataJogo) >= strtotime($data_Atual)) {
             echo "<tr>
-                <td>" . $valor['localidade'] . "</td>
-                <td>" . "Lyon X " . $valor['timeb'] . "</td>
-                <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-                <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
-          </tr>";
+                  <td>" . $valor['localidade'] . "</td>
+                  <td>" . "Lyon X " . $valor['timeb'] . "</td>
+                  <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                  <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
+            </tr>";
             $valor['data'] = null;
           }
         }
         echo "</table>";
+        echo "</div>";
       } else {
-        echo "<br><p class='mt-4' style='text-align:center' >Nenhum jogador cadastrado</p>";
+        echo "<br><p class='mt-4' style='text-align:center' >Nenhum partida foi cadastrada</p>";
       }
       ?>
     </div>

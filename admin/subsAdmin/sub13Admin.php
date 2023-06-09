@@ -179,7 +179,6 @@ $dados = $sql->fetchAll();
         //COMANDO PARA DELETAR
         $sql = $pdo->prepare("DELETE FROM tbljogadoress WHERE id=? AND nome=? AND idade=? AND posicao=? AND gols=?");
         $sql->execute(array($id, $nome, $idade, $posicao, $gols));
-        echo "Deletado com sucesso!";
       }
       ?>
       <?php

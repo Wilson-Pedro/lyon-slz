@@ -178,7 +178,7 @@ $dados = $sql->fetchAll();
         //COMANDO PARA DELETAR
         $sql = $pdo->prepare("DELETE FROM tbljogadoress WHERE id=? AND nome=? AND idade=? AND posicao=? AND gols=?");
         $sql->execute(array($id, $nome, $idade, $posicao, $gols));
-        echo "Deletado com sucesso!";
+
       }
       ?>
       <?php
@@ -210,7 +210,7 @@ $dados = $sql->fetchAll();
                           <td>" . $valor['idade'] . "</td>
                           <td>" . $valor['posicao'] . "</td>
                           <td>" . $valor['gols'] . "</td>
-                          <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> </td>
+                          <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Deletar</a></td>
                       </tr>";
             }
           }

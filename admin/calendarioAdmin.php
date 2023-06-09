@@ -28,6 +28,7 @@ $dados = $sql->fetchAll();
 <style>
   body {
     font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
   }
 
   #calendarioDeJogos {
@@ -37,18 +38,15 @@ $dados = $sql->fetchAll();
   }
 
   table {
-    min-width: 80vw;
-    border-collapse: collapse;
-    background-color: rgb(243, 231, 231);
-    color: black;
-    margin: auto;
-    margin-top: 6vh;
+    width: 100%;
   }
 
   td,
   th {
-    text-align: center;
-    border: 1px solid rgb(0, 0, 0);
+      padding: 5px;
+      text-align: center;
+      border: solid 1px black;
+      font-size: 11px;
   }
 
   header>nav>ul>li>a {
@@ -94,7 +92,7 @@ $dados = $sql->fetchAll();
   }
 
   main {
-    width: 100vw;
+    width: 100%;
   }
 </style>
 
@@ -229,6 +227,7 @@ $dados = $sql->fetchAll();
       <?php
       $data_Atual = date("Y-m-d");
       if (count($dados) > 0) {
+        echo "<div class='table table-responsive table-striped'>";
         echo "<table class='table table-striped'>
         <thead class=table-dark>
         <tr>
@@ -236,7 +235,7 @@ $dados = $sql->fetchAll();
             <th>JOGOS</th>
             <th>DATA</th>
             <th>HORARIO</th>
-            <th>Atuaizar | Deletar</th>
+            <th>EDITAR</th>
         </tr>
         </thead>";
         foreach ($dados as $chaves => $valor) {
@@ -244,14 +243,15 @@ $dados = $sql->fetchAll();
           if(strtotime($dataJogo) >= strtotime($data_Atual)){
           echo "<tr>
                 <td>" . $valor['localidade'] . "</td>
-                <td>" . "Lyon X " . $valor['timeb'] . "</td>
-                <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                <td>" . "LyonX" . $valor['timeb'] . "</td>
+                <td>" . date("d/m", strtotime($valor['data_partida'])) . "</td>
                 <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
                 <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-localidade='" . $valor['localidade'] . "'data-timeb='" . $valor['timeb'] . "'data-data_partida='" . $valor['data_partida'] . "'data-horario='" . $valor['horario'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-localidade='" . $valor['localidade'] . "' data-timeb='" . $valor['timeb'] . "'data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
           </tr>";
           }
         }
         echo "</table>";
+        echo "</div>";
       } else {
         echo "<p class='mt-4' style='text-align:center'>Nenhuma partida foi <a href='cadastroDePartidas.php'>cadastrada</a></p>";
       }

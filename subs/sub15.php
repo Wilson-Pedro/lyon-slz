@@ -1,7 +1,7 @@
 <?php
 require('../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tbljogadoress");
+$sql = $pdo->prepare("SELECT * FROM tbljogadoress WHERE idade > 13 AND idade <= 15");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -143,14 +143,12 @@ $dados = $sql->fetchAll();
           </tr>
           </thead>";
           foreach ($dados as $chaves => $valor) {
-            if ($valor['idade'] > 13 && $valor['idade'] <= 15) {
-              echo "<tr>
+            echo "<tr>
                           <td>" . $valor['nome'] . "</td>
                           <td>" . $valor['idade'] . "</td>
                           <td>" . $valor['posicao'] . "</td>
                           <td>" . $valor['gols'] . "</td>
                       </tr>";
-            }
           }
         }
         echo "</table>";

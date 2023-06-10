@@ -1,7 +1,7 @@
 <?php
 require('../../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tbljogadoress");
+$sql = $pdo->prepare("SELECT * FROM tbljogadoress WHERE idade > 9 AND idade <= 11");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -189,9 +189,10 @@ $dados = $sql->fetchAll();
           if ($valor['idade'] > 9 && $valor['idade'] <= 11) {
             $sub11++;
           }
-        } if($sub11 == 0){
+        }
+        if ($sub11 == 0) {
           echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
-        } else  {
+        } else {
           echo "<div class='table table-responsive table-striped'>";
           echo "<table class='table table-striped'>
           <thead class=table-dark>
@@ -203,8 +204,7 @@ $dados = $sql->fetchAll();
               <th>Editar</th>
           </tr>
           </thead>";
-        foreach ($dados as $chaves => $valor) {
-          if ($valor['idade'] > 9 && $valor['idade'] <= 11) {
+          foreach ($dados as $chaves => $valor) {
             echo "<tr>
                           <td>" . $valor['nome'] . "</td>
                           <td>" . $valor['idade'] . "</td>
@@ -213,9 +213,8 @@ $dados = $sql->fetchAll();
                           <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Deletar</a></td>
                       </tr>";
           }
-        }
-        echo "</table>";
-        echo "</div>";
+          echo "</table>";
+          echo "</div>";
         }
       } else {
         echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";

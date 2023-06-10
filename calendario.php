@@ -145,7 +145,7 @@ $dados = $sql->fetchAll();
             echo "<tr>
                   <td>" . $valor['localidade'] . "</td>
                   <td>" . "Lyon X " . $valor['timeb'] . "</td>
-                  <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                  <td>" . date("d/m", strtotime($valor['data_partida'])) . "</td>
                   <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
             </tr>";
             $valor['data'] = null;

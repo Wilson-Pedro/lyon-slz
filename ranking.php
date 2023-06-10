@@ -26,12 +26,18 @@ $dados = $sql->fetchAll();
       font-family: 'Arial';
     }
 
+    h1.ranking {
+      text-align: center;
+      font-weight: bold;
+      padding-top: 6vh;
+      padding-bottom: 4vh;
+    }
+
     .dp-menu ul li a {
       font-weight: bold;
     }
 
     table {
-      border-collapse: collapse;
       width: 100%;
     }
 
@@ -40,6 +46,14 @@ $dados = $sql->fetchAll();
       padding: 10px;
       text-align: center;
       border: solid 1px black;
+    }
+
+    th.custom-th{
+      width: 5%;
+    }
+
+    th{
+      width: 20%;
     }
 
     .oculto {
@@ -110,15 +124,15 @@ $dados = $sql->fetchAll();
 
   <main>
     <div class="container-fluid">
-      <br><br><br>
+    <h1 class="ranking">Ranking de Gols</h1>
       <?php
       if (count($dados) > 0) {
         echo "<table class='table table-striped'>
           <thead class=table-dark>
           <tr>
-              <th>Posição</th>
+              <th class='custom-th'>Posição</th>
               <th>Nome</th>
-              <th>Gols</th>
+              <th class='custom-th'>Gols</th>
           </tr>
           </thead>";
         $maior = 0;

@@ -1,7 +1,7 @@
 <?php
 require('../../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tbljogadoress");
+$sql = $pdo->prepare("SELECT * FROM tbljogadoress WHERE idade > 7 AND idade <= 9");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -178,7 +178,6 @@ $dados = $sql->fetchAll();
         //COMANDO PARA DELETAR
         $sql = $pdo->prepare("DELETE FROM tbljogadoress WHERE id=? AND nome=? AND idade=? AND posicao=? AND gols=?");
         $sql->execute(array($id, $nome, $idade, $posicao, $gols));
-
       }
       ?>
       <?php
@@ -204,15 +203,14 @@ $dados = $sql->fetchAll();
           </tr>
           </thead>";
           foreach ($dados as $chaves => $valor) {
-            if ($valor['idade'] > 7 && $valor['idade'] <= 9) {
-              echo "<tr>
+
+            echo "<tr>
                           <td>" . $valor['nome'] . "</td>
                           <td>" . $valor['idade'] . "</td>
                           <td>" . $valor['posicao'] . "</td>
                           <td>" . $valor['gols'] . "</td>
                           <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Deletar</a></td>
                       </tr>";
-            }
           }
           echo "</table>";
           echo "</div>";

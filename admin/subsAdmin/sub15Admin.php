@@ -1,7 +1,7 @@
 <?php
 require('../../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tbljogadoress");
+$sql = $pdo->prepare("SELECT * FROM tbljogadoress WHERE idade > 13 AND idade <= 15");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -71,7 +71,7 @@ $dados = $sql->fetchAll();
             <ul class="sub-menu" id="sobrepor">
               <li>
                 <a href="sub09Admin.php">sub09</a>
-                <a href="sub15Admin.php">sub15</a>
+                <a href="sub11Admin.php">sub11</a>
                 <a href="sub13Admin.php">sub13</a>
                 <a href="sub15Admin.php" id="marcado">sub15</a>
                 <a href="sub17Admin.php">sub17</a>
@@ -188,9 +188,10 @@ $dados = $sql->fetchAll();
           if ($valor['idade'] > 13 && $valor['idade'] <= 15) {
             $sub15++;
           }
-        } if($sub15 == 0){
+        }
+        if ($sub15 == 0) {
           echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
-        } else  {
+        } else {
           echo "<div class='table table-responsive table-striped'>";
           echo "<table class='table table-striped'>
           <thead class=table-dark>
@@ -202,8 +203,8 @@ $dados = $sql->fetchAll();
               <th>Editar</th>
           </tr>
           </thead>";
-        foreach ($dados as $chaves => $valor) {
-          if ($valor['idade'] > 13 && $valor['idade'] <= 15) {
+          foreach ($dados as $chaves => $valor) {
+
             echo "<tr>
                           <td>" . $valor['nome'] . "</td>
                           <td>" . $valor['idade'] . "</td>
@@ -212,9 +213,8 @@ $dados = $sql->fetchAll();
                           <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' data-idade='" . $valor['idade'] . "'data-posicao='" . $valor['posicao'] . "'data-gols='" . $valor['gols'] . "'>Deletar</a></td>
                       </tr>";
           }
-        }
-        echo "</table>";
-        echo "</div>";
+          echo "</table>";
+          echo "</div>";
         }
       } else {
         echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";

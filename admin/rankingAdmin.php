@@ -170,7 +170,7 @@ $dados = $sql->fetchAll();
               }
               echo "<tr>
                           <td>" . $ranking . "</td>
-                          <td>" . $valor['nome'] . "</td>
+                          <td>" . $valor['nome'] . " ". $valor['sobrenome']. "</td>
                           <td>" . $valor['gols'] . "</td>
                           <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "'data-gols='" . $valor['gols'] . "'>Atualizar</a></td>
                       </tr>";

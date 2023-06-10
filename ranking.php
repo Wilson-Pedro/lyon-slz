@@ -153,7 +153,7 @@ $dados = $sql->fetchAll();
               }
               echo "<tr>
                           <td>" . $ranking . "</td>
-                          <td>" . $valor['nome'] . "</td>
+                          <td>" . $valor['nome'] . " ". $valor['sobrenome']. "</td>
                           <td>" . $valor['gols'] . "</td>
                       </tr>";
               $ranking += 1;

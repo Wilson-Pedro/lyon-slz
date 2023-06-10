@@ -3,12 +3,13 @@ require('../db/conexao.php');
 
 if (isset($_POST['salvar'])) {
     $nome = $_POST['jogadorNome'];
+    $sobrenome = $_POST['jogadorSobrenome'];
     $idade = $_POST['jogadorIdade'];
     $posicao = $_POST['jogadorPosicao'];
     $gols = $_POST['jogadorGols'];
 
-    $sql = $pdo->prepare("INSERT INTO tbljogadoress VALUES (null,?,?,?,?)");
-    $sql->execute(array($nome, $idade, $posicao, $gols));
+    $sql = $pdo->prepare("INSERT INTO tbljogadoress VALUES (null,?,?,?,?,?)");
+    $sql->execute(array($nome, $sobrenome, $idade, $posicao, $gols));
 }
 ?>
 
@@ -171,12 +172,22 @@ if (isset($_POST['salvar'])) {
                 <div class="row">
                     <!-- NOME -->
                     <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="jogadorNome" name="jogadorNome" placeholder="Ex.: José F. Marques">
-                        <label for="floatingInput text-center">Nome completo</label>
+                        <input type="text" class="form-control" id="jogadorNome" name="jogadorNome" placeholder="Ex.: José ">
+                        <label for="floatingInput text-center">Nome</label>
                     </div>
                     <button type="button" class="btn btn-warning col " id="limpaNome" onclick="limpaCampos0()">Limpar</button>
                 </div><br>
-                <!-- CATEGORIA -->
+
+                <div class="row">
+                    <!-- SOBRENOME -->
+                    <div class="form-floating col-md-8">
+                        <input type="text" class="form-control" id="jogadorSobrenome" name="jogadorSobrenome" placeholder="Ex.: Silva">
+                        <label for="floatingInput text-center">Sobrenome</label>
+                    </div>
+                    <button type="button" class="btn btn-warning col " id="limpaSobrome" onclick="limpaCampos4()">Limpar</button>
+                </div><br>
+
+                <!-- IDADE -->
                 <div class="row">
                     <div class="form-floating col-md-8">
                         <input type="text" class="form-control" id="jogadorIdade" name="jogadorIdade" placeholder="Ex.: Sub-14" maxlength="6">
@@ -214,7 +225,58 @@ if (isset($_POST['salvar'])) {
             </form>
         </div>
     </section>
-    <script src="../js/cadastro-jogador.js"></script>
+    <script>
+        var cad_jogadorConfirmMsg = document.getElementById('cad-jogadorConfirmMsg');
+        var jogador = [
+            document.getElementById('jogadorNome'),
+            document.getElementById('jogadorIdade'),
+            document.getElementById('jogadorPosicao'),
+            document.getElementById('jogadorGols'),
+            document.getElementById('jogadorSobrenome')
+        ];
+
+        function validaCampos(event) {
+            if (jogador[0].value == '' || jogador[1].value == '' || jogador[2].value == '' || jogador[3].value == '' || jogador[4].value == '') {
+                alert('Preencha todos os campos para cadastrar um jogador');
+            } else if (typeof jogador[0].value === "number") {
+                alert('Insira uma nome e sobrenomes válidos');
+
+            } else if (!typeof jogador[1].value === "string" && !typeof jogador[1].value === "number") {
+                alert('Insira uma idade válida');
+
+            } else if (typeof jogador[2].value === "number") {
+                alert('Insira uma posição válida');
+
+            } else if (!typeof jogador[3].value === "number") {
+                alert('Insira uma média de gols válido');
+
+            } else {
+                cad_jogadorConfirmMsg.showModal();
+            }
+            event.preventDefault();
+            return;
+        }
+
+        function limpaCampos0() {
+            jogador[0].value = '';
+        }
+
+        function limpaCampos1() {
+            jogador[1].value = '';
+        }
+
+        function limpaCampos2() {
+            jogador[2].value = '';
+        }
+
+        function limpaCampos3() {
+            jogador[3].value = '';
+        }
+
+        function limpaCampos4() {
+            jogador[4].value = '';
+        }
+    </script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>

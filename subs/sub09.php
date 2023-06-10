@@ -148,7 +148,7 @@ $dados = $sql->fetchAll();
           </thead>";
           foreach ($dados as $chaves => $valor) {
             echo "<tr>
-                          <td>" . $valor['nome'] . "</td>
+                          <td>" . $valor['nome'] . " ". $valor['sobrenome']. "</td>
                           <td>" . $valor['idade'] . "</td>
                           <td>" . $valor['posicao'] . "</td>
                           <td>" . $valor['gols'] . "</td>

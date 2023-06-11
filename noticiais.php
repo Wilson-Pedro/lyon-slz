@@ -2,7 +2,7 @@
 
 include('db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblpartidass ORDER BY id LIMIT 0, 10000");
+$sql = $pdo->prepare("SELECT * FROM tblpartidass");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -47,6 +47,12 @@ $dados = $sql->fetchAll();
   div#placar>h1 {
 
     text-align: center;
+  }
+
+  div.barraAzul {
+    width: 100%;
+    height: 10%;
+    background-color: rgb(8, 8, 20);
   }
 </style>
 
@@ -113,6 +119,9 @@ $dados = $sql->fetchAll();
           <i class="fa-solid fa-2x fa-bullhorn"></i>
           <span class="logo">De olho nas notíciais!</span>
         </h1>
+        <div class="barraAzul">
+
+        </div>
       </div>
       <div class="col-lg-2">
 
@@ -123,13 +132,6 @@ $dados = $sql->fetchAll();
       <div class="col-lg-8">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
 
-          <!--BOTÕES DO CARROSSEL-->
-
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
 
           <!-- IMAGENS DO CARROSSEL -->
 
@@ -138,41 +140,55 @@ $dados = $sql->fetchAll();
             <!-- CARROSSEL 1 -->
 
             <div class="carousel-item active">
-              <img src="img/imgTime/imgTime03.png" class="d-block w-100" alt="...">
+              <div class="fotoAlterada">
+
+                <?php include('admin/fotoNoticia.php') ?>
+
+              </div>
               <div class="carousel-caption d-none d-md-block">
-                <h5>Informações sobre os jogos</h5>
                 <!--<p>Some representative placeholder content for the first slide.</p>-->
               </div>
+
             </div>
 
             <!-- CARROSSEL 2 -->
 
-            <div class="carousel-item">
-              <img src="img/imgTime/imgTime05.png" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Jogaddores</h5>
+            <!-- <div class="carousel-item">
+    <img src="../img/imgTime/imgTime05.png" class="d-block w-100" alt="...">
+    <div class="carousel-caption d-none d-md-block">
 
-              </div>
-            </div>
+    </div>
+    <div class="btn-container mt-1">
+      <form method="post">
+        <button type="button" class="btn btn-warning" onclick="alterar2()">Alterar Foto</button>
+        <input class="hidden" type="file" id="arquivo2" name="arquivo2" value="">
+      </form>
+    </div>
+  </div> -->
 
             <!-- CARROSSEL 3 -->
 
-            <div class="carousel-item">
-              <img src="img/imgTime/imgTime06.png" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Veja os Gols</h5>
+            <!-- <div class="carousel-item">
+    <img src="../img/imgTime/imgTime06.png" class="d-block w-100" alt="...">
+    <div class="carousel-caption d-none d-md-block">
 
-              </div>
-            </div>
+    </div>
+    <div class="btn-container mt-1">
+      <form method="post">
+        <button type="button" class="btn btn-warning" onclick="alterar3()">Alterar Foto</button>
+        <input class="hidden" type="file" id="arquivo3" name="arquivo3" value="">
+      </form>
+    </div>
+  </div> -->
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+          <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Next</span>
+</button> -->
         </div>
       </div>
 
@@ -188,9 +204,9 @@ $dados = $sql->fetchAll();
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-              <p>O <strong>LyonSLZ</strong> é um time formado por meninos e meninas cheios de energia e entusiasmo. Eles treinam duro todos os dias, aprendendo técnicas de passe, chute e dribles com seu treinador experiente. O time é composto por jogadores talentosos, cada um com suas próprias habilidades e personalidades únicas. Mas, apesar das diferenças, eles trabalham juntos em equipe para alcançar a vitória. Os jogos são sempre emocionantes, com muita ação e estratégia, e a torcida está sempre presente para apoiar o time. </p>
-              <p>Além disso, o time é unido e solidário, compartilhando vitórias e derrotas como uma equipe. Eles não apenas jogam juntos, mas também criam amizades duradouras e aprendem valiosas lições sobre trabalho em equipe e liderança.</p>
-              <p> Em resumo, o time LyonSLZ é um grupo incrível de jovens atletas talentosos e apaixonados que amam jogar futebol e trabalhar juntos em busca da vitória.</p>
+                <p>O <strong>LyonSLZ</strong> é um time formado por meninos e meninas cheios de energia e entusiasmo. Eles treinam duro todos os dias, aprendendo técnicas de passe, chute e dribles com seu treinador experiente. O time é composto por jogadores talentosos, cada um com suas próprias habilidades e personalidades únicas. Mas, apesar das diferenças, eles trabalham juntos em equipe para alcançar a vitória. Os jogos são sempre emocionantes, com muita ação e estratégia, e a torcida está sempre presente para apoiar o time. </p>
+                <p>Além disso, o time é unido e solidário, compartilhando vitórias e derrotas como uma equipe. Eles não apenas jogam juntos, mas também criam amizades duradouras e aprendem valiosas lições sobre trabalho em equipe e liderança.</p>
+                <p> Em resumo, o time LyonSLZ é um grupo incrível de jovens atletas talentosos e apaixonados que amam jogar futebol e trabalhar juntos em busca da vitória.</p>
               </div>
             </div>
           </div>
@@ -202,9 +218,9 @@ $dados = $sql->fetchAll();
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-              <p>O técnico do time da escolinha de futebol é um profissional dedicado e experiente. Ele está sempre presente nos treinos e jogos, orientando os jogadores e ensinando novas habilidades. Ele é um líder inspirador que motiva o time a dar o melhor de si em campo, mesmo quando as coisas estão difíceis. </p>
-              <p>Além disso, ele é respeitado e querido pelos jogadores, criando um ambiente de confiança e respeito mútuo. Seu objetivo é formar atletas completos e ensinar valores importantes, como trabalho em equipe, respeito e disciplina. </p>
-              <p>Em resumo, o técnico do time da escolinha de futebol é um profissional incrível que ajuda a moldar jovens jogadores de futebol e prepará-los para uma vida de sucesso dentro e fora do campo.</p>
+                <p>O técnico do time da escolinha de futebol é um profissional dedicado e experiente. Ele está sempre presente nos treinos e jogos, orientando os jogadores e ensinando novas habilidades. Ele é um líder inspirador que motiva o time a dar o melhor de si em campo, mesmo quando as coisas estão difíceis. </p>
+                <p>Além disso, ele é respeitado e querido pelos jogadores, criando um ambiente de confiança e respeito mútuo. Seu objetivo é formar atletas completos e ensinar valores importantes, como trabalho em equipe, respeito e disciplina. </p>
+                <p>Em resumo, o técnico do time da escolinha de futebol é um profissional incrível que ajuda a moldar jovens jogadores de futebol e prepará-los para uma vida de sucesso dentro e fora do campo.</p>
               </div>
             </div>
           </div>

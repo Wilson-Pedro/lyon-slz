@@ -39,58 +39,6 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
         }
     }
 }
-
-/*$servidor="localhost";
-$usuario="root";
-$senha="";
-$banco="escolinha_de_futebol";
-
-$mysqli = new mysqli($servidor, $usuario, $senha, $banco);
-
-if($mysqli->error){
-    die("Falha ao conectar no banco de dados: ". $mysqli->error);
-}
-
-if (isset($_POST['nameLog']) || isset($_POST['senhaLog'])) {
-    if (strlen($_POST['nameLog']) == 0 || strlen($_POST['senhaLog']) == 0) {
-        echo "<script>alert('Preencha os campos corretamente')</script>";
-    } else {
-
-        $nome = $mysqli->real_escape_string($_POST['nameLog']);
-        $senha = $mysqli->real_escape_string($_POST['senhaLog']);
-
-        $sql_code = "SELECT * FROM tblloginn WHERE usuario = '$nome' LIMIT 1";
-        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do codigo SQL: " . $mysqli->error);
-
-        $quantidade = $sql_query->num_rows;
-
-        if($quantidade == 1){
-            $usuario = $sql_query->fetch_assoc();
-            if(!isset($_SESSION)){
-                session_start();
-            }
-            if(password_verify($senha, $usuario['senha'])){
-                $_SESSION['id'] = $usuario['id'];
-                $_SESSION['usuario'] = $usuario['usuario'];
-
-                header("Location: admin/homeAdmin.php");
-            }
-        }else{
-            // SERIALIZA A STRING INVALID PARA RETORNAR NO FORM DE HTML
-            $invalid = "Ops... e-mail ou senha incorretos!";
-        }
-
-        //
-
-        // if (password_verify($senha, $usuario['senha'])) {
-        //     echo "<script type='text/javascript'> window.location = 'admin/homeAdmin.php' </script>";
-        // } else {
-        //     echo "<script> alert('Nome ou Senha estão errados.') </script>";
-        //     echo "<script type='text/javascript'> window.location = 'login.php' </script>";
-        // }
-    }
-}
-*/
 ?>
 
 <!DOCTYPE html>
@@ -171,7 +119,8 @@ if (isset($_POST['nameLog']) || isset($_POST['senhaLog'])) {
             <a href="admin/index.php"></a>
         </form>
         <button class="btn-entrar" onclick="validaCampos()">Entrar</button>
-        <input type="button" value="Limpar" class="btn-entrar" onclick="limpaCampos()">
+        <a href="home.php" class="voltar"><button class="btn-entrar">Voltar</button></a>
+        <!-- <input type="button" value="Limpar" class="btn-entrar" onclick="limpaCampos()"> -->
 
         <!-- <div>
             <a href="cadastro.php"><input type="button" value="Cadastrar uma conta" class="btn-cadastrar"></a>
@@ -240,4 +189,5 @@ if (isset($_POST['nameLog']) || isset($_POST['senhaLog'])) {
     //     $("#olho").addEventListener("touchleave", eye());
     //     $("#senhaLog").attr("type", "password");
     // };
+
 </script>

@@ -2,7 +2,7 @@
 
 include('../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblpartidass ORDER BY id LIMIT 0, 10000");
+$sql = $pdo->prepare("SELECT * FROM tblpartidass");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -33,13 +33,27 @@ $dados = $sql->fetchAll();
     width: 100%;
   }
 
-  #btn-fotos {
+  div.fotoAlterada{
+    width: 100%;
+  }
+
+  #botao-fotos {
     color: white;
     font-weight: bold;
   }
 
-  #btn-fotos:hover {
+  #botao-fotos:hover {
     background-color: rgb(230, 150, 3);
+  }
+
+  #form-foto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hidden{
+    display: none;
   }
 
   div#jogosToday {
@@ -63,6 +77,12 @@ $dados = $sql->fetchAll();
   #calendar>#btn-jogos {
     display: block;
     margin: auto;
+  }
+
+  div.barraAzul{
+    width: 100%;
+    height: 10%;
+    background-color: rgb(8, 8, 20);
   }
 </style>
 
@@ -131,6 +151,9 @@ $dados = $sql->fetchAll();
           <i class="fa-solid fa-2x fa-bullhorn"></i>
           <span class="logo">De olho nas notíciais!</span>
         </h1>
+        <div class="barraAzul">
+          
+        </div>
       </div>
       <div class="col-lg-2">
 
@@ -141,13 +164,6 @@ $dados = $sql->fetchAll();
       <div class="col-lg-8">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
 
-          <!--BOTÕES DO CARROSSEL-->
-
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
 
           <!-- IMAGENS DO CARROSSEL -->
 
@@ -156,41 +172,65 @@ $dados = $sql->fetchAll();
             <!-- CARROSSEL 1 -->
 
             <div class="carousel-item active">
-              <img src="../img/imgTime/imgTime03.png" class="d-block w-100" alt="...">
+              <div class="fotoAlterada">
+
+                <?php include('fotoNoticiaAdmin.php') ?>
+
+              </div>
               <div class="carousel-caption d-none d-md-block">
-                <h5>Informações sobre os jogos</h5>
                 <!--<p>Some representative placeholder content for the first slide.</p>-->
               </div>
+
+                <form id="form-foto" action="enviaNoticias.php" method="POST" enctype="multipart/form-data" class="mt-1">
+
+                  <button type="button" class="btn btn-warning" id="alterar" onclick="alterarFoto()">Alterar Foto</button>
+
+                  <button type="submit" class="btn btn-primary hidden" id="postar" onclick="postarFoto()">Postar</button>
+
+                  <input class="hidden" type="file" id="arquivo" name="arquivo" value="">
+
+                </form>
+
             </div>
 
             <!-- CARROSSEL 2 -->
 
-            <div class="carousel-item">
+            <!-- <div class="carousel-item">
               <img src="../img/imgTime/imgTime05.png" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
-                <h5>Jogaddores</h5>
 
               </div>
-            </div>
+              <div class="btn-container mt-1">
+                <form method="post">
+                  <button type="button" class="btn btn-warning" onclick="alterar2()">Alterar Foto</button>
+                  <input class="hidden" type="file" id="arquivo2" name="arquivo2" value="">
+                </form>
+              </div>
+            </div> -->
 
             <!-- CARROSSEL 3 -->
 
-            <div class="carousel-item">
+            <!-- <div class="carousel-item">
               <img src="../img/imgTime/imgTime06.png" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
-                <h5>Veja os Gols</h5>
 
               </div>
-            </div>
+              <div class="btn-container mt-1">
+                <form method="post">
+                  <button type="button" class="btn btn-warning" onclick="alterar3()">Alterar Foto</button>
+                  <input class="hidden" type="file" id="arquivo3" name="arquivo3" value="">
+                </form>
+              </div>
+            </div> -->
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
-          </button>
+          </button> -->
         </div>
       </div>
 
@@ -229,7 +269,7 @@ $dados = $sql->fetchAll();
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto mt-4">
-          <a href="fotosAdmin.php" class="btn btn-warning mt-2" id="btn-fotos" type="button">Ver Fotos</a>
+          <a href="fotosAdmin.php" class="btn btn-warning mt-2" id="botao-fotos" type="button">Ver Fotos</a>
         </div>
 
       </div>
@@ -287,6 +327,8 @@ $dados = $sql->fetchAll();
         </div>
       </div>
     </div>
+    
+    
 
     <div class="barra mt-4"></div>
 
@@ -346,6 +388,24 @@ $dados = $sql->fetchAll();
   </footer>
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script>
+    var alterar = document.getElementById("alterar");
+    var arquivo = document.getElementById("arquivo");
+    var postar = document.getElementById("postar");
+
+
+    function alterarFoto(){
+      arquivo.click();
+      alterar.style.display="none";
+      postar.style.display="block";
+    }
+
+    function postarFoto(){
+      alterar.style.display="block";
+      postar.style.display="none";
+    }
+
+  </script>
 </body>
 
 </html>

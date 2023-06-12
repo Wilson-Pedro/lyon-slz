@@ -13,13 +13,12 @@ $dados = $sql->fetchAll();
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/navHamburguer.css">
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/timeANDescudo.css">
   <link rel="stylesheet" href="../css/update-delete.css">
   <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/navegacao.css">
-  <link rel="stylesheet" href="../css/navResponsivo.css">
   <title>Ranking</title>
   <style>
     body {
@@ -62,52 +61,64 @@ $dados = $sql->fetchAll();
       <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
       <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
     </picture>
-    <header class="navbar ">
-      <nav class="dp-menu mt-4">
-        <ul class="nav">
-          <li class="nav-item ">
-            <a class="nav-link" href="homeAdmin.php">HOME</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="marcado">CATEGORIAS</a>
-            <ul class="sub-menu" id="sobrepor">
-              <li>
-                <a href="subsAdmin/sub09Admin.php">sub09</a>
-                <a href="subsAdmin/sub11Admin.php">sub11</a>
-                <a href="subsAdmin/sub13Admin.php">sub13</a>
-                <a href="subsAdmin/sub15Admin.php">sub15</a>
-                <a href="subsAdmin/sub17Admin.php">sub17</a>
-              </li>
-              <li>
-                <a href="rankingAdmin.php" id="marcado">RANKING</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">PARTIDAS</a>
-            <ul class="sub-menu">
-              <li>
-                <a href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a>
-                <a href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="noticiaisAdmin.php">NOTÍCIAS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">MAIS</a>
-            <ul class="sub-menu" id="sobrepor">
-              <li>
-                <a href="cadastroDeJogador.php">Cadastrar Jogador</a>
-                <a href="cadastroDePartidas.php">Cadastrar partida</a>
-                <a href="../home.php">Sair</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <nav class="navbar navbar-expand-lg mt-4">
+      <div class="container-fluid">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="homeAdmin.php">HOME</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                CATEGORIAS
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="subsAdmin/sub09Admin.php">sub09</a></li>
+                <li><a class="dropdown-item" href="subsAdmin/sub11Admin.php">sub11</a></li>
+                <li><a class="dropdown-item" href="subsAdmin/sub13Admin.php">sub13</a></li>
+                <li><a class="dropdown-item" href="subsAdmin/sub15Admin.php">sub15</a></li>
+                <li><a class="dropdown-item" href="subsAdmin/sub17Admin.php">sub17</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                PARTIDAS
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
+                <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="rankingAdmin.php">RANKING</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="noticiaisAdmin.php">NOTÍCIAS</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                MAIS
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="cadastroDeJogador.php">CADASTRAR JOGADOR</a></li>
+                <li><a class="dropdown-item" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
+                <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
   </div>
 
   <main>
@@ -195,6 +206,7 @@ $dados = $sql->fetchAll();
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <script>
     //      ATUALIZAR
 

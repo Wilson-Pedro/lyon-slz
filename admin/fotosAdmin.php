@@ -27,12 +27,12 @@ if (isset($_POST['deletar'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/navHamburguer.css">
   <link rel="stylesheet" href="../fonts/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="../css/timeANDescudo.css">
   <link rel="stylesheet" href="lyon.jpg">
   <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/navegacao.css">
-  <link rel="stylesheet" href="../css/navResponsivo.css">
   <title>Fotos</title>
 </head>
 <style>
@@ -159,6 +159,17 @@ if (isset($_POST['deletar'])) {
     color: rgb(0, 0, 0);
   }
 
+  #iconeVoltar {
+    color: white;
+    font-size: 250%;
+    margin-left: 2%;
+    cursor: pointer;
+  }
+
+  #iconeVoltar:hover {
+    cursor: pointer;
+    color: black;
+  }
 </style>
 
 <body id="body">
@@ -172,59 +183,16 @@ if (isset($_POST['deletar'])) {
       <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
       <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
     </picture>
-    <header class="navbar ">
-      <nav class="dp-menu mt-4">
-        <ul class="nav">
-          <li class="nav-item ">
-            <a class="nav-link" href="homeAdmin.php">HOME</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">CATEGORIAS</a>
-            <ul class="sub-menu" id="sobrepor">
-              <li>
-                <a href="subsAdmin/sub09Admin.php">sub09</a>
-                <a href="subsAdmin/sub11Admin.php">sub11</a>
-                <a href="subsAdmin/sub13Admin.php">sub13</a>
-                <a href="subsAdmin/sub15Admin.php">sub15</a>
-                <a href="subsAdmin/sub17Admin.php">sub17</a>
-              </li>
-              <li>
-                <a href="rankingAdmin.php">RANKING</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">PARTIDAS</a>
-            <ul class="sub-menu">
-              <li>
-                <a href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a>
-                <a href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="noticiaisAdmin.php">NOTÍCIAS</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">MAIS</a>
-            <ul class="sub-menu" id="sobrepor">
-              <li>
-                <a href="cadastroDeJogador.php">Cadastrar Jogador</a>
-                <a href="cadastroDePartidas.php">Cadastrar partida</a>
-                <a href="../home.php">Sair</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <br>
+    <a href="noticiaisAdmin.php"><i class="bi bi-arrow-left-circle-fill" id="iconeVoltar"></i></a>
+  <br>
   </div>
 
   <main>
     <br>
     <h1>
-      <i class="fa-solid fa-2x fa-camera"></i>
       <span class="logo">FOTOS DO TIME</span>
+      <i class="bi bi-camera-fill bi-2x"></i>
     </h1>
     <div class="container-fluid mt-3">
 
@@ -254,6 +222,7 @@ if (isset($_POST['deletar'])) {
   <footer>
     <p>Escolinha de Futebol LYON SLZ</p>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <script>
     var modal = document.querySelector('dialog')
     var arquivo = document.getElementById('arquivo');

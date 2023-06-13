@@ -2,15 +2,13 @@
 require('../db/conexao.php');
 
 if (isset($_POST['salvar'])) {
-    $local = $_POST['partidaLocal'];
-    $timeB = $_POST['partidaTimeB'];
-    $data = $_POST['data'];
-    $horario = $_POST['horario'];
-    $gols_lyon = 0;
-    $gols_adv = 0;
+    $nome = $_POST['nome_campeonato'];
+    $local = $_POST['local_campeonato'];
+    $data = $_POST['data_campeonato'];
+    $horario = $_POST['horario_campeonato'];
 
-    $sql = $pdo->prepare("INSERT INTO tblpartidass VALUES (null,?,?,?,?,?,?)");
-    $sql->execute(array($local, $timeB, $data, $horario, $gols_lyon, $gols_adv));
+    $sql = $pdo->prepare("INSERT INTO tblcampeonato VALUES (null,?,?,?,?)");
+    $sql->execute(array($nome, $local, $data, $horario));
 }
 ?>
 
@@ -29,7 +27,7 @@ if (isset($_POST['salvar'])) {
     <link rel="stylesheet" href="../css/timeANDescudo.css">
     <link rel="stylesheet" href="../fonts/fontawesome/css/all.min.css">
     <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
-    <title>Cadastro de partidas</title>
+    <title>Cadastro de campeonato</title>
     <style>
         body {
             background-color: white;
@@ -186,10 +184,10 @@ if (isset($_POST['salvar'])) {
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="cadastroDeJogador.php">CADASTRAR JOGADOR</a></li>
+                            <li><a class="dropdown-item" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
 
-                            <li><a class="dropdown-item" id="marcado" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
+                            <li><a class="dropdown-item" id="marcado" href="cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
 
-                            <li><a class="dropdown-item" href="cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
                             <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
                         </ul>
                     </li>
@@ -204,18 +202,29 @@ if (isset($_POST['salvar'])) {
 
     <section class="form-partida">
         <div class="container-fluid">
-            <h1 class="display-5">Cadastro de partidas</h1>
+            <h1 class="display-5">Cadastro de campeonato</h1>
             <hr>
             <br>
             <form method="post" action="">
-                <!-- LOCAL -->
+
+                <!-- NOME DO CAMPEONATO -->
                 <div class="row">
                     <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="partidaLocal" name="partidaLocal" placeholder="Ex.: Estádio Lourenço Farias. Centro.">
-                        <label for="floatingInput text-center">Local</label>
+                        <input type="text" class="form-control" id="nome_campeonato" name="nome_campeonato" placeholder="Ex.: Estádio Lourenço Farias. Centro.">
+                        <label for="floatingInput text-center">Nome do campeonato</label>
                     </div>
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaLocal" onclick="limpaCampos0()">Limpar</button>
                 </div><br>
+
+                <!-- LOCAL -->
+                <div class="row">
+                    <div class="form-floating col-md-8">
+                        <input type="text" class="form-control" id="local_campeonato" name="local_campeonato" placeholder="Ex.: Estádio Lourenço Farias. Centro.">
+                        <label for="floatingInput text-center">Local do campeonato</label>
+                    </div>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaLocal" onclick="limpaCampos1()">Limpar</button>
+                </div><br>
+
                 <!-- JANELAS DE CONFIRMAÇÃO -->
                 <dialog id="cad-partidaConfirmMsg" class="MsgSucesso">
                     <p class="cad-partidaMsgSucesso">Cadastro feito com Sucesso!</p>
@@ -225,42 +234,87 @@ if (isset($_POST['salvar'])) {
                     <p class="cad-partidaMsgErro">Erro ao realizar o cadastro!</p>
                     <input type="button" id="cancel" value="Ok" class="btn-MsgErro">
                 </dialog>
-                <!-- TIME B -->
-                <div class="row">
-                    <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="partidaTimeB" name="partidaTimeB" placeholder="Ex.: Manchester United do Maranhão">
-                        <label for="floatingInput text-center">Time Adversário</label>
-                    </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaTimeB" onclick="limpaCampos2()">Limpar</button>
-                </div><br>
+
                 <!-- DATA -->
                 <div class="row">
                     <div class="col-md-8">
-                        <label for="text-center" class="form-label">Data</label>
                         <div class="input-group input-group-lg">
-                            <input type="date" class="form-control" name="data" id="partidaHorarioData" placeholder="14/10/2023">
+                            <input type="date" class="form-control" name="data_campeonato" id="data_campeonato" placeholder="14/10/2023">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos2()">Limpar</button>
                 </div><br>
+
                 <!-- HORÁRIO -->
                 <div class="row">
                     <div class="col-md-8">
-                        <label for="text-center" class="form-label">Horário</label>
                         <div class="input-group input-group-lg">
-                            <input type="time" class="form-control" name="horario" id="partidaHorarioData" placeholder="14/10/2023 às 11:30">
+                            <input type="time" class="form-control" name="horario_campeonato" id="horario_campeonato" placeholder="14/10/2023 às 11:30">
                         </div>
                     </div>
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
                 </div><br>
+
                 <!-- CADASTRAR PARTIDA -->
                 <input type="submit" id="btn-cadastrar-partida" value="Cadastrar partida" class="btn btn-success btn-lg" onclick="validaCampos(event)">
                 <input type="reset" value="Limpar todos os campos" name="btn-cadastrar" id="btn-cadastrar-partida" class="btn btn-danger btn-lg">
+
             </form>
         </div>
     </section>
-    <script src="../js/cadastro-partidas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        var cad_partidaConfirmMsg = document.getElementById('cad-partidaConfirmMsg');
+        var cad_partidaConfirmMsgErro = document.getElementById('cad-partidaConfirmMsgErro');
+        var campeonato = [
+            document.getElementById('nome_campeonato'),
+            document.getElementById('local_campeonato'),
+            document.getElementById('data_campeonato'),
+            document.getElementById('horario_campeonato')
+        ];
+        // VALIDAÇÃO DOS CAMPOS DO CAD. DE PARTIDA
+        function validaCampos(event) {
+            if (campeonato[0].value == '' || campeonato[1].value == '' || campeonato[2].value == '' || campeonato[3].value == '') {
+                alert('Preencha todos os campos para cadastrar uma partida');
+            }
+            //  else if (typeof partida[0].value === "number") {
+            //     alert('Insira um local válido');
+            // } else if (typeof partida[1].value === "number") {
+            //     alert('Insira um nome do Time A válido');
+            // } else if (typeof partida[2].value === "number") {
+            //     alert('Insira um nome do Time B válido');
+            // } else if (!typeof partida[3].value === "string" && !typeof partida[3].value === "number") {
+            //     alert('Insira uma data e horário válidos');
+            // } 
+            else {
+                // mostra a janela de confirmaçao confirmando o cadastro.
+                cad_partidaConfirmMsg.showModal();
+            }
+            // evita do browser recarregar a página sempre que um alert fechar. 
+            event.preventDefault();
+            return;
+        }
+        // FECHA A JANELA DE CONFIRMAÇÃO DE ERRO DE CAD.
+        cancel.addEventListener('click', function() {
+            cad_partidaConfirmMsgErro.close();
+        });
+        // LIMPA CADA CAMPO
+        function limpaCampos0() {
+            campeonato[0].value = '';
+        }
+
+        function limpaCampos1() {
+            campeonato[1].value = '';
+        }
+
+        function limpaCampos2() {
+            campeonato[2].value = '';
+        }
+
+        function limpaCampos3() {
+            campeonato[3].value = '';
+        }
+    </script>
 </body>
 
 </html>

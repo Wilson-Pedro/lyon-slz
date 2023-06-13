@@ -107,6 +107,7 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="cadastroDeJogador.php">CADASTRAR JOGADOR</a></li>
                 <li><a class="dropdown-item" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
+                <li><a class="dropdown-item" href="cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
                 <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
               </ul>
             </li>

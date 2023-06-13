@@ -42,10 +42,10 @@ $dados = $sql->fetchAll();
 
   td,
   th {
-      padding: 5px;
-      text-align: center;
-      border: solid 1px black;
-      font-size: 11px;
+    padding: 5px;
+    text-align: center;
+    border: solid 1px black;
+    font-size: 11px;
   }
 
   header>nav>ul>li>a {
@@ -81,7 +81,8 @@ $dados = $sql->fetchAll();
     border-radius: 5px;
   }
 
-  #cancelar_delete, #btn-deletar {
+  #cancelar_delete,
+  #btn-deletar {
     background-color: red;
     margin-left: 3vw;
   }
@@ -97,73 +98,77 @@ $dados = $sql->fetchAll();
 
 <body>
   <!-- CABEÇALHO -->
-<div class="cabecalho">
+  <div class="cabecalho">
     <picture>
-        <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png'>
-        <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png'>
-        <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png'>
-        <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
-        <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+      <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png' loading="lazy">
+
+      <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png' loading="lazy">
+
+      <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png' loading="lazy">
+
+      <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png' loading="lazy">
+
+      <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ" loading="lazy">
     </picture>
     <nav class="navbar navbar-expand-lg mt-4">
-            <div class="container-fluid">
+      <div class="container-fluid">
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="homeAdmin.php">HOME</a>
-                        </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="homeAdmin.php">HOME</a>
+            </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                CATEGORIAS
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="subsAdmin/sub09Admin.php">sub09</a></li>
-                                <li><a class="dropdown-item" href="subsAdmin/sub11Admin.php">sub11</a></li>
-                                <li><a class="dropdown-item" href="subsAdmin/sub13Admin.php">sub13</a></li>
-                                <li><a class="dropdown-item" href="subsAdmin/sub15Admin.php">sub15</a></li>
-                                <li><a class="dropdown-item" href="subsAdmin/sub17Admin.php">sub17</a></li>
-                            </ul>
-                        </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                CATEGORIAS
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="subsAdmin/sub09Admin.php">sub09</a></li>
+                <li><a class="dropdown-item" href="subsAdmin/sub11Admin.php">sub11</a></li>
+                <li><a class="dropdown-item" href="subsAdmin/sub13Admin.php">sub13</a></li>
+                <li><a class="dropdown-item" href="subsAdmin/sub15Admin.php">sub15</a></li>
+                <li><a class="dropdown-item" href="subsAdmin/sub17Admin.php">sub17</a></li>
+              </ul>
+            </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                PARTIDAS
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" id="marcado" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
-                                <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
-                            </ul>
-                        </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                PARTIDAS
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" id="marcado" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
+                <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
+              </ul>
+            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="rankingAdmin.php">RANKING</a>
-                        </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="rankingAdmin.php">RANKING</a>
+            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="noticiaisAdmin.php">NOTÍCIAS</a>
-                        </li>
+            <li class="nav-item">
+              <a class="nav-link" href="noticiaisAdmin.php">NOTÍCIAS</a>
+            </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                MAIS
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="cadastroDeJogador.php">CADASTRAR JOGADOR</a></li>
-                                <li><a class="dropdown-item" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
-                                <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
-                            </ul>
-                        </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                MAIS
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="cadastroDeJogador.php">CADASTRAR JOGADOR</a></li>
+                <li><a class="dropdown-item" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
+                <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
+              </ul>
+            </li>
 
-                    </ul>
-                </div>
-            </div>
-        </nav>
-</div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
 
   <main>
     <div class="container-fluid">
@@ -251,8 +256,8 @@ $dados = $sql->fetchAll();
         </thead>";
         foreach ($dados as $chaves => $valor) {
           $dataJogo = $valor['data_partida'];
-          if(strtotime($dataJogo) >= strtotime($data_Atual)){
-          echo "<tr>
+          if (strtotime($dataJogo) >= strtotime($data_Atual)) {
+            echo "<tr>
                 <td>" . $valor['localidade'] . "</td>
                 <td>" . "LyonX" . $valor['timeb'] . "</td>
                 <td>" . date("d/m", strtotime($valor['data_partida'])) . "</td>

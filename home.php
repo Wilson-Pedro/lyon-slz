@@ -48,11 +48,15 @@
   <!-- CABEÇALHO -->
   <div class="cabecalho">
     <picture>
-      <source media="(max-width: 261px)" srcset='img/imgLogo/lyonSlzEscudo5.png'>
-      <source media="(max-width: 269px)" srcset='img/imgLogo/lyonSlzEscudo4.png'>
-      <source media="(max-width: 311px)" srcset='img/imgLogo/lyonSlzEscudo3.png'>
-      <source media="(max-width: 375px)" srcset='img/imgLogo/lyonSlzEscudo2.png'>
-      <img src="img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+      <source media="(max-width: 261px)" srcset='img/imgLogo/lyonSlzEscudo5.png' loading="lazy">
+
+      <source media="(max-width: 269px)" srcset='img/imgLogo/lyonSlzEscudo4.png' loading="lazy">
+
+      <source media="(max-width: 311px)" srcset='img/imgLogo/lyonSlzEscudo3.png' loading="lazy">
+
+      <source media="(max-width: 375px)" srcset='img/imgLogo/lyonSlzEscudo2.png' loading="lazy">
+
+      <img src="img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ" loading="lazy">
     </picture>
     <nav class="navbar navbar-expand-lg mt-4">
       <div class="container-fluid">
@@ -128,15 +132,15 @@
       <div class="carousel-inner">
         <div class="carousel-item active">
           <!--IMAGEM 1-->
-          <img class="d-block w-100" src="img/imgTime/imgTime01.png" alt="calendario">
+          <img class="d-block w-100" src="img/imgTime/imgTime01.png" loading="lazy" alt="calendario">
         </div>
         <div class="carousel-item">
           <!--IMAGEM 2-->
-          <img class="d-block w-100" src="img/imgTime/imgTime02.png" alt="galeria de fotos">
+          <img class="d-block w-100" src="img/imgTime/imgTime02.png" loading="lazy" alt="galeria de fotos">
         </div>
         <!--IMAGEM 3-->
         <div class="carousel-item">
-          <img class="d-block w-100" src="img/imgTime/imgTime04.png" alt="historico de partidas">
+          <img class="d-block w-100" src="img/imgTime/imgTime04.png" loading="lazy" alt="historico de partidas">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -155,7 +159,7 @@
   <section>
     <div class="container mb-5">
       <div class="row mt-4">
-        <div class="col--sm-12 text-dark text-center my-3">
+        <div class="col--sm-12 textDaJ text-center my-3">
           <h1 class="mais">Mais</h1>
 
         </div>
@@ -163,26 +167,26 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="card border-success mt-4">
-            <img class="card-img-top" src="img/imagens/imagem8.png">
+            <img class="card-img-top" src="img/imagens/imagem8.png" loading="lazy">
 
             <!-- CARD 1 -->
             <div class="card-body">
-              <h5 class="card-title mt-1">CALENDARIO DE PARTIDAS</h5>
+              <h5 class="card-title">CALENDARIO DE PARTIDAS</h5>
               <p class="card-text">Confira os futuros jogos do seu time!</p>
-              <a href="calendario.php" class="btn btn-outline-success mt-4">Visitar</a>
+              <a href="calendarioAdmin.php" class="btn btn-outline-success mt-2">Visitar</a>
             </div>
           </div>
         </div>
+
+        <!-- CARD 2 -->
         <div class="col-sm-4">
           <div class="card border-success mt-4">
-            <img class="card-img-top" src="img/imagens/instagram-g0673b2c70_640.png">
-
-            <!-- CARD 2 -->
+            <img class="card-img-top" src="img/imagens/instagram-g0673b2c70_640.png" loading="lazy">
             <div class="card-body">
               <h5 class="card-title">NOSSAS REDES SOCIAIS</h5>
-              <p class="card-text">Fique por dentro nos bastidores do nosso time acompanhando nossas redes sociais.
+              <p class="card-text">Fique por dentro dos bastidores do time.
               </p>
-              <a href="https://www.instagram.com/lyon.slz/?igshid=N2ZiY2E3YmU%3D" target="_blank" class="btn btn-outline-success">Visitar</a>
+              <a href="https://www.instagram.com/lyon.slz/?igshid=N2ZiY2E3YmU%3D" class="btn btn-outline-success" target="_blank">Visitar</a>
             </div>
           </div>
         </div>
@@ -190,11 +194,11 @@
         <!-- CARD 3 -->
         <div class="col-sm-4">
           <div class="card border-success mt-4">
-            <img class="card-img-top" src="img/imagens/imagem4.jpg">
+            <img class="card-img-top" src="img/imagens/imagem4.jpg" loading="lazy">
             <div class="card-body">
               <h5 class="card-title">ULTIMAS NOTICIAS</h5>
-              <p class="card-text">Local destinado a informacoes extras sobre partidas e acontecimentos</p>
-              <a href="noticiais.php" class="btn btn-outline-success">Visitar</a>
+              <p class="card-text">Confira as últimas notícias</p>
+              <a href="noticiaisAdmin.php" class="btn btn-outline-success mt-1">Visitar</a>
             </div>
           </div>
         </div>

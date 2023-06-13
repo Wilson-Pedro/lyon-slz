@@ -107,11 +107,15 @@ $dados = $sql->fetchAll();
   <!-- CABEÇALHO -->
   <div class="cabecalho">
     <picture>
-      <source media="(max-width: 261px)" srcset='img/imgLogo/lyonSlzEscudo5.png'>
-      <source media="(max-width: 269px)" srcset='img/imgLogo/lyonSlzEscudo4.png'>
-      <source media="(max-width: 311px)" srcset='img/imgLogo/lyonSlzEscudo3.png'>
-      <source media="(max-width: 375px)" srcset='img/imgLogo/lyonSlzEscudo2.png'>
-      <img src="img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+      <source media="(max-width: 261px)" srcset='img/imgLogo/lyonSlzEscudo5.png' loading="lazy">
+
+      <source media="(max-width: 269px)" srcset='img/imgLogo/lyonSlzEscudo4.png' loading="lazy">
+
+      <source media="(max-width: 311px)" srcset='img/imgLogo/lyonSlzEscudo3.png' loading="lazy">
+
+      <source media="(max-width: 375px)" srcset='img/imgLogo/lyonSlzEscudo2.png' loading="lazy">
+
+      <img src="img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ" loading="lazy">
     </picture>
     <nav class="navbar navbar-expand-lg mt-4">
       <div class="container-fluid">
@@ -214,7 +218,7 @@ $dados = $sql->fetchAll();
             <!-- CARROSSEL 2 -->
 
             <!-- <div class="carousel-item">
-    <img src="../img/imgTime/imgTime05.png" class="d-block w-100" alt="...">
+    <img src="../img/imgTime/imgTime05.png" loading="lazy" class="d-block w-100" alt="...">
     <div class="carousel-caption d-none d-md-block">
 
     </div>
@@ -229,7 +233,7 @@ $dados = $sql->fetchAll();
             <!-- CARROSSEL 3 -->
 
             <!-- <div class="carousel-item">
-    <img src="../img/imgTime/imgTime06.png" class="d-block w-100" alt="...">
+    <img src="../img/imgTime/imgTime06.png" loading="lazy" class="d-block w-100" alt="...">
     <div class="carousel-caption d-none d-md-block">
 
     </div>
@@ -301,7 +305,7 @@ $dados = $sql->fetchAll();
 
     <div class="row">
       <div class="col-lg-4" id="calendar">
-        <img src="img/imagens/matchCalendar.PNG" id="img-calendar" class="img-thumbnail img-fluid" alt="imafem de um calendário">
+        <img src="img/imagens/matchCalendar.PNG" loading="lazy" id="img-calendar" class="img-thumbnail img-fluid" alt="imafem de um calendário">
         <a href="calendarioAdmin.php" id="btn-jogos" class="btn btn-warning mt-4">Confira os futuros jogos.</a>
       </div>
 
@@ -387,7 +391,7 @@ $dados = $sql->fetchAll();
 
       <div class="col-lg-4">
         <div class="placar">
-          <img src="img/imagens/imagem10.png" class="img-fluid" alt="">
+          <img src="img/imagens/imagem10.png" loading="lazy" class="img-fluid" alt="">
         </div>
       </div>
     </div>

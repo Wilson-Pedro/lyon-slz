@@ -57,7 +57,7 @@ $dados = $sql->fetchAll();
 if (count($dados) > 0) {
     $vetor = 0;
     foreach ($dados as $chaves => $valor) {
-        echo "<img name='imagem' src='" . $pasta . $valor['arquivo'] . "' class='img-fluid img-thumbnail mt-3'><br>";
+        echo "<img name='imagem' src='" . $pasta . $valor['arquivo'] . "' loading='lazy' class='img-fluid img-thumbnail mt-3'><br>";
         echo "<button class='btn-deletar' data-id='" . $valor['id'] . "' data-arquivo='" . $valor['arquivo'] . "'><a href='#form_img_deleta' class='ancora'>Deletar Foto</a></button>";
         echo "<br>";
     }

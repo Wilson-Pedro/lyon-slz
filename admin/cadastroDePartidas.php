@@ -127,70 +127,74 @@ if (isset($_POST['salvar'])) {
 <!-- CABEÇALHO -->
 <div class="cabecalho">
     <picture>
-        <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png'>
-        <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png'>
-        <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png'>
-        <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
-        <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+        <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png' loading="lazy">
+
+        <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png' loading="lazy">
+
+        <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png' loading="lazy">
+
+        <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png' loading="lazy">
+
+        <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ" loading="lazy">
     </picture>
     <nav class="navbar navbar-expand-lg mt-4">
-            <div class="container-fluid">
+        <div class="container-fluid">
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="homeAdmin.php">HOME</a>
-                        </li>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="homeAdmin.php">HOME</a>
+                    </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                CATEGORIAS
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="subsAdmin/sub09Admin.php">sub09</a></li>
-                                <li><a class="dropdown-item" href="subsAdmin/sub11Admin.php">sub11</a></li>
-                                <li><a class="dropdown-item" href="subsAdmin/sub13Admin.php">sub13</a></li>
-                                <li><a class="dropdown-item" href="subsAdmin/sub15Admin.php">sub15</a></li>
-                                <li><a class="dropdown-item" href="subsAdmin/sub17Admin.php">sub17</a></li>
-                            </ul>
-                        </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            CATEGORIAS
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="subsAdmin/sub09Admin.php">sub09</a></li>
+                            <li><a class="dropdown-item" href="subsAdmin/sub11Admin.php">sub11</a></li>
+                            <li><a class="dropdown-item" href="subsAdmin/sub13Admin.php">sub13</a></li>
+                            <li><a class="dropdown-item" href="subsAdmin/sub15Admin.php">sub15</a></li>
+                            <li><a class="dropdown-item" href="subsAdmin/sub17Admin.php">sub17</a></li>
+                        </ul>
+                    </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                PARTIDAS
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
-                                <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
-                            </ul>
-                        </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            PARTIDAS
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
+                            <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
+                        </ul>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="rankingAdmin.php">RANKING</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="rankingAdmin.php">RANKING</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="noticiaisAdmin.php">NOTÍCIAS</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="noticiaisAdmin.php">NOTÍCIAS</a>
+                    </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                MAIS
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="cadastroDeJogador.php">CADASTRAR JOGADOR</a></li>
-                                <li><a class="dropdown-item" id="marcado" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
-                                <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
-                            </ul>
-                        </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            MAIS
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="cadastroDeJogador.php">CADASTRAR JOGADOR</a></li>
+                            <li><a class="dropdown-item" id="marcado" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
+                            <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
+                        </ul>
+                    </li>
 
-                    </ul>
-                </div>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
 </div>
 
 <body>

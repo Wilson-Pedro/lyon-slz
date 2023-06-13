@@ -20,7 +20,7 @@ $dados = $sql->fetchAll();
 //. $pasta . $valor['arquivo'] .
 if (count($dados) > 0) {
     foreach ($dados as $chaves => $valor) { 
-        echo "<img src='". $pasta . $valor['arquivo'] . "' class='img-fluid img-thumbnail mt-3'><br>";
+        echo "<img src='". $pasta . $valor['arquivo'] . "' loading='lazy' class='img-fluid img-thumbnail mt-3'><br>";
     }
 } else {
     echo "<br><br><br><p class='mt-4' style='text-align:center'>Nenhuma foto foi postada.</p>";

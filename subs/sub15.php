@@ -64,10 +64,14 @@ $dados = $sql->fetchAll();
   <!-- CABEÇALHO -->
   <div class="cabecalho">
     <picture>
-      <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png'>
-      <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png'>
-      <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png'>
-      <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png'>
+      <source media="(max-width: 261px)" srcset='../img/imgLogo/lyonSlzEscudo5.png' loading="lazy">
+
+      <source media="(max-width: 269px)" srcset='../img/imgLogo/lyonSlzEscudo4.png' loading="lazy">
+
+      <source media="(max-width: 311px)" srcset='../img/imgLogo/lyonSlzEscudo3.png' loading="lazy">
+
+      <source media="(max-width: 375px)" srcset='../img/imgLogo/lyonSlzEscudo2.png' loading="lazy">
+
       <img src="../img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
     </picture>
     <nav class="navbar navbar-expand-lg mt-4">
@@ -156,7 +160,7 @@ $dados = $sql->fetchAll();
           </thead>";
           foreach ($dados as $chaves => $valor) {
             echo "<tr>
-                          <td>" . $valor['nome'] . " ". $valor['sobrenome']. "</td>
+                          <td>" . $valor['nome'] . " " . $valor['sobrenome'] . "</td>
                           <td>" . $valor['idade'] . "</td>
                           <td>" . $valor['posicao'] . "</td>
                           <td>" . $valor['gols'] . "</td>

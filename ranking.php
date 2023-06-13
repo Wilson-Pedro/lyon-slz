@@ -47,11 +47,11 @@ $dados = $sql->fetchAll();
       border: solid 1px black;
     }
 
-    th.custom-th{
+    th.custom-th {
       width: 5%;
     }
 
-    th{
+    th {
       width: 20%;
     }
 
@@ -69,11 +69,15 @@ $dados = $sql->fetchAll();
   <!-- CABEÇALHO -->
   <div class="cabecalho">
     <picture>
-      <source media="(max-width: 261px)" srcset='img/imgLogo/lyonSlzEscudo5.png'>
-      <source media="(max-width: 269px)" srcset='img/imgLogo/lyonSlzEscudo4.png'>
-      <source media="(max-width: 311px)" srcset='img/imgLogo/lyonSlzEscudo3.png'>
-      <source media="(max-width: 375px)" srcset='img/imgLogo/lyonSlzEscudo2.png'>
-      <img src="img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ">
+      <source media="(max-width: 261px)" srcset='img/imgLogo/lyonSlzEscudo5.png' loading="lazy">
+
+      <source media="(max-width: 269px)" srcset='img/imgLogo/lyonSlzEscudo4.png' loading="lazy">
+
+      <source media="(max-width: 311px)" srcset='img/imgLogo/lyonSlzEscudo3.png' loading="lazy">
+
+      <source media="(max-width: 375px)" srcset='img/imgLogo/lyonSlzEscudo2.png' loading="lazy">
+
+      <img src="img/imgLogo/lyonSlzEscudo.png" alt="Escudo do time LYYON SLZ" loading="lazy">
     </picture>
     <nav class="navbar navbar-expand-lg mt-4">
       <div class="container-fluid">
@@ -136,7 +140,7 @@ $dados = $sql->fetchAll();
 
   <main>
     <div class="container-fluid">
-    <h1 class="ranking">Ranking de Gols</h1>
+      <h1 class="ranking">Ranking de Gols</h1>
       <?php
       if (count($dados) > 0) {
         echo "<table class='table table-striped'>
@@ -165,7 +169,7 @@ $dados = $sql->fetchAll();
               }
               echo "<tr>
                           <td>" . $ranking . "</td>
-                          <td>" . $valor['nome'] . " ". $valor['sobrenome']. "</td>
+                          <td>" . $valor['nome'] . " " . $valor['sobrenome'] . "</td>
                           <td>" . $valor['gols'] . "</td>
                       </tr>";
               $ranking += 1;

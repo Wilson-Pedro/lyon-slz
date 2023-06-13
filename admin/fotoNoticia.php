@@ -17,4 +17,4 @@ if ($resultado !== false) {
 }
 ?>
 
-<img src="<?php echo $nomeArquivo; ?>" class="d-block w-100">
+<img src="<?php echo $nomeArquivo; ?>" loading="lazy" class="d-block w-100">

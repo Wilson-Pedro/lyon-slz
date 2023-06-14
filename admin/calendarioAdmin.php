@@ -216,9 +216,9 @@ $dados = $sql->fetchAll();
         $timeb = $_POST['timeb_editado'];
         $data_partida = $_POST['data_partida_editado'];
         $horario = $_POST['horario_editado'];
-        $sql = $pdo->prepare("UPDATE tblpartidass SET localidade = :localidade, timeb = :timeb, data_partida = :data_partida, horario = :horario WHERE id= :id");
+        $sql = $pdo->prepare("UPDATE tblpartidass SET localidade = :localidade, adversario = :adversario, data_partida = :data_partida, horario = :horario WHERE id= :id");
         $sql->bindValue(':localidade', $localidade);
-        $sql->bindValue(':timeb', $timeb);
+        $sql->bindValue(':adversario', $timeb);
         $sql->bindValue(':data_partida', $data_partida);
         $sql->bindValue(':horario', $horario);
         $sql->bindValue(':id', $id);
@@ -237,7 +237,7 @@ $dados = $sql->fetchAll();
         $timeb = $_POST['timeb_deleta'];
         $data_partida = $_POST['data_partida_deleta'];
         //COMANDO PARA DELETAR
-        $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND timeb=? AND data_partida=?");
+        $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND adversario=? AND data_partida=?");
         $sql->execute(array($id, $localidade, $timeb, $data_partida));
       }
       ?>
@@ -260,10 +260,19 @@ $dados = $sql->fetchAll();
           if (strtotime($dataJogo) >= strtotime($data_Atual)) {
             echo "<tr>
                 <td>" . $valor['localidade'] . "</td>
-                <td>" . "LyonX" . $valor['timeb'] . "</td>
+                <td>" . "LyonX" . $valor['adversario'] . "</td>
                 <td>" . date("d/m", strtotime($valor['data_partida'])) . "</td>
                 <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
-                <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-localidade='" . $valor['localidade'] . "'data-timeb='" . $valor['timeb'] . "'data-data_partida='" . $valor['data_partida'] . "'data-horario='" . $valor['horario'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-localidade='" . $valor['localidade'] . "' data-timeb='" . $valor['timeb'] . "'data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
+                <td><a href='#' class='btn-atualizar' 
+                data-id='" . $valor['id'] . "' 
+                data-localidade='" . $valor['localidade'] . "'
+                data-timeb='" . $valor['adversario'] . "'
+                data-data_partida='" . $valor['data_partida'] . "'
+                data-horario='" . $valor['horario'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' 
+                data-id='" . $valor['id'] . "' 
+                data-localidade='" . $valor['localidade'] . "' 
+                data-timeb='" . $valor['adversario'] . "'
+                data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
           </tr>";
           }
         }

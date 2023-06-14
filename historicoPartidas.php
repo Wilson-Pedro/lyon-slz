@@ -152,7 +152,7 @@ $dados = $sql->fetchAll();
           $dataJogo = $valor['data_partida'];
           if (strtotime($dataJogo) <= strtotime($data_Atual)) {
             echo "<tr>
-                  <td>" . "Lyon X " . $valor['timeb'] . "</td>
+                  <td>" . "Lyon X " . $valor['adversario'] . "</td>
                   <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                   <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
                 

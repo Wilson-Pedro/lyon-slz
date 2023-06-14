@@ -160,7 +160,7 @@ $dados = $sql->fetchAll();
           if (strtotime($dataJogo) >= strtotime($data_Atual)) {
             echo "<tr>
                   <td>" . $valor['localidade'] . "</td>
-                  <td>" . "Lyon X " . $valor['timeb'] . "</td>
+                  <td>" . "Lyon X " . $valor['adversario'] . "</td>
                   <td>" . date("d/m", strtotime($valor['data_partida'])) . "</td>
                   <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
             </tr>";

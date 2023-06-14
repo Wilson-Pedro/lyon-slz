@@ -3,14 +3,14 @@ require('../db/conexao.php');
 
 if (isset($_POST['salvar'])) {
     $local = $_POST['partidaLocal'];
-    $timeB = $_POST['partidaTimeB'];
+    $adversario = $_POST['partidaTimeB'];
     $data = $_POST['data'];
     $horario = $_POST['horario'];
     $gols_lyon = 0;
     $gols_adv = 0;
 
     $sql = $pdo->prepare("INSERT INTO tblpartidass VALUES (null,?,?,?,?,?,?)");
-    $sql->execute(array($local, $timeB, $data, $horario, $gols_lyon, $gols_adv));
+    $sql->execute(array($local, $adversario, $data, $horario, $gols_lyon, $gols_adv));
 }
 ?>
 

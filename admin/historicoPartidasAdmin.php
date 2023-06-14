@@ -241,10 +241,17 @@ $dados = $sql->fetchAll();
                     $dataJogo = $valor['data_partida'];
                     if (strtotime($dataJogo) <= strtotime($data_Atual)) {
                         echo "<tr>
-                  <td>" . "Lyon X " . $valor['timeb'] . "</td>
+                  <td>" . "Lyon X " . $valor['adversario'] . "</td>
                   <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                   <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-                  <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-gols_lyon='" . $valor['gols_lyon'] . "'data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' data-id='" . $valor['id'] . "' data-localidade='" . $valor['localidade'] . "' data-timeb='" . $valor['timeb'] . "'data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
+                  <td><a href='#' class='btn-atualizar' 
+                  data-id='" . $valor['id'] . "' 
+                  data-gols_lyon='" . $valor['gols_lyon'] . "'
+                  data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' 
+                  data-id='" . $valor['id'] . "' 
+                  data-localidade='" . $valor['localidade'] . "' 
+                  data-timeb='" . $valor['adversario'] . "'
+                  data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
             </tr>";
                     }
                 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14-Jun-2023 às 22:42
+-- Tempo de geração: 15-Jun-2023 às 01:23
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -39,7 +39,8 @@ CREATE TABLE `tblcampeonato` (
 --
 
 INSERT INTO `tblcampeonato` (`id_campeonato`, `nome_campeonato`, `local_campeonato`, `data_campeonato`) VALUES
-(13, 'Amistoso', '', '0000-00-00');
+(13, 'Amistoso', '', '0000-00-00'),
+(17, 'Torneio sub-17', 'Castelinho', '2023-06-22');
 
 -- --------------------------------------------------------
 
@@ -144,13 +145,6 @@ CREATE TABLE `tblpartidass` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `tblpartidass`
---
-
-INSERT INTO `tblpartidass` (`id`, `localidade`, `adversario`, `id_campeonato`, `data_partida`, `horario`, `gols_lyon`, `gols_adv`) VALUES
-(20, 'Quadra', 'Alemanha', 13, '2023-06-21', '19:42:00.000000', 0, 0);
-
---
 -- Índices para tabelas despejadas
 --
 
@@ -199,7 +193,7 @@ ALTER TABLE `tblpartidass`
 -- AUTO_INCREMENT de tabela `tblcampeonato`
 --
 ALTER TABLE `tblcampeonato`
-  MODIFY `id_campeonato` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_campeonato` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `tblfotoss`
@@ -229,7 +223,7 @@ ALTER TABLE `tblloginn`
 -- AUTO_INCREMENT de tabela `tblpartidass`
 --
 ALTER TABLE `tblpartidass`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restrições para despejos de tabelas

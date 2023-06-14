@@ -1,7 +1,7 @@
 <?php
 require('db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblpartidass ORDER BY id LIMIT 0, 1000");
+$sql = $pdo->prepare("SELECT * FROM tblpartidass");
 $sql->execute();
 $dados = $sql->fetchAll();
 

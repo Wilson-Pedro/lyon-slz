@@ -5,10 +5,9 @@ if (isset($_POST['salvar'])) {
     $nome = $_POST['nome_campeonato'];
     $local = $_POST['local_campeonato'];
     $data = $_POST['data_campeonato'];
-    $horario = $_POST['horario_campeonato'];
 
-    $sql = $pdo->prepare("INSERT INTO tblcampeonato VALUES (null,?,?,?,?)");
-    $sql->execute(array($nome, $local, $data, $horario));
+    $sql = $pdo->prepare("INSERT INTO tblcampeonato VALUES (null,?,?,?)");
+    $sql->execute(array($nome, $local, $data));
 }
 ?>
 
@@ -246,16 +245,6 @@ if (isset($_POST['salvar'])) {
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos2()">Limpar</button>
                 </div><br>
 
-                <!-- HORÁRIO -->
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="input-group input-group-lg">
-                            <input type="time" class="form-control" name="horario_campeonato" id="horario_campeonato" placeholder="14/10/2023 às 11:30">
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
-                </div><br>
-
                 <!-- CADASTRAR PARTIDA -->
                 <input type="submit" id="btn-cadastrar-partida" value="Cadastrar partida" class="btn btn-success btn-lg" onclick="validaCampos(event)">
                 <input type="reset" value="Limpar todos os campos" name="btn-cadastrar" id="btn-cadastrar-partida" class="btn btn-danger btn-lg">
@@ -271,11 +260,10 @@ if (isset($_POST['salvar'])) {
             document.getElementById('nome_campeonato'),
             document.getElementById('local_campeonato'),
             document.getElementById('data_campeonato'),
-            document.getElementById('horario_campeonato')
         ];
         // VALIDAÇÃO DOS CAMPOS DO CAD. DE PARTIDA
         function validaCampos(event) {
-            if (campeonato[0].value == '' || campeonato[1].value == '' || campeonato[2].value == '' || campeonato[3].value == '') {
+            if (campeonato[0].value == '' || campeonato[1].value == '' || campeonato[2].value == '') {
                 alert('Preencha todos os campos para cadastrar uma partida');
             }
             //  else if (typeof partida[0].value === "number") {
@@ -312,9 +300,6 @@ if (isset($_POST['salvar'])) {
             campeonato[2].value = '';
         }
 
-        function limpaCampos3() {
-            campeonato[3].value = '';
-        }
     </script>
 </body>
 

@@ -4,13 +4,14 @@ require('../db/conexao.php');
 if (isset($_POST['salvar'])) {
     $local = $_POST['partidaLocal'];
     $adversario = $_POST['partidaTimeB'];
+    $id_campeonato = $_POST['campeonato'];
     $data = $_POST['data'];
     $horario = $_POST['horario'];
     $gols_lyon = 0;
     $gols_adv = 0;
 
-    $sql = $pdo->prepare("INSERT INTO tblpartidass VALUES (null,?,?,?,?,?,?)");
-    $sql->execute(array($local, $adversario, $data, $horario, $gols_lyon, $gols_adv));
+    $sql = $pdo->prepare("INSERT INTO tblpartidass VALUES (null,?,?,?,?,?,?,?)");
+    $sql->execute(array($local, $adversario, $id_campeonato, $data, $horario, $gols_lyon, $gols_adv));
 }
 ?>
 
@@ -122,6 +123,10 @@ if (isset($_POST['salvar'])) {
             transition: 2s;
             box-shadow: 5vh 5vh 10vh rgb(97, 52, 0);
         }
+
+        .oculto {
+            display: none;
+        }
     </style>
 </head>
 <!-- CABEÇALHO -->
@@ -209,14 +214,53 @@ if (isset($_POST['salvar'])) {
             <hr>
             <br>
             <form method="post" action="">
-                <!-- LOCAL -->
+
+                <!-- TIME B -->
                 <div class="row">
+                    <label for="">Adversário</label>
+                    <div class="form-floating col-md-8">
+                        <input type="text" class="form-control" id="partidaTimeB" name="partidaTimeB" placeholder="Ex.: Manchester United do Maranhão">
+                        <label for="floatingInput text-center">Time Adversário</label>
+                    </div>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaTimeB" onclick="limpaCampos0()">Limpar</button>
+                </div><br>
+
+                <!-- CAMPEONATO -->
+                <div class="row">
+                    <label for="">Campeonato</label>
+                    <div class="form-floating col-md-8">
+                        <select class="form-control" name="campeonato" id="campeonato" onchange="campeonatoSelect()">
+                            <?php
+                            require('../db/conexao.php');
+                            $sql = $pdo->prepare("SELECT id_campeonato, nome_campeonato, local_campeonato, data_campeonato FROM tblcampeonato WHERE data_campeonato >= CURRENT_DATE");
+                            $sql->execute();
+                            $dados = $sql->fetchAll();
+
+                            echo "<option value='13'>Amistoso</option>";
+
+                            foreach ($dados as $chaves => $valor) {
+                                echo "<option value='" . $valor['id_campeonato'] . "'
+                                data-local='" . $valor['local_campeonato'] . "'
+                                data-data='" . $valor['data_campeonato'] . "'
+                                >" . $valor['nome_campeonato'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaTimeB" onclick="limpaCampos4()">Limpar</button>
+                </div><br>
+
+                <!-- LOCAL -->
+                <div class="row" id="localDiv">
+                    <label for="">Local da Partida</label>
                     <div class="form-floating col-md-8">
                         <input type="text" class="form-control" id="partidaLocal" name="partidaLocal" placeholder="Ex.: Estádio Lourenço Farias. Centro.">
                         <label for="floatingInput text-center">Local</label>
                     </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaLocal" onclick="limpaCampos0()">Limpar</button>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaLocal" onclick="limpaCampos1()">Limpar</button>
                 </div><br>
+
+
                 <!-- JANELAS DE CONFIRMAÇÃO -->
                 <dialog id="cad-partidaConfirmMsg" class="MsgSucesso">
                     <p class="cad-partidaMsgSucesso">Cadastro feito com Sucesso!</p>
@@ -226,42 +270,114 @@ if (isset($_POST['salvar'])) {
                     <p class="cad-partidaMsgErro">Erro ao realizar o cadastro!</p>
                     <input type="button" id="cancel" value="Ok" class="btn-MsgErro">
                 </dialog>
-                <!-- TIME B -->
-                <div class="row">
-                    <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="partidaTimeB" name="partidaTimeB" placeholder="Ex.: Manchester United do Maranhão">
-                        <label for="floatingInput text-center">Time Adversário</label>
-                    </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaTimeB" onclick="limpaCampos2()">Limpar</button>
-                </div><br>
+
+
                 <!-- DATA -->
-                <div class="row">
+                <div class="row" id="dataDiv">
                     <div class="col-md-8">
                         <label for="text-center" class="form-label">Data</label>
                         <div class="input-group input-group-lg">
-                            <input type="date" class="form-control" name="data" id="partidaHorarioData" placeholder="14/10/2023">
+                            <input type="date" class="form-control" name="data" id="partidaData" placeholder="14/10/2023">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos2()">Limpar</button>
                 </div><br>
+
                 <!-- HORÁRIO -->
                 <div class="row">
                     <div class="col-md-8">
                         <label for="text-center" class="form-label">Horário</label>
                         <div class="input-group input-group-lg">
-                            <input type="time" class="form-control" name="horario" id="partidaHorarioData" placeholder="14/10/2023 às 11:30">
+                            <input type="time" class="form-control" name="horario" id="partidaHorario" placeholder="14/10/2023 às 11:30">
                         </div>
                     </div>
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
                 </div><br>
+
                 <!-- CADASTRAR PARTIDA -->
                 <input type="submit" id="btn-cadastrar-partida" value="Cadastrar partida" class="btn btn-success btn-lg" onclick="validaCampos(event)">
                 <input type="reset" value="Limpar todos os campos" name="btn-cadastrar" id="btn-cadastrar-partida" class="btn btn-danger btn-lg">
+
             </form>
         </div>
     </section>
     <script src="../js/cadastro-partidas.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <Script>
+        var cad_partidaConfirmMsg = document.getElementById('cad-partidaConfirmMsg');
+        var cad_partidaConfirmMsgErro = document.getElementById('cad-partidaConfirmMsgErro');
+        var partida = [
+            document.getElementById('partidaTimeB'),
+            document.getElementById('partidaLocal'),
+            document.getElementById('partidaData'),
+            document.getElementById('partidaHorario')
+        ];
+        // VALIDAÇÃO DOS CAMPOS DO CAD. DE PARTIDA
+
+        function validaCampos(event) {
+            if (partida[0].value == '' || partida[1].value == '' || partida[2].value == '' || partida[3].value == '') {
+                alert('Preencha todos os campos para cadastrar uma partida');
+            }
+            //  else if (typeof partida[0].value === "number") {
+            //     alert('Insira um local válido');
+            // } else if (typeof partida[1].value === "number") {
+            //     alert('Insira um nome do Time A válido');
+            // } else if (typeof partida[2].value === "number") {
+            //     alert('Insira um nome do Time B válido');
+            // } else if (!typeof partida[3].value === "string" && !typeof partida[3].value === "number") {
+            //     alert('Insira uma data e horário válidos');
+            // } 
+            else {
+                // mostra a janela de confirmaçao confirmando o cadastro.
+                cad_partidaConfirmMsg.showModal();
+            }
+            // evita do browser recarregar a página sempre que um alert fechar. 
+            event.preventDefault();
+            return;
+        }
+        // FECHA A JANELA DE CONFIRMAÇÃO DE ERRO DE CAD.
+        cancel.addEventListener('click', function() {
+            cad_partidaConfirmMsgErro.close();
+        });
+        // LIMPA CADA CAMPO
+        function limpaCampos0() {
+            partida[0].value = '';
+        }
+
+        function limpaCampos1() {
+            partida[1].value = '';
+        }
+
+        function limpaCampos2() {
+            partida[2].value = '';
+        }
+
+        function limpaCampos3() {
+            partida[3].value = '';
+        }
+
+        function limpaCampos4() {
+            campeonato.value = '';
+        }
+
+        var campeonato = document.getElementById('campeonato');
+
+        function campeonatoSelect() {
+            var valorSelecionado = campeonato.value;
+            var optionSelecionado = campeonato.options[campeonato.selectedIndex];
+            var local_campeonato = optionSelecionado.getAttribute('data-local');
+            var data_campeonato = optionSelecionado.getAttribute('data-data');
+            if (valorSelecionado != "") {
+                $("#partidaLocal").val(local_campeonato);
+                $("#partidaData").val(data_campeonato);
+
+            } else if (valorSelecionado == ""){
+            $("#partidaLocal").val("");
+                $("#partidaData").val("");
+            }
+        }
+    </script>
 </body>
 
 </html>

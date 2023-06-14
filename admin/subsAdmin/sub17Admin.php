@@ -95,6 +95,7 @@ $dados = $sql->fetchAll();
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="../calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
+                <li><a class="dropdown-item" href="../jogoDeHoje.php">JOGOS DE HOJE</a></li>
                 <li><a class="dropdown-item" href="../historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
               </ul>
             </li>

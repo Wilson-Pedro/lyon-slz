@@ -328,7 +328,7 @@ $dados = $sql->fetchAll();
                   echo "<h1>Hoje tem Jogo!</h1>";
                 }
                 echo "<hr>";
-                echo "<p class='fs-2 mt-3'> Lyon x " . $valor['timeb'] . "</p>";
+                echo "<p class='fs-2 mt-3'> Lyon x " . $valor['adversario'] . "</p>";
                 echo "<p class='fs-2 mt-3'>Horário: " . date("H:i", strtotime($valor['horario'])) . "</p>";
               }
             }
@@ -370,7 +370,7 @@ $dados = $sql->fetchAll();
 
                 echo "<hr>";
                 echo "<div class='placar'>
-                  <p class='fs-2 mt-3'> Lyon " . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . " " . $valor['timeb'] . " </p>
+                  <p class='fs-2 mt-3'> Lyon " . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . " " . $valor['adversario'] . " </p>
                 </div>";
               }
             }

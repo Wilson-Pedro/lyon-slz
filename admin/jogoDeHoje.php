@@ -136,8 +136,8 @@ $dados = $sql->fetchAll();
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
-                                <li><a class="dropdown-item" href="jogoDeHoje.php">JOGOS DE HOJE</a></li>
-                                <li><a class="dropdown-item" id="marcado" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
+                                <li><a class="dropdown-item" id="marcado" href="jogoDeHoje.php">JOGOS DE HOJE</a></li>
+                                <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
                             </ul>
                         </li>
 
@@ -169,7 +169,7 @@ $dados = $sql->fetchAll();
 
     <main>
         <div class="container-fluid">
-            <h1 id="calendarioDeJogos">HISTÓRICO DE PARTIDAS</h1>
+            <h1 id="calendarioDeJogos">JOGOS DE HOJE</h1>
             <hr>
             <!-- ATUALIZAR -->
             <form class="oculto" id="form_atualiza" method="post">
@@ -240,7 +240,7 @@ $dados = $sql->fetchAll();
                   </thead>";
                 foreach ($dados as $chaves => $valor) {
                     $dataJogo = $valor['data_partida'];
-                    if (strtotime($dataJogo) <= strtotime($data_Atual)) {
+                    if (strtotime($dataJogo) == strtotime($data_Atual)) {
                         echo "<tr>
                   <td>" . "Lyon X " . $valor['adversario'] . "</td>
                   <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>

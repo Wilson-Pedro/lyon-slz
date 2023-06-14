@@ -1,7 +1,7 @@
 <?php
 include('../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblpartidass");
+$sql = $pdo->prepare("SELECT * FROM tblcampeonato");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -21,7 +21,7 @@ $dados = $sql->fetchAll();
     <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/timeANDescudo.css">
     <link rel="stylesheet" href="../css/update-delete.css">
-    <title>Histório de Partidas</title>
+    <title>Campeonatos</title>
 </head>
 <style>
     body {
@@ -137,8 +137,10 @@ $dados = $sql->fetchAll();
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
                                 <li><a class="dropdown-item" href="jogoDeHojeAdmin.php">JOGOS DE HOJE</a></li>
-                                <li><a class="dropdown-item" href="campeonatos.php">CAMPEONATOS</a></li>
-                                <li><a class="dropdown-item" id="marcado" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
+
+                                <li><a class="dropdown-item" id="marcado" href="campeonatos.php">CAMPEONATOS</a></li>
+
+                                <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
                             </ul>
                         </li>
 
@@ -170,60 +172,39 @@ $dados = $sql->fetchAll();
 
     <main>
         <div class="container-fluid">
-            <h1 id="calendarioDeJogos">HISTÓRICO DE PARTIDAS</h1>
+            <h1 id="calendarioDeJogos">Campeonatos</h1>
             <hr>
             <!-- ATUALIZAR -->
             <form class="oculto" id="form_atualiza" method="post">
                 <div id="div-update" class="oculto">
                     <h5>ID:</h5>
-                    <input type="text" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
-                    <h5>Gols do Lyon:</h5>
-                    <input type="number" id="gols_lyon_editado" name="gols_lyon_editado" placeholder="Editar time gols" required><br><br>
-                    <h5>Gols do Adversário:</h5>
-                    <input type="number" id="gols_adv_editado" name="gols_adv_editado" placeholder="Editar gols" required><br><br>
+                    <input type="number" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
+                    <h5>Nome campeonato:</h5>
+                    <input type="text" id="nome_c_editado" name="nome_c_editado" placeholder="Editar time gols" required><br><br>
+                    <h5>Local Campeonato:</h5>
+                    <input type="text" id="local_c_editado" name="local_c_editado" placeholder="Editar gols" required><br><br>
+                    <h5>Data Campeonato:</h5>
+                    <input type="date" id="data_c_editado" name="data_c_editado" placeholder="Editar gols" required><br><br>
                     <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
                     <button type="button" id="cancelar" name="cancelar">Cancelar</button>
                     <hr>
                 </div>
             </form>
-            <!-- DELETAR -->
-            <form class="oculto" id="form_deleta" method="post">
-                <div id="div-delete" class="oculto">
-                    <input type="hidden " id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
-                    <input type="hidden" id="localidade_deleta" name="localidade_deleta" placeholder="Editar local" required> <br><br>
-                    <input type="hidden" id="timeb_deleta" name="timeb_deleta" placeholder="Editar Time B" required><br><br>
-                    <input type="hidden" id="data_partida_deleta" name="data_partida_deleta" placeholder="Editar Data" required> <br><br>
-                    <h5 id="timeb_deleta" name="timeb_deleta"> <?php $timeb; ?></h5>
-                    <h4>Tem certeza que quer deletar partida? <span id="cliente"></span></h4><br>
-                    <button type="submit" id="btn-deletar" name="deletar">Confirmar</button>
-                    <button type="button" id="cancelar_delete" name="cancelar_delete">Cancelar</button>
-                    <hr>
-                </div>
-            </form>
+            
             <br><br>
             <?php
             //PROCESSO DE ATUALIZAÇÃO
-            if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['gols_lyon_editado']) && isset($_POST['gols_adv_editado'])) {
-                $id = $_POST['id_editado'];
-                $gols_lyon = $_POST['gols_lyon_editado'];
-                $gols_adv = $_POST['gols_adv_editado'];
-                $sql = $pdo->prepare("UPDATE tblpartidass SET gols_lyon = :gols_lyon, gols_adv = :gols_adv WHERE id= :id");
-                $sql->bindValue(':gols_lyon', $gols_lyon);
-                $sql->bindValue(':gols_adv', $gols_adv);
-                $sql->bindValue(':id', $id);
+            if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['nome_c_editado']) && isset($_POST['local_c_editado']) && isset($_POST['data_c_editado'])) {
+                $id_campeonato = $_POST['id_editado'];
+                $nome_campeonato = $_POST['nome_c_editado'];
+                $local_campeonato = $_POST['local_c_editado'];
+                $data_campeonato = $_POST['data_c_editado'];
+                $sql = $pdo->prepare("UPDATE tblcampeonato SET nome_campeonato = :nome_campeonato, local_campeonato = :local_campeonato, data_campeonato = :data_campeonato WHERE id_campeonato= :id_campeonato");
+                $sql->bindValue(':nome_campeonato', $nome_campeonato);
+                $sql->bindValue(':local_campeonato', $local_campeonato);
+                $sql->bindValue(':data_campeonato', $data_campeonato);
+                $sql->bindValue(':id_campeonato', $id_campeonato);
                 $sql->execute();
-            }
-            ?>
-            <?php
-            //DELETAR DADOS
-            if (isset($_POST['deletar']) && isset($_POST['id_deleta']) && isset($_POST['localidade_deleta']) && isset($_POST['timeb_deleta']) && isset($_POST['data_partida_deleta'])) {
-                $id = $_POST['id_deleta'];
-                $localidade = $_POST['localidade_deleta'];
-                $timeb = $_POST['timeb_deleta'];
-                $data_partida = $_POST['data_partida_deleta'];
-                //COMANDO PARA DELETAR
-                $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND timeb=? AND data_partida=?");
-                $sql->execute(array($id, $localidade, $timeb, $data_partida));
             }
             ?>
             <?php
@@ -233,27 +214,26 @@ $dados = $sql->fetchAll();
                 echo "<table class='table table-striped'>
                   <thead class=table-dark>
                   <tr>
-              <th>JOGOS</th>
-              <th>RESULTADO</th>
+              <th>CAMPEONATO</th>
+              <th>LOCAL</th>
               <th>DATA</th>
               <th>Editar</th>
                   </tr>
                   </thead>";
                 foreach ($dados as $chaves => $valor) {
-                    $dataJogo = $valor['data_partida'];
-                    if (strtotime($dataJogo) <= strtotime($data_Atual)) {
+                    $dataJogo = $valor['data_campeonato'];
+                    if (strtotime($dataJogo) >= strtotime($data_Atual)) {
                         echo "<tr>
-                  <td>" . "Lyon X " . $valor['adversario'] . "</td>
-                  <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
-                  <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-                  <td><a href='#' class='btn-atualizar' 
-                  data-id='" . $valor['id'] . "' 
-                  data-gols_lyon='" . $valor['gols_lyon'] . "'
-                  data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' 
-                  data-id='" . $valor['id'] . "' 
-                  data-localidade='" . $valor['localidade'] . "' 
-                  data-timeb='" . $valor['adversario'] . "'
-                  data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
+                  <td>" . $valor['nome_campeonato'] . "</td>
+                  <td>" . $valor['local_campeonato'] . "</td>
+                  <td>" . date("d/m/y", strtotime($valor['data_campeonato'])) . "</td>
+                  <td>
+                  <a href='#' class='btn-atualizar' 
+                  data-id='" . $valor['id_campeonato'] . "' 
+                  data-nome-c='" . $valor['nome_campeonato'] . "'
+                  data-local-c='" . $valor['local_campeonato'] . "'
+                  data-data-c='". $valor['data_campeonato'] ."'
+                  >Atualizar</a></td>
             </tr>";
                     }
                 }
@@ -276,8 +256,9 @@ $dados = $sql->fetchAll();
 
     $(".btn-atualizar").click(function() {
         var id = $(this).attr('data-id');
-        var gols_lyon = $(this).attr('data-gols_lyon');
-        var gols_adv = $(this).attr('data-gols_adv');
+        var nome_campeonato = $(this).attr('data-nome-c');
+        var local_campeonato = $(this).attr('data-local-c');
+        var data_campeonato = $(this).attr('data-data-c');
 
         $('#form_salva').addClass('oculto');
         $('#form_deleta').addClass('oculto');
@@ -286,29 +267,9 @@ $dados = $sql->fetchAll();
 
 
         $("#id_editado").val(id);
-        $("#gols_lyon_editado").val(gols_lyon);
-        $("#gols_adv_editado").val(gols_adv);
-
-    });
-
-    //      DELETAR
-
-    $(".btn-deletar").click(function() {
-        var id = $(this).attr('data-id');
-        var localidade = $(this).attr('data-localidade');
-        var timeb = $(this).attr('data-timeb');
-        var data_partida = $(this).attr('data-data_partida');
-        var horario = $(this).attr('data-horario');
-
-        $("#id_deleta").val(id);
-        $("#localidade_deleta").val(localidade);
-        $("#timeb_deleta").val(timeb);
-        $("#data_partida_deleta").val(data_partida);
-
-        $('#form_atualiza').addClass('oculto');
-        $('#form_deleta').removeClass('oculto');
-        $('#div-delete').removeClass('oculto');
-
+        $("#nome_c_editado").val(nome_campeonato);
+        $("#local_c_editado").val(local_campeonato);
+        $("#data_c_editado").val(data_campeonato);
 
     });
 
@@ -316,15 +277,11 @@ $dados = $sql->fetchAll();
 
     $('#cancelar').click(function() {
         $('#form_atualiza').addClass('oculto');
-        $('#form_deleta').addClass('oculto');
         $('#div-update').addClass('oculto');
-        $('#div-delete').addClass('oculto');
     });
 
     $('#cancelar_delete').click(function() {
         $('#form_atualiza').addClass('oculto');
-        $('#form_deleta').addClass('oculto');
-        $('#div-delete').addClass('oculto');
     });
 </script>
 

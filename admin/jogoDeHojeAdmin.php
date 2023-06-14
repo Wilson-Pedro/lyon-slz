@@ -21,7 +21,7 @@ $dados = $sql->fetchAll();
     <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/timeANDescudo.css">
     <link rel="stylesheet" href="../css/update-delete.css">
-    <title>Histório de Partidas</title>
+    <title>Jogos de Hoje</title>
 </head>
 <style>
     body {
@@ -137,6 +137,7 @@ $dados = $sql->fetchAll();
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
                                 <li><a class="dropdown-item" id="marcado" href="jogoDeHoje.php">JOGOS DE HOJE</a></li>
+                                <li><a class="dropdown-item" href="campeonatos.php">CAMPEONATOS</a></li>
                                 <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
                             </ul>
                         </li>

@@ -17,7 +17,6 @@ $dados = $sql->fetchAll();
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/timeANDescudo.css">
   <link rel="stylesheet" href="../css/navHamburguer.css">
-  <link rel="stylesheet" href="lyon.jpg">
   <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="../css/update-e-delete.css">
 
@@ -102,6 +101,8 @@ $dados = $sql->fetchAll();
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="../calendario.php">CALENDÁRIO DE JOGOS</a></li>
+                <li><a class="dropdown-item" href="../jogoDeHoje.php">JOGOS DE HOJE</a></li>
+                <li><a class="dropdown-item" href="../campeonatosUser.php">CAMPEONATOS</a></li>
                 <li><a class="dropdown-item" href="../historicoPartidas.php">HISTÓRICO DE PARTIDAS</a></li>
               </ul>
             </li>

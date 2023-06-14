@@ -103,6 +103,8 @@ $dados = $sql->fetchAll();
               </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="calendario.php">CALENDÁRIO DE JOGOS</a></li>
+                <li><a class="dropdown-item" href="jogoDeHoje.php">JOGOS DE HOJE</a></li>
+                <li><a class="dropdown-item" href="campeonatosUser.php">CAMPEONATOS</a></li>
                 <li><a class="dropdown-item" href="historicoPartidas.php" id="marcado">HISTÓRICO DE PARTIDAS</a></li>
               </ul>
             </li>

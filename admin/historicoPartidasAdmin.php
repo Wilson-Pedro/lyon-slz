@@ -1,7 +1,10 @@
 <?php
 include('../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblpartidass");
+$sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato
+FROM tblpartidass
+JOIN tblcampeonato ON tblpartidass.id_campeonato = tblcampeonato.id_campeonato
+");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -243,18 +246,18 @@ $dados = $sql->fetchAll();
                     $dataJogo = $valor['data_partida'];
                     if (strtotime($dataJogo) <= strtotime($data_Atual)) {
                         echo "<tr>
-                  <td>" . "Lyon X " . $valor['adversario'] . "</td>
-                  <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
-                  <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-                  <td><a href='#' class='btn-atualizar' 
-                  data-id='" . $valor['id'] . "' 
-                  data-gols_lyon='" . $valor['gols_lyon'] . "'
-                  data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' 
-                  data-id='" . $valor['id'] . "' 
-                  data-localidade='" . $valor['localidade'] . "' 
-                  data-timeb='" . $valor['adversario'] . "'
-                  data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
-            </tr>";
+                                <td><abbr title='". $valor['nome_campeonato'] ."'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
+                                <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
+                                <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                                <td><a href='#' class='btn-atualizar' 
+                                data-id='" . $valor['id'] . "' 
+                                data-gols_lyon='" . $valor['gols_lyon'] . "'
+                                data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' 
+                                data-id='" . $valor['id'] . "' 
+                                data-localidade='" . $valor['localidade'] . "' 
+                                data-timeb='" . $valor['adversario'] . "'
+                                data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
+                            </tr>";
                     }
                 }
                 echo "</table>";

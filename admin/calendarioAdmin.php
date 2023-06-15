@@ -1,7 +1,10 @@
 <?php
 include('../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblpartidass");
+$sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato
+FROM tblpartidass
+JOIN tblcampeonato ON tblpartidass.id_campeonato = tblcampeonato.id_campeonato
+");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -176,7 +179,6 @@ $dados = $sql->fetchAll();
   <main>
     <div class="container-fluid">
       <h1 id="calendarioDeJogos">CALENDÁRIO DE JOGOS</h1>
-      <hr>
       <!-- ATUALIZAR -->
       <form class="oculto" id="form_atualiza" method="post">
         <div id="div-update" class="oculto">
@@ -250,8 +252,8 @@ $dados = $sql->fetchAll();
         echo "<table class='table table-striped'>
         <thead class=table-dark>
         <tr>
-            <th>LOCAL</th>
             <th>JOGOS</th>
+            <th>LOCAL</th>
             <th>DATA</th>
             <th>HORARIO</th>
             <th>EDITAR</th>
@@ -261,8 +263,8 @@ $dados = $sql->fetchAll();
           $dataJogo = $valor['data_partida'];
           if (strtotime($dataJogo) >= strtotime($data_Atual)) {
             echo "<tr>
+                <td><abbr title='". $valor['nome_campeonato'] ."'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
                 <td>" . $valor['localidade'] . "</td>
-                <td>" . "LyonX" . $valor['adversario'] . "</td>
                 <td>" . date("d/m", strtotime($valor['data_partida'])) . "</td>
                 <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
                 <td><a href='#' class='btn-atualizar' 

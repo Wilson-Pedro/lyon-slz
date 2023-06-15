@@ -1,7 +1,10 @@
 <?php
 require('db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblpartidass");
+$sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato
+FROM tblpartidass
+JOIN tblcampeonato ON tblpartidass.id_campeonato = tblcampeonato.id_campeonato
+");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -154,7 +157,7 @@ $dados = $sql->fetchAll();
           $dataJogo = $valor['data_partida'];
           if (strtotime($dataJogo) <= strtotime($data_Atual)) {
             echo "<tr>
-                  <td>" . "Lyon X " . $valor['adversario'] . "</td>
+                  <td><abbr title='". $valor['nome_campeonato'] ."'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
                   <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                   <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
                 

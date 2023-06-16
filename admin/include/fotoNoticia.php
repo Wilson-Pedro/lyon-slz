@@ -1,12 +1,12 @@
 <?php
-require('../db/conexao.php');
+require('db/conexao.php');
 
-$sql = "SELECT * FROM tblfotos_noticias ORDER BY id DESC LIMIT 1";
+$sql = "SELECT * FROM tblfotos_noticias WHERE id = 19";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$pasta = "imgNoticias/";
+$pasta = "admin/imgNoticias/";
 $nomeArquivo = "";
 
 if ($resultado !== false) {

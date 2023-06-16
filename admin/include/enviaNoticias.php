@@ -1,8 +1,8 @@
 <?php
 
-require('../db/conexao.php');
+require('../../db/conexao.php');
 
-$pasta = "imgNoticias";
+$pasta = "../imgNoticias";
 
 if(!is_dir($pasta)){
     mkdir($pasta);
@@ -18,9 +18,9 @@ if (empty($_FILES['arquivo'])) {
 $arquivo = $_FILES['arquivo'];
 
 $nome_arquivo = $arquivo['name'];
-$destino = "imgNoticias/" . $arquivo['name'];
+$destino = "../imgNoticias/" . $arquivo['name'];
 if (move_uploaded_file($arquivo['tmp_name'], $destino)) {
-    header('Location: noticiaisAdmin.php');
+    header('Location: ../noticiaisAdmin.php');
     
     // Obtém o ID do último registro
     // $sql_last_id = $pdo->prepare("SELECT MAX(id) as last_id FROM tblfotos_noticias");
@@ -36,5 +36,5 @@ if (move_uploaded_file($arquivo['tmp_name'], $destino)) {
     $sql_update->execute();
 
 } else {
-    header('Location: noticiaisAdmin.php');
+    header('Location: ../noticiaisAdmin.php');
 }

@@ -208,7 +208,7 @@ $dados = $sql->fetchAll();
             <div class="carousel-item active">
               <div class="fotoAlterada">
 
-                <?php include('admin/fotoNoticia.php') ?>
+                <?php include('admin/include/fotoNoticia.php') ?>
 
               </div>
               <div class="carousel-caption d-none d-md-block">

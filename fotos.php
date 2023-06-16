@@ -111,7 +111,7 @@
     </h1>
     <div class="container-fluid mt-3">
       <div id="fotos">
-        <?php include('admin/lista.php'); ?>
+        <?php include('admin/include/lista.php'); ?>
       </div>
   </main>
   </div>

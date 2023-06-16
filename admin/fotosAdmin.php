@@ -1,7 +1,6 @@
 <?php
 include('../db/conexao.php');
 
-$pasta = "../img/imgArquivos/";
 $sql = $pdo->prepare("SELECT * FROM tblfotoss");
 $sql->execute();
 $dados = $sql->fetchAll();
@@ -197,7 +196,7 @@ if (isset($_POST['deletar'])) {
     <div class="container-fluid mt-3">
 
       <div id="botoes">
-        <form action="envia.php" method="POST" enctype="multipart/form-data">
+        <form action="include/envia.php" method="POST" enctype="multipart/form-data">
           <button type="button" class="btn btn-primary" onclick="escolher()">Escolher Foto</button>
           <input class="hidden" type="file" id="arquivo" name="arquivo[]" multiple="multiple" value="">
           <button type="submit" value="Enviar" id="postar" class="btn btn-primary" onclick="postar()" disabled>Postar foto</button>
@@ -215,7 +214,7 @@ if (isset($_POST['deletar'])) {
 
       </div>
       <div id="fotos">
-        <?php include('lista-admin.php'); ?>
+        <?php include('include/lista-admin.php'); ?>
       </div>
   </main>
   </div>

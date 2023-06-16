@@ -1,7 +1,11 @@
 <?php
 require('../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tbljogadoress WHERE idade > 11 AND idade <= 13");
+$sql = $pdo->prepare("SELECT tbljogadoress.*, tblposicao.nome_posicao 
+FROM tbljogadoress
+JOIN tblposicao
+ON tbljogadoress.id_posicao = tblposicao.id_posicao
+WHERE idade > 11 AND idade <= 13");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -168,7 +172,7 @@ $dados = $sql->fetchAll();
             echo "<tr>
                           <td>" . $valor['nome'] . " " . $valor['sobrenome'] . "</td>
                           <td>" . $valor['idade'] . "</td>
-                          <td>" . $valor['posicao'] . "</td>
+                          <td>" . $valor['nome_posicao'] . "</td>
                           <td>" . $valor['gols'] . "</td>
                       </tr>";
           }

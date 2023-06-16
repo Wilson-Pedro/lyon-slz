@@ -32,11 +32,11 @@ $dados = $sql->fetchAll();
     width: 100%;
   }
 
-  a.nav-link{
+  a.nav-link {
     font-size: 100%;
   }
 
-  div.fotoAlterada{
+  div.fotoAlterada {
     width: 100%;
   }
 
@@ -49,13 +49,13 @@ $dados = $sql->fetchAll();
     background-color: rgb(230, 150, 3);
   }
 
-  #form-foto{
+  #form-foto {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .hidden{
+  .hidden {
     display: none;
   }
 
@@ -82,7 +82,7 @@ $dados = $sql->fetchAll();
     margin: auto;
   }
 
-  div.barraAzul{
+  div.barraAzul {
     width: 100%;
     height: 10%;
     background-color: rgb(8, 8, 20);
@@ -135,7 +135,7 @@ $dados = $sql->fetchAll();
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
                 <li><a class="dropdown-item" href="jogoDeHojeAdmin.php">JOGOS DE HOJE</a></li>
-                <li><a class="dropdown-item" href="campeonatos.php">CAMPEONATOS</a></li>
+                <li><a class="dropdown-item" href="campeonatosAdmin.php">CAMPEONATOS</a></li>
                 <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
               </ul>
             </li>
@@ -174,7 +174,7 @@ $dados = $sql->fetchAll();
           <span class="logo">De olho nas notíciais!</span>
         </h1>
         <div class="barraAzul">
-          
+
         </div>
       </div>
       <div class="col-lg-2">
@@ -203,21 +203,21 @@ $dados = $sql->fetchAll();
                 <!--<p>Some representative placeholder content for the first slide.</p>-->
               </div>
 
-                <form id="form-foto" action="enviaNoticias.php" method="POST" enctype="multipart/form-data" class="mt-1">
+              <form id="form-foto" action="enviaNoticias.php" method="POST" enctype="multipart/form-data" class="mt-1">
 
-                  <button type="button" class="btn btn-warning" id="alterar" onclick="alterarFoto()">Alterar Foto</button>
+                <button type="button" class="btn btn-warning" id="alterar" onclick="alterarFoto()">Alterar Foto</button>
 
-                  <button type="submit" class="btn btn-primary hidden" id="postar" onclick="postarFoto()">Postar</button>
+                <button type="submit" class="btn btn-primary hidden" id="postar" onclick="postarFoto()">Postar</button>
 
-                  <input class="hidden" type="file" id="arquivo" name="arquivo" value="">
+                <input class="hidden" type="file" id="arquivo" name="arquivo" value="">
 
-                </form>
+              </form>
 
             </div>
 
             <!-- CARROSSEL 2 -->
 
-            <!-- <div class="carousel-item">
+            <div class="carousel-item">
               <img src="../img/imgTime/imgTime05.png" loading="lazy" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
 
@@ -228,11 +228,11 @@ $dados = $sql->fetchAll();
                   <input class="hidden" type="file" id="arquivo2" name="arquivo2" value="">
                 </form>
               </div>
-            </div> -->
+            </div>
 
             <!-- CARROSSEL 3 -->
 
-            <!-- <div class="carousel-item">
+            <div class="carousel-item">
               <img src="../img/imgTime/imgTime06.png" loading="lazy" class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
 
@@ -243,16 +243,16 @@ $dados = $sql->fetchAll();
                   <input class="hidden" type="file" id="arquivo3" name="arquivo3" value="">
                 </form>
               </div>
-            </div> -->
+            </div>
           </div>
-          <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
-          </button> -->
+          </button>
         </div>
       </div>
 
@@ -268,9 +268,9 @@ $dados = $sql->fetchAll();
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-              <p>O <strong>LyonSLZ</strong> é um time formado por meninos e meninas cheios de energia e entusiasmo. Eles treinam duro todos os dias, aprendendo técnicas de passe, chute e dribles com seu treinador experiente. O time é composto por jogadores talentosos, cada um com suas próprias habilidades e personalidades únicas. Mas, apesar das diferenças, eles trabalham juntos em equipe para alcançar a vitória. Os jogos são sempre emocionantes, com muita ação e estratégia, e a torcida está sempre presente para apoiar o time. </p>
-              <p>Além disso, o time é unido e solidário, compartilhando vitórias e derrotas como uma equipe. Eles não apenas jogam juntos, mas também criam amizades duradouras e aprendem valiosas lições sobre trabalho em equipe e liderança.</p>
-              <p> Em resumo, o time LyonSLZ é um grupo incrível de jovens atletas talentosos e apaixonados que amam jogar futebol e trabalhar juntos em busca da vitória.</p>
+                <p>O <strong>LyonSLZ</strong> é um time formado por meninos e meninas cheios de energia e entusiasmo. Eles treinam duro todos os dias, aprendendo técnicas de passe, chute e dribles com seu treinador experiente. O time é composto por jogadores talentosos, cada um com suas próprias habilidades e personalidades únicas. Mas, apesar das diferenças, eles trabalham juntos em equipe para alcançar a vitória. Os jogos são sempre emocionantes, com muita ação e estratégia, e a torcida está sempre presente para apoiar o time. </p>
+                <p>Além disso, o time é unido e solidário, compartilhando vitórias e derrotas como uma equipe. Eles não apenas jogam juntos, mas também criam amizades duradouras e aprendem valiosas lições sobre trabalho em equipe e liderança.</p>
+                <p> Em resumo, o time LyonSLZ é um grupo incrível de jovens atletas talentosos e apaixonados que amam jogar futebol e trabalhar juntos em busca da vitória.</p>
               </div>
             </div>
           </div>
@@ -282,9 +282,9 @@ $dados = $sql->fetchAll();
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-              <p>O técnico do time da escolinha de futebol é um profissional dedicado e experiente. Ele está sempre presente nos treinos e jogos, orientando os jogadores e ensinando novas habilidades. Ele é um líder inspirador que motiva o time a dar o melhor de si em campo, mesmo quando as coisas estão difíceis. </p>
-              <p>Além disso, ele é respeitado e querido pelos jogadores, criando um ambiente de confiança e respeito mútuo. Seu objetivo é formar atletas completos e ensinar valores importantes, como trabalho em equipe, respeito e disciplina. </p>
-              <p>Em resumo, o técnico do time da escolinha de futebol é um profissional incrível que ajuda a moldar jovens jogadores de futebol e prepará-los para uma vida de sucesso dentro e fora do campo.</p>
+                <p>O técnico do time da escolinha de futebol é um profissional dedicado e experiente. Ele está sempre presente nos treinos e jogos, orientando os jogadores e ensinando novas habilidades. Ele é um líder inspirador que motiva o time a dar o melhor de si em campo, mesmo quando as coisas estão difíceis. </p>
+                <p>Além disso, ele é respeitado e querido pelos jogadores, criando um ambiente de confiança e respeito mútuo. Seu objetivo é formar atletas completos e ensinar valores importantes, como trabalho em equipe, respeito e disciplina. </p>
+                <p>Em resumo, o técnico do time da escolinha de futebol é um profissional incrível que ajuda a moldar jovens jogadores de futebol e prepará-los para uma vida de sucesso dentro e fora do campo.</p>
               </div>
             </div>
           </div>
@@ -349,8 +349,8 @@ $dados = $sql->fetchAll();
         </div>
       </div>
     </div>
-    
-    
+
+
 
     <div class="barra mt-4"></div>
 
@@ -377,7 +377,7 @@ $dados = $sql->fetchAll();
               }
             }
           }
-          
+
           if ($pla == 1) {
             echo "<br>";
             echo "<p style='text-align:center' >Atualize o placar nos <a href='jogoDeHoje.php'>Jogos de hoje</a>.</p>";
@@ -417,17 +417,16 @@ $dados = $sql->fetchAll();
     var postar = document.getElementById("postar");
 
 
-    function alterarFoto(){
+    function alterarFoto() {
       arquivo.click();
-      alterar.style.display="none";
-      postar.style.display="block";
+      alterar.style.display = "none";
+      postar.style.display = "block";
     }
 
-    function postarFoto(){
-      alterar.style.display="block";
-      postar.style.display="none";
+    function postarFoto() {
+      alterar.style.display = "block";
+      postar.style.display = "none";
     }
-
   </script>
 </body>
 

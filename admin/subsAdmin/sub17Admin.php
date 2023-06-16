@@ -1,11 +1,16 @@
 <?php
 require('../../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tbljogadoress WHERE idade > 15 AND idade <= 17");
+$sql = $pdo->prepare("SELECT tbljogadoress.*, tblposicao.nome_posicao 
+FROM tbljogadoress
+JOIN tblposicao
+ON tbljogadoress.id_posicao = tblposicao.id_posicao
+WHERE idade > 15 AND idade <= 17");
 $sql->execute();
 $dados = $sql->fetchAll();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,14 +26,14 @@ $dados = $sql->fetchAll();
   <link rel="shortcut icon" href="../../img/favicon/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="../../css/update-delete.css">
 
-  <title>Sub17</title>
+  <title>Sub09</title>
   <style>
     .dp-menu ul li a {
       font-weight: bold;
     }
 
     body {
-      max-width: 100%;
+      width: 100%;
       background-color: rgb(214, 168, 100);
     }
 
@@ -53,7 +58,7 @@ $dados = $sql->fetchAll();
 <body>
   <!-- CABEÇALHO -->
   <div class="cabecalho">
-  <picture>
+    <picture>
       <source media="(max-width: 261px)" srcset='../../img/imgLogo/lyonSlzEscudo5.png' loading="lazy">
 
       <source media="(max-width: 269px)" srcset='../../img/imgLogo/lyonSlzEscudo4.png' loading="lazy">
@@ -81,11 +86,11 @@ $dados = $sql->fetchAll();
                 CATEGORIAS
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="sub09Admin.php">sub09</a></li>
+                <li><a class="dropdown-item" id="marcado" href="sub09Admin.php">sub09</a></li>
                 <li><a class="dropdown-item" href="sub11Admin.php">sub11</a></li>
                 <li><a class="dropdown-item" href="sub13Admin.php">sub13</a></li>
                 <li><a class="dropdown-item" href="sub15Admin.php">sub15</a></li>
-                <li><a class="dropdown-item" id="marcado" href="sub17Admin.php">sub17</a></li>
+                <li><a class="dropdown-item" href="sub17Admin.php">sub17</a></li>
               </ul>
             </li>
 
@@ -96,7 +101,7 @@ $dados = $sql->fetchAll();
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="../calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
                 <li><a class="dropdown-item" href="../jogoDeHojeAdmin.php">JOGOS DE HOJE</a></li>
-                <li><a class="dropdown-item" href="../campeonatos.php">CAMPEONATOS</a></li>
+                <li><a class="dropdown-item" href="../campeonatosAdmin.php">CAMPEONATOS</a></li>
                 <li><a class="dropdown-item" href="../historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
               </ul>
             </li>
@@ -127,7 +132,6 @@ $dados = $sql->fetchAll();
     </nav>
   </div>
 
-
   <main>
     <div class="container-fluid">
       <h1 class="categoria">Categoria Sub-17</h1>
@@ -148,7 +152,24 @@ $dados = $sql->fetchAll();
           <input type="number" id="idade_editado" name="idade_editado" placeholder="Editar idade" required><br><br>
 
           <h5 class="inputTitulo">Posição:</h5>
-          <input type="text" id="posicao_editado" name="posicao_editado" placeholder="Editar posicao" required><br><br>
+          <!-- <select class="form-control" name="posicao_editado" id="posicao_editado"> -->
+          <?php
+          require('../../db/conexao.php');
+          $sql_p = $pdo->prepare("SELECT * FROM tblposicao");
+          $sql_p->execute();
+          $dados_p = $sql_p->fetchAll();
+          echo "<select class='form-control' name='posicao_editado' id='posicao_editado'>";
+
+          echo "<option value=''></option>";
+
+          foreach ($dados_p as $chaves => $valor_p) {
+            echo "<option 
+              value='" . $valor_p['id_posicao'] . "'
+              data-posicao='" . $valor_p['nome_posicao'] . "'
+                                >" . $valor_p['nome_posicao'] . "</option>";
+          }
+          echo "</select>";
+          ?>
 
           <h5 class="inputTitulo">Gols:</h5>
           <input type="number" id="gols_editado" name="gols_editado" placeholder="Editar gols" required><br><br>
@@ -186,13 +207,13 @@ $dados = $sql->fetchAll();
         $nome = $_POST['nome_editado'];
         $sobrenome = $_POST['sobrenome_editado'];
         $idade = $_POST['idade_editado'];
-        $posicao = $_POST['posicao_editado'];
+        $id_posicao = $_POST['posicao_editado'];
         $gols = $_POST['gols_editado'];
-        $sql = $pdo->prepare("UPDATE tbljogadoress SET nome = :nome , sobrenome = :sobrenome, idade = :idade, posicao = :posicao, gols = :gols WHERE id= :id");
+        $sql = $pdo->prepare("UPDATE tbljogadoress SET nome = :nome , sobrenome = :sobrenome, idade = :idade, id_posicao = :id_posicao, gols = :gols WHERE id= :id");
         $sql->bindValue(':nome', $nome);
         $sql->bindValue(':sobrenome', $sobrenome);
         $sql->bindValue(':idade', $idade);
-        $sql->bindValue(':posicao', $posicao);
+        $sql->bindValue(':id_posicao', $id_posicao);
         $sql->bindValue(':gols', $gols);
         $sql->bindValue(':id', $id);
         $sql->execute();
@@ -212,23 +233,14 @@ $dados = $sql->fetchAll();
         $posicao = $_POST['posicao_deleta'];
         $gols = $_POST['gols_deleta'];
         //COMANDO PARA DELETAR
-        $sql = $pdo->prepare("DELETE FROM tbljogadoress WHERE id=? AND nome=? AND sobrenome=? AND idade=? AND posicao=? AND gols=?");
+        $sql = $pdo->prepare("DELETE FROM tbljogadoress WHERE id=? AND nome=? AND sobrenome=? AND idade=? AND id_posicao=? AND gols=?");
         $sql->execute(array($id, $nome, $sobrenome, $idade, $posicao, $gols));
       }
       ?>
       <?php
-      $sub9 = 0;
       if (count($dados) > 0) {
-        foreach ($dados as $chaves => $valor) {
-          if ($valor['idade'] > 15 && $valor['idade'] <= 17) {
-            $sub9++;
-          }
-        }
-        if ($sub9 == 0) {
-          echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
-        } else {
-          echo "<div class='table table-responsive table-striped'>";
-          echo "<table class='table table-striped'>
+        echo "<div class='table table-responsive table-striped'>";
+        echo "<table class='table table-striped'>
           <thead class=table-dark>
           <tr>
               <th>Nome</th>
@@ -238,31 +250,30 @@ $dados = $sql->fetchAll();
               <th>Editar</th>
           </tr>
           </thead>";
-          foreach ($dados as $chaves => $valor) {
+        foreach ($dados as $chaves => $valor) {
 
-            echo "<tr>
-                          <td>" . $valor['nome'] . " ". $valor['sobrenome']. "</td>
+          echo "<tr>
+                          <td>" . $valor['nome'] . " " . $valor['sobrenome'] . "</td>
                           <td>" . $valor['idade'] . "</td>
-                          <td>" . $valor['posicao'] . "</td>
+                          <td>" . $valor['nome_posicao'] . "</td>
                           <td>" . $valor['gols'] . "</td>
                           <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' 
-                          data-sobrenome='". $valor['sobrenome'] ."' 
+                          data-sobrenome='" . $valor['sobrenome'] . "' 
                           data-idade='" . $valor['idade'] . "'
-                          data-posicao='" . $valor['posicao'] . "'
+                          data-posicao='" . $valor['id_posicao'] . "'
                           data-gols='" . $valor['gols'] . "'>Atualizar</a> |
                           
                            <a href='#' class='btn-deletar' 
                            data-id='" . $valor['id'] . "' 
                            data-nome='" . $valor['nome'] . "' 
-                           data-sobrenome='". $valor['sobrenome'] ."'
+                           data-sobrenome='" . $valor['sobrenome'] . "'
                            data-idade='" . $valor['idade'] . "'
-                           data-posicao='" . $valor['posicao'] . "'
+                           data-posicao='" . $valor['id_posicao'] . "'
                            data-gols='" . $valor['gols'] . "'>Deletar</a></td>
                       </tr>";
-          }
-          echo "</table>";
-          echo "</div>";
         }
+        echo "</table>";
+        echo "</div>";
       } else {
         echo "<p style='text-align:center'>Nenhuma jogador desta foi <a href='../cadastroDeJogador.php'>cadastrado</a></p>";
       }

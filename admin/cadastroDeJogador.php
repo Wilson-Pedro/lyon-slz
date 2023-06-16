@@ -150,7 +150,7 @@ if (isset($_POST['salvar'])) {
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
                                 <li><a class="dropdown-item" href="jogoDeHojeAdmin.php">JOGOS DE HOJE</a></li>
-                                <li><a class="dropdown-item" href="campeonatos.php">CAMPEONATOS</a></li>
+                                <li><a class="dropdown-item" href="campeonatosAdmin.php">CAMPEONATOS</a></li>
                                 <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
                             </ul>
                         </li>
@@ -187,8 +187,9 @@ if (isset($_POST['salvar'])) {
             <hr>
             <br>
             <form method="post" action="">
+
+                <!-- NOME -->
                 <div class="row">
-                    <!-- NOME -->
                     <div class="form-floating col-md-8">
                         <input type="text" class="form-control" id="jogadorNome" name="jogadorNome" placeholder="Ex.: José ">
                         <label for="floatingInput text-center">Nome</label>
@@ -196,8 +197,8 @@ if (isset($_POST['salvar'])) {
                     <button type="button" class="btn btn-warning col " id="limpaNome" onclick="limpaCampos0()">Limpar</button>
                 </div><br>
 
+                <!-- SOBRENOME -->
                 <div class="row">
-                    <!-- SOBRENOME -->
                     <div class="form-floating col-md-8">
                         <input type="text" class="form-control" id="jogadorSobrenome" name="jogadorSobrenome" placeholder="Ex.: Silva">
                         <label for="floatingInput text-center">Sobrenome</label>
@@ -213,6 +214,8 @@ if (isset($_POST['salvar'])) {
                     </div>
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaIdade" onclick="limpaCampos1()">Limpar</button>
                 </div><br>
+
+
                 <dialog id="cad-jogadorConfirmMsg" class="MsgSucesso">
                     <p class="cad-jogadorMsgSucesso">Cadastro feito com Sucesso!</p>
                     <a href="cadastro-de-jogador.php"><input type="submit" name="salvar" value="Ok" class="btn-MsgSucesso"></a>
@@ -221,22 +224,40 @@ if (isset($_POST['salvar'])) {
                     <p class="cad-jogadorMsgErro">Erro ao realizar o cadastro!</p>
                     <a href="cadastro.php"><input type="button" value="Ok" class="btn-MsgErro"></a>
                 </dialog>
+
+                <!-- POSIÇÃO -->
                 <div class="row">
-                    <!-- POSIÇÃO -->
+                    <label for="">Posição</label>
                     <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="jogadorPosicao" name="jogadorPosicao" placeholder="Ex.: Atacante">
-                        <label for="floatingInput text-center">Posição</label>
+                    <select class="form-control" name="jogadorPosicao" id="jogadorPosicao">
+                            <?php
+                            require('../db/conexao.php');
+                            $sql = $pdo->prepare("SELECT * FROM tblposicao");
+                            $sql->execute();
+                            $dados = $sql->fetchAll();
+                            
+                            echo "<option value=''></option>";
+                            
+                            foreach ($dados as $chaves => $valor) {
+                                echo "<option value='" . $valor['id_posicao'] . "'
+                                >" . $valor['nome_posicao'] . "</option>";
+                            }
+                            ?>
+                    </select>
+
                     </div>
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaPosicao" onclick="limpaCampos2()">Limpar</button>
                 </div><br>
+
+                <!-- GOLS -->
                 <div class="row">
-                    <!-- GOLS -->
                     <div class="form-floating col-md-8">
                         <input type="text" class="form-control" id="jogadorGols" name="jogadorGols" placeholder="Ex.: 27">
                         <label for="floatingInput text-center">Gols</label>
                     </div>
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaGols" onclick="limpaCampos3()">Limpar</button>
                 </div><br>
+
                 <!-- CADASTRAR JOGADOR -->
                 <input type="submit" id="btn-cadastrar" value="Cadastrar jogador" class="btn btn-success btn-lg" onclick="validaCampos(event)">
                 <input type="reset" value="Limpar campos" name="btn-cadastrar" id="btn-cadastrar" class="btn btn-danger btn-lg">

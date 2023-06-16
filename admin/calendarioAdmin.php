@@ -145,7 +145,7 @@ $dados = $sql->fetchAll();
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" id="marcado" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
                 <li><a class="dropdown-item" href="jogoDeHojeAdmin.php">JOGOS DE HOJE</a></li>
-                <li><a class="dropdown-item" href="campeonatos.php">CAMPEONATOS</a></li>
+                <li><a class="dropdown-item" href="campeonatosAdmin.php">CAMPEONATOS</a></li>
                 <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
               </ul>
             </li>

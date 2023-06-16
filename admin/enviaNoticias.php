@@ -23,10 +23,11 @@ if (move_uploaded_file($arquivo['tmp_name'], $destino)) {
     header('Location: noticiaisAdmin.php');
     
     // Obtém o ID do último registro
-    $sql_last_id = $pdo->prepare("SELECT MAX(id) as last_id FROM tblfotos_noticias");
-    $sql_last_id->execute();
-    $last_id_result = $sql_last_id->fetch(PDO::FETCH_ASSOC);
-    $last_id = $last_id_result['last_id'];
+    // $sql_last_id = $pdo->prepare("SELECT MAX(id) as last_id FROM tblfotos_noticias");
+    // $sql_last_id->execute();
+    // $last_id_result = $sql_last_id->fetch(PDO::FETCH_ASSOC);
+    // $last_id = $last_id_result['last_id'];
+    $last_id = 19;
 
     // Atualiza o arquivo do último registro
     $sql_update = $pdo->prepare("UPDATE tblfotos_noticias SET arquivo = :nome_arquivo WHERE id = :last_id");

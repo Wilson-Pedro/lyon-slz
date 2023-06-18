@@ -215,6 +215,12 @@ $dados = $sql->fetchAll();
                 $sql->bindValue(':gols_adv', $gols_adv);
                 $sql->bindValue(':id', $id);
                 $sql->execute();
+                echo "
+                <script>
+                var marcado = document.getElementById('marcado');
+                marcado.click();
+                </script>
+                ";
             }
             ?>
             <?php
@@ -225,8 +231,14 @@ $dados = $sql->fetchAll();
                 $timeb = $_POST['timeb_deleta'];
                 $data_partida = $_POST['data_partida_deleta'];
                 //COMANDO PARA DELETAR
-                $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND timeb=? AND data_partida=?");
+                $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND adversario=? AND data_partida=?");
                 $sql->execute(array($id, $localidade, $timeb, $data_partida));
+                echo "
+                <script>
+                var marcado = document.getElementById('marcado');
+                marcado.click();
+                </script>
+                ";
             }
             ?>
             <?php
@@ -246,7 +258,7 @@ $dados = $sql->fetchAll();
                     $dataJogo = $valor['data_partida'];
                     if (strtotime($dataJogo) <= strtotime($data_Atual)) {
                         echo "<tr>
-                                <td><abbr title='". $valor['nome_campeonato'] ."'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
+                                <td><abbr title='" . $valor['nome_campeonato'] . "'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
                                 <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                                 <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
                                 <td><a href='#' class='btn-atualizar' 

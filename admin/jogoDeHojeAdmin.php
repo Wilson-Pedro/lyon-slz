@@ -136,7 +136,7 @@ $dados = $sql->fetchAll();
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="calendarioAdmin.php">CALENDÁRIO DE JOGOS</a></li>
-                                <li><a class="dropdown-item" id="marcado" href="jogoDeHoje.php">JOGOS DE HOJE</a></li>
+                                <li><a class="dropdown-item" id="marcado" href="jogoDeHojeAdmin.php">JOGOS DE HOJE</a></li>
                                 <li><a class="dropdown-item" href="campeonatosAdmin.php">CAMPEONATOS</a></li>
                                 <li><a class="dropdown-item" href="historicoPartidasAdmin.php">HISTÓRICO DE PARTIDAS</a></li>
                             </ul>
@@ -212,6 +212,12 @@ $dados = $sql->fetchAll();
                 $sql->bindValue(':gols_adv', $gols_adv);
                 $sql->bindValue(':id', $id);
                 $sql->execute();
+                echo "
+                <script>
+                var marcado = document.getElementById('marcado');
+                marcado.click();
+                </script>
+                ";
             }
             ?>
             <?php
@@ -219,11 +225,17 @@ $dados = $sql->fetchAll();
             if (isset($_POST['deletar']) && isset($_POST['id_deleta']) && isset($_POST['localidade_deleta']) && isset($_POST['timeb_deleta']) && isset($_POST['data_partida_deleta'])) {
                 $id = $_POST['id_deleta'];
                 $localidade = $_POST['localidade_deleta'];
-                $timeb = $_POST['timeb_deleta'];
+                $adversario = $_POST['timeb_deleta'];
                 $data_partida = $_POST['data_partida_deleta'];
                 //COMANDO PARA DELETAR
-                $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND timeb=? AND data_partida=?");
-                $sql->execute(array($id, $localidade, $timeb, $data_partida));
+                $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND adversario=? AND data_partida=?");
+                $sql->execute(array($id, $localidade, $adversario, $data_partida));
+                echo "
+                <script>
+                var marcado = document.getElementById('marcado');
+                marcado.click();
+                </script>
+                ";
             }
             ?>
             <?php

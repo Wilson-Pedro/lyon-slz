@@ -86,11 +86,11 @@ $dados = $sql->fetchAll();
                 CATEGORIAS
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" id="marcado" href="sub09Admin.php">sub09</a></li>
+                <li><a class="dropdown-item" href="sub09Admin.php">sub09</a></li>
                 <li><a class="dropdown-item" href="sub11Admin.php">sub11</a></li>
                 <li><a class="dropdown-item" href="sub13Admin.php">sub13</a></li>
                 <li><a class="dropdown-item" href="sub15Admin.php">sub15</a></li>
-                <li><a class="dropdown-item" href="sub17Admin.php">sub17</a></li>
+                <li><a class="dropdown-item" id="marcado" href="sub17Admin.php">sub17</a></li>
               </ul>
             </li>
 
@@ -217,6 +217,12 @@ $dados = $sql->fetchAll();
         $sql->bindValue(':gols', $gols);
         $sql->bindValue(':id', $id);
         $sql->execute();
+        echo "
+          <script>
+          var marcado = document.getElementById('marcado');
+          marcado.click();
+          </script>
+          ";
         /*
           $sql = $pdo->prepare("UPDATE tbljogadores SET nome=?,idade=?, posicao=?, gols=? WHERE id=?");
           $sql->execute(array($nome, $idade, $posicao, $gols, $id));
@@ -235,6 +241,12 @@ $dados = $sql->fetchAll();
         //COMANDO PARA DELETAR
         $sql = $pdo->prepare("DELETE FROM tbljogadoress WHERE id=? AND nome=? AND sobrenome=? AND idade=? AND id_posicao=? AND gols=?");
         $sql->execute(array($id, $nome, $sobrenome, $idade, $posicao, $gols));
+        echo "
+          <script>
+          var marcado = document.getElementById('marcado');
+          marcado.click();
+          </script>
+          ";
       }
       ?>
       <?php

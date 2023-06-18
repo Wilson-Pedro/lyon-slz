@@ -8,7 +8,6 @@ if(!is_dir($pasta)){
     mkdir($pasta);
 }
 
-$dado = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (empty($_FILES['arquivo'])) {
     // O arquivo não foi enviado, trate o erro adequadamente
     echo "Nenhum arquivo selecionado.";

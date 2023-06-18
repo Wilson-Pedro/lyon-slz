@@ -227,6 +227,12 @@ $dados = $sql->fetchAll();
         $sql->bindValue(':horario', $horario);
         $sql->bindValue(':id', $id);
         $sql->execute();
+        echo "
+          <script>
+          var marcado = document.getElementById('marcado');
+          marcado.click();
+          </script>
+          ";
         /*
           $sql = $pdo->prepare("UPDATE tbljogadores SET nome=?,idade=?, posicao=?, gols=? WHERE id=?");
           $sql->execute(array($nome, $idade, $posicao, $gols, $id));
@@ -243,6 +249,12 @@ $dados = $sql->fetchAll();
         //COMANDO PARA DELETAR
         $sql = $pdo->prepare("DELETE FROM tblpartidass WHERE id=? AND localidade=? AND adversario=? AND data_partida=?");
         $sql->execute(array($id, $localidade, $timeb, $data_partida));
+        echo "
+          <script>
+          var marcado = document.getElementById('marcado');
+          marcado.click();
+          </script>
+          ";
       }
       ?>
       <?php

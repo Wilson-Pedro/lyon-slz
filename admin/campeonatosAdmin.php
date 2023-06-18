@@ -205,6 +205,12 @@ $dados = $sql->fetchAll();
                 $sql->bindValue(':data_campeonato', $data_campeonato);
                 $sql->bindValue(':id_campeonato', $id_campeonato);
                 $sql->execute();
+                echo "
+                <script>
+                var marcado = document.getElementById('marcado');
+                marcado.click();
+                </script>
+                ";
             }
             ?>
             <?php

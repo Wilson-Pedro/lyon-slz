@@ -50,9 +50,159 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="shortcut icon" href="img/favicon/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 </head>
+<style>
+    .login {
+        padding: 5vh;
+        background-color: white;
+        margin: auto;
+        width: fit-content;
+        height: fit-content;
+        margin-top: 5vh;
+        text-align: center;
+        border-radius: 2vh;
+    }
+
+    .email {
+        border-radius: 5vh;
+        width: 100%;
+        height: 3vh;
+        font-size: large;
+    }
+
+    .senha {
+        border-radius: 5vh;
+        width: 100%;
+        height: 3vh;
+        font-size: large;
+    }
+
+    .email:hover {
+        box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+        border-color: gold;
+    }
+
+    .senha:hover {
+        box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+        border-color: gold;
+    }
+
+    .logar {
+        text-align: left;
+    }
+
+    .btn-entrar {
+        border-radius: 5vh;
+        width: fit-content;
+        padding-left: 10vh;
+        padding-right: 10vh;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        height: 5vh;
+        border: transparent;
+        background-color: rgba(255, 136, 0, 0.8);
+        color: black;
+        font-size: large;
+        cursor: pointer;
+    }
+
+    .btn-cadastrar {
+        border-radius: 5vh;
+        width: fit-content;
+        padding-left: 5vh;
+        padding-right: 5vh;
+        height: 5vh;
+        border: transparent;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: large;
+        cursor: pointer;
+    }
+
+    .senha {
+        width: 50vh;
+    }
+
+    .olho {
+        margin-left: 2vh;
+        cursor: pointer;
+    }
+
+    .campo-senha {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #aviso {
+        border-radius: 2vh;
+        background-color: red;
+        color: white;
+        margin-bottom: -2vh;
+    }
+
+    .msg {
+        padding: 2vh;
+    }
+
+    .lembrar:hover {
+        border-color: gold;
+    }
+
+    .btn-entrar:hover {
+        background: gold;
+        box-shadow: 20vh;
+        box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-cadastrar:hover {
+        background: gold;
+        box-shadow: 20vh;
+        box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+    }
+
+    .login:hover {
+        box-shadow: 2vh 2vh 5vh rgba(0, 0, 0, 0.5);
+    }
+
+    body {
+        background-image: linear-gradient(90deg, rgba(255, 136, 0, 0.8), rgba(134, 72, 0, 0.212) 90%), url("img/login/footbal-shoes-header-xcyp1.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: larger;
+        overflow-x: hidden;
+        height: fit-content;
+        padding: 1vh;
+    }
+
+    @media screen and (max-width: 600px) {
+        .login {
+            width: 35vh;
+        }
+
+        .login:hover {
+            box-shadow: none;
+        }
+
+        .senha {
+            width: 100%;
+        }
+
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: -50vh;
+            padding: 0;
+        }
+    }
+</style>
 
 <body>
     <div class="login">
@@ -86,7 +236,6 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
             <a href="cadastro.php"><input type="button" value="Cadastrar uma conta" class="btn-cadastrar"></a>
         </div> -->
     </div>
-    <script src="../js/login.js"></script>
 </body>
 
 </html>

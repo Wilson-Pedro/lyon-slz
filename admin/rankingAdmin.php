@@ -103,7 +103,7 @@ $dados = $sql->fetchAll();
             </li>
 
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="rankingAdmin.php">RANKING</a>
+              <a class="nav-link active" id="rankingAdm" aria-current="page" href="rankingAdmin.php">RANKING</a>
             </li>
 
             <li class="nav-item">
@@ -152,6 +152,12 @@ $dados = $sql->fetchAll();
         $sql->bindValue(':gols', $gols);
         $sql->bindValue(':id', $id);
         $sql->execute();
+        echo "
+            <script>
+            var rankingAdm = document.getElementById('rankingAdm');
+            rankingAdm.click();
+            </script>
+            ";
         /*
           $sql = $pdo->prepare("UPDATE tbljogadores SET nome=?,idade=?, posicao=?, gols=? WHERE id=?");
           $sql->execute(array($nome, $idade, $posicao, $gols, $id));

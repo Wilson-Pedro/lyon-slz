@@ -284,11 +284,13 @@ $dados = $sql->fetchAll();
                 data-localidade='" . $valor['localidade'] . "'
                 data-timeb='" . $valor['adversario'] . "'
                 data-data_partida='" . $valor['data_partida'] . "'
-                data-horario='" . $valor['horario'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' 
+                data-horario='" . date("H:i", strtotime($valor['horario'])) . "'
+                >Atualizar</a> | <a href='#' class='btn-deletar' 
                 data-id='" . $valor['id'] . "' 
                 data-localidade='" . $valor['localidade'] . "' 
                 data-timeb='" . $valor['adversario'] . "'
-                data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
+                data-data_partida='" . $valor['data_partida'] . "'
+                >Deletar</a></td>
           </tr>";
           }
         }
@@ -312,7 +314,6 @@ $dados = $sql->fetchAll();
   $(".btn-atualizar").click(function() {
     var id = $(this).attr('data-id');
     var localidade = $(this).attr('data-localidade');
-    var timea = $(this).attr('data-timea');
     var timeb = $(this).attr('data-timeb');
     var data_partida = $(this).attr('data-data_partida');
     var horario = $(this).attr('data-horario');
@@ -325,10 +326,9 @@ $dados = $sql->fetchAll();
 
     $("#id_editado").val(id);
     $("#localidade_editado").val(localidade);
-    $("#timea_editado").val(timea);
     $("#timeb_editado").val(timeb);
     $("#data_partida_editado").val(data_partida);
-    $("horario_editado").val(horario)
+    $("#horario_editado").val(horario)
 
   });
 

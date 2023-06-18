@@ -87,7 +87,14 @@ $dados = $sql->fetchAll();
 
     main {
         width: 98.6vw;
+    }
 
+    .id_oculto {
+        display: none;
+    }
+
+    .atualizar {
+        text-align: center;
     }
 </style>
 
@@ -176,8 +183,8 @@ $dados = $sql->fetchAll();
             <!-- ATUALIZAR -->
             <form class="oculto" id="form_atualiza" method="post">
                 <div id="div-update" class="oculto">
-                    <h5>ID:</h5>
-                    <input type="text" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
+                    <h4 class="atualizar">ATUALIZAR</h4>
+                    <input type="text" class="id_oculto" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
                     <h5>Gols do Lyon:</h5>
                     <input type="number" id="gols_lyon_editado" name="gols_lyon_editado" placeholder="Editar time gols" required><br><br>
                     <h5>Gols do Adversário:</h5>

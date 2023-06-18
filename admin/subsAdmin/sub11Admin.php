@@ -52,6 +52,14 @@ $dados = $sql->fetchAll();
     .oculto {
       display: none;
     }
+
+    .id_oculto {
+      display: none;
+    }
+
+    .atualizar {
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -123,7 +131,7 @@ $dados = $sql->fetchAll();
                 <li><a class="dropdown-item" href="../cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
                 <li><a class="dropdown-item" href="../cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
                 <li><a class="dropdown-item" href="../cadastroDeNoticia.php"> CADASTRAR NOTÍCIA</a></li>
-                
+
                 <li><a class="dropdown-item" href="../../home.php">SAIR</a></li>
               </ul>
             </li>
@@ -141,8 +149,8 @@ $dados = $sql->fetchAll();
       <!-- ATUALIZAR -->
       <form class="oculto" id="form_atualiza" method="post">
         <div id="div-update" class="oculto">
-          <h5 class="inputTitulo">ID:</h5>
-          <input type="text" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
+          <h4 class="atualizar">ATUALIZAR</h4>
+          <input type="text" class="id_oculto" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
 
           <h5 class="inputTitulo">Nome:</h5>
           <input type="text" id="nome_editado" name="nome_editado" placeholder="Editar nome" required> <br><br>

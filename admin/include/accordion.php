@@ -1,5 +1,4 @@
 <?php
-require('../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tblnoticias WHERE id = 1");
 $sql->execute();

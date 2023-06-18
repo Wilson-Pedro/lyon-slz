@@ -89,6 +89,14 @@ $dados = $sql->fetchAll();
         width: 98.6vw;
 
     }
+
+    .id_oculto {
+        display: none;
+    }
+
+    .atualizar {
+        text-align: center;
+    }
 </style>
 
 <body>
@@ -178,8 +186,8 @@ $dados = $sql->fetchAll();
             <!-- ATUALIZAR -->
             <form class="oculto" id="form_atualiza" method="post">
                 <div id="div-update" class="oculto">
-                    <h5>ID:</h5>
-                    <input type="number" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
+                    <h4 class="atualizar">ATUALIZAR</h4>
+                    <input type="text" class="id_oculto" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
                     <h5>Nome campeonato:</h5>
                     <input type="text" id="nome_c_editado" name="nome_c_editado" placeholder="Editar time gols" required><br><br>
                     <h5>Local Campeonato:</h5>
@@ -191,7 +199,7 @@ $dados = $sql->fetchAll();
                     <hr>
                 </div>
             </form>
-            
+
             <br><br>
             <?php
             //PROCESSO DE ATUALIZAÇÃO
@@ -239,7 +247,7 @@ $dados = $sql->fetchAll();
                   data-id='" . $valor['id_campeonato'] . "' 
                   data-nome-c='" . $valor['nome_campeonato'] . "'
                   data-local-c='" . $valor['local_campeonato'] . "'
-                  data-data-c='". $valor['data_campeonato'] ."'
+                  data-data-c='" . $valor['data_campeonato'] . "'
                   >Atualizar</a></td>
             </tr>";
                     }

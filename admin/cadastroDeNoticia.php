@@ -1,15 +1,16 @@
 <?php
 require('../db/conexao.php');
 
-if (isset($_POST['salvar'])) {
-    $nome = $_POST['jogadorNome'];
-    $sobrenome = $_POST['jogadorSobrenome'];
-    $idade = $_POST['jogadorIdade'];
-    $posicao = $_POST['jogadorPosicao'];
-    $gols = $_POST['jogadorGols'];
+if (isset($_POST['salvar']) && isset($_POST['titulo']) && isset($_POST['descricao'])) {
+    $titulo = $_POST['titulo'];
+    $descricao = $_POST['descricao'];
 
-    $sql = $pdo->prepare("INSERT INTO tbljogadoress VALUES (null,?,?,?,?,?)");
-    $sql->execute(array($nome, $sobrenome, $idade, $posicao, $gols));
+    $sql = $pdo->prepare("INSERT INTO tblnoticias VALUES (null,?,?)");
+    
+    $sql = $pdo->prepare("UPDATE tblnoticias SET titulo = :titulo , descricao = :descricao WHERE id= 1");
+    $sql->bindValue(':titulo', $titulo);
+    $sql->bindValue(':descricao', $descricao);
+    $sql->execute();
 }
 ?>
 
@@ -168,10 +169,12 @@ if (isset($_POST['salvar'])) {
                                 MAIS
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" id="marcado" href="cadastroDeJogador.php">CADASTRAR JOGADOR</a></li>
+                                <li><a class="dropdown-item" href="cadastroDeJogador.php">CADASTRAR JOGADOR</a></li>
                                 <li><a class="dropdown-item" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
                                 <li><a class="dropdown-item" href="cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
-                                <li><a class="dropdown-item" href="cadastroDeNoticia.php"> CADASTRAR NOTÍCIA</a></li>
+
+                                <li><a class="dropdown-item" id="marcado" href="cadastroDeNoticia.php"> CADASTRAR NOTÍCIA</a></li>
+
                                 <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
                             </ul>
                         </li>
@@ -184,36 +187,27 @@ if (isset($_POST['salvar'])) {
 
     <section class="form-jogador">
         <div class="container-fluid">
-            <h1 class="display-5">Cadastro de jogador</h1>
+            <h1 class="display-5">Cadastro de Notícias</h1>
             <hr>
             <br>
             <form method="post" action="">
 
-                <!-- NOME -->
+                <!-- TÍTULO -->
                 <div class="row">
                     <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="jogadorNome" name="jogadorNome" placeholder="Ex.: José ">
-                        <label for="floatingInput text-center">Nome</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ex.: José ">
+                        <label for="floatingInput text-center">Título</label>
                     </div>
                     <button type="button" class="btn btn-warning col " id="limpaNome" onclick="limpaCampos0()">Limpar</button>
                 </div><br>
 
-                <!-- SOBRENOME -->
+                <!-- DESCRiÇÃO -->
                 <div class="row">
                     <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="jogadorSobrenome" name="jogadorSobrenome" placeholder="Ex.: Silva">
-                        <label for="floatingInput text-center">Sobrenome</label>
+                        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Ex.: Silva">
+                        <label for="floatingInput text-center">Descrição</label>
                     </div>
-                    <button type="button" class="btn btn-warning col " id="limpaSobrome" onclick="limpaCampos4()">Limpar</button>
-                </div><br>
-
-                <!-- IDADE -->
-                <div class="row">
-                    <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="jogadorIdade" name="jogadorIdade" placeholder="Ex.: Sub-14" maxlength="6">
-                        <label for="floatingInput text-center">Idade</label>
-                    </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaIdade" onclick="limpaCampos1()">Limpar</button>
+                    <button type="button" class="btn btn-warning col " id="limpaSobrome" onclick="limpaCampos1()">Limpar</button>
                 </div><br>
 
 
@@ -226,38 +220,6 @@ if (isset($_POST['salvar'])) {
                     <a href="cadastro.php"><input type="button" value="Ok" class="btn-MsgErro"></a>
                 </dialog>
 
-                <!-- POSIÇÃO -->
-                <div class="row">
-                    <label for="">Posição</label>
-                    <div class="form-floating col-md-8">
-                    <select class="form-control" name="jogadorPosicao" id="jogadorPosicao">
-                            <?php
-                            require('../db/conexao.php');
-                            $sql = $pdo->prepare("SELECT * FROM tblposicao");
-                            $sql->execute();
-                            $dados = $sql->fetchAll();
-                            
-                            echo "<option value=''></option>";
-                            
-                            foreach ($dados as $chaves => $valor) {
-                                echo "<option value='" . $valor['id_posicao'] . "'
-                                >" . $valor['nome_posicao'] . "</option>";
-                            }
-                            ?>
-                    </select>
-
-                    </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaPosicao" onclick="limpaCampos2()">Limpar</button>
-                </div><br>
-
-                <!-- GOLS -->
-                <div class="row">
-                    <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="jogadorGols" name="jogadorGols" placeholder="Ex.: 27">
-                        <label for="floatingInput text-center">Gols</label>
-                    </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaGols" onclick="limpaCampos3()">Limpar</button>
-                </div><br>
 
                 <!-- CADASTRAR JOGADOR -->
                 <input type="submit" id="btn-cadastrar" value="Cadastrar" class="btn btn-success btn-lg" onclick="validaCampos(event)">
@@ -268,27 +230,18 @@ if (isset($_POST['salvar'])) {
     <script>
         var cad_jogadorConfirmMsg = document.getElementById('cad-jogadorConfirmMsg');
         var jogador = [
-            document.getElementById('jogadorNome'),
-            document.getElementById('jogadorIdade'),
-            document.getElementById('jogadorPosicao'),
-            document.getElementById('jogadorGols'),
-            document.getElementById('jogadorSobrenome')
+            document.getElementById('titulo'),
+            document.getElementById('descricao'),
         ];
 
         function validaCampos(event) {
-            if (jogador[0].value == '' || jogador[1].value == '' || jogador[2].value == '' || jogador[3].value == '' || jogador[4].value == '') {
+            if (jogador[0].value == '' || jogador[1].value == '') {
                 alert('Preencha todos os campos para cadastrar um jogador');
             } else if (typeof jogador[0].value === "number") {
                 alert('Insira uma nome e sobrenomes válidos');
 
             } else if (!typeof jogador[1].value === "string" && !typeof jogador[1].value === "number") {
                 alert('Insira uma idade válida');
-
-            } else if (typeof jogador[2].value === "number") {
-                alert('Insira uma posição válida');
-
-            } else if (!typeof jogador[3].value === "number") {
-                alert('Insira uma média de gols válido');
 
             } else {
                 cad_jogadorConfirmMsg.showModal();
@@ -305,17 +258,6 @@ if (isset($_POST['salvar'])) {
             jogador[1].value = '';
         }
 
-        function limpaCampos2() {
-            jogador[2].value = '';
-        }
-
-        function limpaCampos3() {
-            jogador[3].value = '';
-        }
-
-        function limpaCampos4() {
-            jogador[4].value = '';
-        }
     </script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

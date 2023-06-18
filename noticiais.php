@@ -183,7 +183,7 @@ $dados = $sql->fetchAll();
       <div class="col-lg-8">
         <h1>
           <i class="fa-solid fa-2x fa-bullhorn"></i>
-          <span class="logo">De olho nas notíciais!</span>
+          <span class="logo">De olho nas notíciais! ⚽</span>
         </h1>
         <div class="barraAzul">
 

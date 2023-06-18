@@ -189,6 +189,7 @@ if (isset($_POST['salvar'])) {
 
                             <li><a class="dropdown-item" id="marcado" href="cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
 
+                            <li><a class="dropdown-item" href="cadastroDeNoticia.php"> CADASTRAR NOTÍCIA</a></li>
                             <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
                         </ul>
                     </li>
@@ -247,8 +248,8 @@ if (isset($_POST['salvar'])) {
                 </div><br>
 
                 <!-- CADASTRAR PARTIDA -->
-                <input type="submit" id="btn-cadastrar-partida" value="Cadastrar partida" class="btn btn-success btn-lg" onclick="validaCampos(event)">
-                <input type="reset" value="Limpar todos os campos" name="btn-cadastrar" id="btn-cadastrar-partida" class="btn btn-danger btn-lg">
+                <input type="submit" id="btn-cadastrar-partida" value="Cadastrar" class="btn btn-success btn-lg" onclick="validaCampos(event)">
+                <input type="reset" value="Limpar Tudo" name="btn-cadastrar" id="btn-cadastrar-partida" class="btn btn-danger btn-lg">
 
             </form>
         </div>

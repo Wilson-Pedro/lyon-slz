@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15-Jun-2023 às 01:23
+-- Tempo de geração: 18-Jun-2023 às 18:17
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -40,7 +40,8 @@ CREATE TABLE `tblcampeonato` (
 
 INSERT INTO `tblcampeonato` (`id_campeonato`, `nome_campeonato`, `local_campeonato`, `data_campeonato`) VALUES
 (13, 'Amistoso', '', '0000-00-00'),
-(17, 'Torneio sub-17', 'Castelinho', '2023-06-22');
+(17, 'Torneio sub-17', 'Castelinho', '2023-06-22'),
+(18, 'Torneio sub-11', 'Estácio', '2023-06-23');
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,9 @@ CREATE TABLE `tblfotoss` (
 --
 
 INSERT INTO `tblfotoss` (`id`, `arquivo`) VALUES
-(60, 'imgTime01.png');
+(78, 'imgTime01.png'),
+(79, 'imgTime02.png'),
+(80, 'imgTime03.png');
 
 -- --------------------------------------------------------
 
@@ -76,7 +79,9 @@ CREATE TABLE `tblfotos_noticias` (
 --
 
 INSERT INTO `tblfotos_noticias` (`id`, `arquivo`) VALUES
-(19, 'Jogos.PNG');
+(19, 'Jogos.PNG'),
+(20, 'imgTime01.png'),
+(21, 'imgTime01.png');
 
 -- --------------------------------------------------------
 
@@ -89,7 +94,7 @@ CREATE TABLE `tbljogadoress` (
   `nome` varchar(45) NOT NULL,
   `sobrenome` varchar(45) NOT NULL,
   `idade` int(11) NOT NULL,
-  `posicao` varchar(255) NOT NULL,
+  `id_posicao` int(11) UNSIGNED NOT NULL,
   `gols` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -97,16 +102,12 @@ CREATE TABLE `tbljogadoress` (
 -- Extraindo dados da tabela `tbljogadoress`
 --
 
-INSERT INTO `tbljogadoress` (`id`, `nome`, `sobrenome`, `idade`, `posicao`, `gols`) VALUES
-(1, 'Julio', 'Silva', 11, 'atacante', 4),
-(6, 'Pelé', '', 17, 'atacante', 9),
-(12, 'Alberto', '', 10, 'zagueiro', 1),
-(13, 'Rivaldo', 'Vitor', 16, 'centrovante', 3),
-(14, 'Lucas', '', 14, 'Lateral', 1),
-(15, 'Mario', '', 10, 'atacante', 3),
-(17, 'Carlos', 'Silva', 12, 'zagueiro', 1),
-(19, 'Mario', 'Girlson', 16, 'zagueiro', 1),
-(20, 'Roberto', 'Carlos', 9, 'Lateral', 3);
+INSERT INTO `tbljogadoress` (`id`, `nome`, `sobrenome`, `idade`, `id_posicao`, `gols`) VALUES
+(22, 'julio', 'Silva', 13, 10, 3),
+(24, 'Carlos', 'Alberto', 9, 12, 3),
+(25, 'Mario', 'Lucio', 11, 12, 6),
+(26, 'Lucas', 'Silva', 15, 9, 3),
+(27, 'Rivaldo', 'Vitor', 17, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -130,6 +131,25 @@ INSERT INTO `tblloginn` (`id`, `usuario`, `senha`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `tblnoticias`
+--
+
+CREATE TABLE `tblnoticias` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `descricao` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tblnoticias`
+--
+
+INSERT INTO `tblnoticias` (`id`, `titulo`, `descricao`) VALUES
+(1, 'Torneio sub-18', 'Neste mês de Dezembro disputamos, à @copainterbairrosfut7ma Sub-13, onde chegamos até à final, sendo derrotado nos pênaltis. Onde após o jogo, recebemos denúncias que na equipe adversária teria atletas de forma irregular, com idade que não correspondia com à categoria Sub-13 e sim esse atleta sendo Sub-14. Fizemos todos os procedimentos legais e pôr vim, à verdade chegou.  SOMOS CAMPEÕES🤷‍♂️🏆🥇.  Parabéns atletas, comissão e todos aquele que ajudam nossa equipe...');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `tblpartidass`
 --
 
@@ -143,6 +163,43 @@ CREATE TABLE `tblpartidass` (
   `gols_lyon` int(11) NOT NULL,
   `gols_adv` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tblpartidass`
+--
+
+INSERT INTO `tblpartidass` (`id`, `localidade`, `adversario`, `id_campeonato`, `data_partida`, `horario`, `gols_lyon`, `gols_adv`) VALUES
+(27, 'Estácio', 'Juventus', 18, '2023-06-18', '10:35:00.000000', 0, 0),
+(28, 'Estácio', 'Tiger', 13, '2023-06-14', '12:56:00.000000', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tblposicao`
+--
+
+CREATE TABLE `tblposicao` (
+  `id_posicao` int(11) UNSIGNED NOT NULL,
+  `nome_posicao` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `tblposicao`
+--
+
+INSERT INTO `tblposicao` (`id_posicao`, `nome_posicao`) VALUES
+(1, 'Goleiro'),
+(2, 'Zagueiro'),
+(3, 'Meio'),
+(4, 'Lateral'),
+(5, 'Lateral Direito'),
+(6, 'Lateral Esquerdo'),
+(7, 'Ala'),
+(8, 'Ala Direito'),
+(9, 'Ala Esquerdo'),
+(10, 'Ataquante'),
+(11, 'Centroavante'),
+(12, 'Pivô');
 
 --
 -- Índices para tabelas despejadas
@@ -170,12 +227,19 @@ ALTER TABLE `tblfotos_noticias`
 -- Índices para tabela `tbljogadoress`
 --
 ALTER TABLE `tbljogadoress`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_jogador_posicao` (`id_posicao`);
 
 --
 -- Índices para tabela `tblloginn`
 --
 ALTER TABLE `tblloginn`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `tblnoticias`
+--
+ALTER TABLE `tblnoticias`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -186,6 +250,12 @@ ALTER TABLE `tblpartidass`
   ADD KEY `id_campeonato` (`id_campeonato`);
 
 --
+-- Índices para tabela `tblposicao`
+--
+ALTER TABLE `tblposicao`
+  ADD PRIMARY KEY (`id_posicao`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -193,25 +263,25 @@ ALTER TABLE `tblpartidass`
 -- AUTO_INCREMENT de tabela `tblcampeonato`
 --
 ALTER TABLE `tblcampeonato`
-  MODIFY `id_campeonato` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_campeonato` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `tblfotoss`
 --
 ALTER TABLE `tblfotoss`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT de tabela `tblfotos_noticias`
 --
 ALTER TABLE `tblfotos_noticias`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `tbljogadoress`
 --
 ALTER TABLE `tbljogadoress`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de tabela `tblloginn`
@@ -220,14 +290,32 @@ ALTER TABLE `tblloginn`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de tabela `tblnoticias`
+--
+ALTER TABLE `tblnoticias`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de tabela `tblpartidass`
 --
 ALTER TABLE `tblpartidass`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT de tabela `tblposicao`
+--
+ALTER TABLE `tblposicao`
+  MODIFY `id_posicao` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `tbljogadoress`
+--
+ALTER TABLE `tbljogadoress`
+  ADD CONSTRAINT `fk_jogador_posicao` FOREIGN KEY (`id_posicao`) REFERENCES `tblposicao` (`id_posicao`);
 
 --
 -- Limitadores para a tabela `tblpartidass`

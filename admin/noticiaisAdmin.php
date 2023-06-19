@@ -276,7 +276,7 @@ $dados = $sql->fetchAll();
 
       <?php
       require('../db/conexao.php');
-      include('include/accordion.php') ?>
+      include('include/accordionAdmin.php') ?>
     </div>
 
     <!-- CALENÁRIO -->

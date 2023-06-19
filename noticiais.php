@@ -266,7 +266,6 @@ $dados = $sql->fetchAll();
       <!-- ACCORDION -->
 
       <?php
-      require('db/conexao.php');
       include('admin/include/accordion.php') ?>
     </div>
 

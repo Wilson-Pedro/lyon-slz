@@ -27,6 +27,7 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
 
         if ($result->num_rows == 1) {
             $usuario = $result->fetch_assoc();
+            
 
             if (password_verify($senha, $usuario['senha'])) {
                 $_SESSION['id'] = $usuario['id'];
@@ -38,6 +39,7 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
                 acessar.click();
                 </script>
                 ";
+                exit();
             }
         } else {
             $invalid = "Ops... e-mail ou senha incorretos!";
@@ -55,7 +57,7 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
     <title>Login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="shortcut icon" href="img/favicon/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="css/login2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 </head>
 

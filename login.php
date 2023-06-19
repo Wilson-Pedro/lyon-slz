@@ -31,8 +31,13 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
             if (password_verify($senha, $usuario['senha'])) {
                 $_SESSION['id'] = $usuario['id'];
                 $_SESSION['usuario'] = $usuario['usuario'];
-                header("Location: admin/homeAdmin.php");
-                exit();
+                echo "<a href='admin/homeAdmin.php' id='acessar' style='display:none'></a>";
+                echo "
+                <script>
+                var acessar = document.getElementById('acessar');
+                acessar.click();
+                </script>
+                ";
             }
         } else {
             $invalid = "Ops... e-mail ou senha incorretos!";

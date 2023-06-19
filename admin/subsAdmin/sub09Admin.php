@@ -28,13 +28,13 @@ $dados = $sql->fetchAll();
 
   <title>Sub09</title>
   <style>
-    .dp-menu ul li a {
-      font-weight: bold;
-    }
-
     body {
       width: 100%;
-      background-color: rgb(214, 168, 100);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .dp-menu ul li a {
+      font-weight: bold;
     }
 
     table {

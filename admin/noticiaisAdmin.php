@@ -30,6 +30,7 @@ $dados = $sql->fetchAll();
 <style>
   body {
     width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   a.nav-link {
@@ -88,7 +89,7 @@ $dados = $sql->fetchAll();
     background-color: rgb(8, 8, 20);
   }
 
-  p.description{
+  p.description {
     text-align: left;
   }
 </style>
@@ -273,7 +274,7 @@ $dados = $sql->fetchAll();
 
       <!-- ACCORDION -->
 
-      <?php 
+      <?php
       require('../db/conexao.php');
       include('include/accordion.php') ?>
     </div>

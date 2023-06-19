@@ -26,6 +26,12 @@ $dados = $sql->fetchAll();
   <link rel="stylesheet" href="../css/update-e-delete.css">
   <title>Sub17</title>
   <style>
+    body {
+      max-width: 100%;
+      background-color: rgb(214, 168, 100);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
     h1.categoria {
       text-align: center;
       font-weight: bold;
@@ -33,13 +39,8 @@ $dados = $sql->fetchAll();
       padding-bottom: 4vh;
     }
 
-    .dp-menu ul li a {
-      font-weight: bold;
-    }
-
     body {
-      max-width: 100%;
-      background-color: rgb(214, 168, 100);
+      font-family: 'Arial';
     }
 
     table {
@@ -56,6 +57,10 @@ $dados = $sql->fetchAll();
 
     .oculto {
       display: none;
+    }
+
+    main {
+      width: 100%;
     }
   </style>
 </head>

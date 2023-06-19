@@ -33,6 +33,8 @@ if (isset($_POST['salvar'])) {
     <title>Cadastro de partidas</title>
     <style>
         body {
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
             background-color: white;
         }
 
@@ -374,8 +376,8 @@ if (isset($_POST['salvar'])) {
                 $("#partidaLocal").val(local_campeonato);
                 $("#partidaData").val(data_campeonato);
 
-            } else if (valorSelecionado == ""){
-            $("#partidaLocal").val("");
+            } else if (valorSelecionado == "") {
+                $("#partidaLocal").val("");
                 $("#partidaData").val("");
             }
         }

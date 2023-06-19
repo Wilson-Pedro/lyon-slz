@@ -63,7 +63,7 @@ $dados = $sql->fetchAll();
     }
 
     main {
-      width: 99.5%;
+      width: 100%;
     }
   </style>
 </head>

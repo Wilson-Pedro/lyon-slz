@@ -6,7 +6,7 @@ if (isset($_POST['salvar']) && isset($_POST['titulo']) && isset($_POST['descrica
     $descricao = $_POST['descricao'];
 
     $sql = $pdo->prepare("INSERT INTO tblnoticias VALUES (null,?,?)");
-    
+
     $sql = $pdo->prepare("UPDATE tblnoticias SET titulo = :titulo , descricao = :descricao WHERE id= 1");
     $sql->bindValue(':titulo', $titulo);
     $sql->bindValue(':descricao', $descricao);
@@ -32,6 +32,12 @@ if (isset($_POST['salvar']) && isset($_POST['titulo']) && isset($_POST['descrica
     <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
     <title>Cadastro de jogador</title>
     <style>
+        body {
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+        }
+
         body {
             background: white;
         }
@@ -257,7 +263,6 @@ if (isset($_POST['salvar']) && isset($_POST['titulo']) && isset($_POST['descrica
         function limpaCampos1() {
             jogador[1].value = '';
         }
-
     </script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

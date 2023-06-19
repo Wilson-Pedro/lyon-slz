@@ -34,7 +34,7 @@ $dados = $sql->fetchAll();
 
     body {
       width: 100%;
-      background-color: rgb(214, 168, 100);
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     table {

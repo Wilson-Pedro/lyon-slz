@@ -32,7 +32,9 @@ if (isset($_POST['salvar'])) {
     <title>Cadastro de jogador</title>
     <style>
         body {
-            background: white;
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
         }
 
         h1.display-5 {
@@ -230,21 +232,21 @@ if (isset($_POST['salvar'])) {
                 <div class="row">
                     <label for="">Posição</label>
                     <div class="form-floating col-md-8">
-                    <select class="form-control" name="jogadorPosicao" id="jogadorPosicao">
+                        <select class="form-control" name="jogadorPosicao" id="jogadorPosicao">
                             <?php
                             require('../db/conexao.php');
                             $sql = $pdo->prepare("SELECT * FROM tblposicao");
                             $sql->execute();
                             $dados = $sql->fetchAll();
-                            
+
                             echo "<option value=''></option>";
-                            
+
                             foreach ($dados as $chaves => $valor) {
                                 echo "<option value='" . $valor['id_posicao'] . "'
                                 >" . $valor['nome_posicao'] . "</option>";
                             }
                             ?>
-                    </select>
+                        </select>
 
                     </div>
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaPosicao" onclick="limpaCampos2()">Limpar</button>

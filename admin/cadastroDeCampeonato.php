@@ -29,6 +29,8 @@ if (isset($_POST['salvar'])) {
     <title>Cadastro de campeonato</title>
     <style>
         body {
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
             background-color: white;
         }
 
@@ -301,7 +303,6 @@ if (isset($_POST['salvar'])) {
         function limpaCampos2() {
             campeonato[2].value = '';
         }
-
     </script>
 </body>
 

@@ -25,6 +25,11 @@ $dados = $sql->fetchAll();
   <title>Notícias</title>
 </head>
 <style>
+  body {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
   #btn-fotos {
     color: white;
     font-weight: bold;
@@ -261,8 +266,8 @@ $dados = $sql->fetchAll();
       <!-- ACCORDION -->
 
       <?php
-        require('db/conexao.php');
-       include('admin/include/accordion.php') ?>
+      require('db/conexao.php');
+      include('admin/include/accordion.php') ?>
     </div>
 
 

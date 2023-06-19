@@ -2,7 +2,6 @@
 
 div.cabecalho {
     background: linear-gradient(55deg, rgb(250, 165, 6), black);
-    background-position: right;
 }
 
 div.cabecalho>header.navbar>nav.dp-menu {

@@ -22,10 +22,15 @@ $dados = $sql->fetchAll();
   <link rel="stylesheet" href="../css/timeANDescudo.css">
   <link rel="stylesheet" href="../css/navHamburguer.css">
   <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/update-e-delete.css">
 
   <title>Sub11</title>
   <style>
+    body {
+      max-width: 100%;
+      background-color: rgb(214, 168, 100);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
     h1.categoria {
       text-align: center;
       font-weight: bold;
@@ -34,8 +39,7 @@ $dados = $sql->fetchAll();
     }
 
     body {
-      max-width: 100%;
-      background-color: rgb(214, 168, 100);
+      font-family: 'Arial';
     }
 
     table {
@@ -55,7 +59,7 @@ $dados = $sql->fetchAll();
     }
 
     main {
-      width: 99.5%;
+      width: 100%;
     }
   </style>
 </head>

@@ -17,6 +17,11 @@
 
   <title>Escolinha de futebol</title>
   <style>
+    body {
+      width: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
     div#icons {
       display: inline-block;
     }

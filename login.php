@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $servidor = "localhost";
 $usuario = "root";
@@ -27,19 +28,11 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
 
         if ($result->num_rows == 1) {
             $usuario = $result->fetch_assoc();
-            
 
             if (password_verify($senha, $usuario['senha'])) {
                 $_SESSION['id'] = $usuario['id'];
                 $_SESSION['usuario'] = $usuario['usuario'];
-                echo "<a href='admin/homeAdmin.php' id='acessar' style='display:none'></a>";
-                echo "
-                <script>
-                var acessar = document.getElementById('acessar');
-                acessar.click();
-                </script>
-                ";
-                exit();
+                header('Location: admin/homeAdmin.php');
             }
         } else {
             $invalid = "Ops... e-mail ou senha incorretos!";

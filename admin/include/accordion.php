@@ -39,7 +39,7 @@ $descricao = $resultado['descricao']
     </div>
 
     <div class="d-grid gap-2 col-6 mx-auto mt-4">
-        <a href="fotos.php" class="btn btn-warning mt-2" id="btn-fotos" type="button">Ver Fotos</a>
+        <a href="fotosAdmin.php" class="btn btn-warning mt-2" id="btn-fotos" type="button">Ver Fotos</a> 
     </div>
 
 </div>

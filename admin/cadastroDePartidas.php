@@ -6,12 +6,13 @@ if (isset($_POST['salvar'])) {
     $adversario = $_POST['partidaTimeB'];
     $id_campeonato = $_POST['campeonato'];
     $data = $_POST['data'];
+    $link_fotos = '';
     $horario = $_POST['horario'];
     $gols_lyon = 0;
     $gols_adv = 0;
 
-    $sql = $pdo->prepare("INSERT INTO tblpartidass VALUES (null,?,?,?,?,?,?,?)");
-    $sql->execute(array($local, $adversario, $id_campeonato, $data, $horario, $gols_lyon, $gols_adv));
+    $sql = $pdo->prepare("INSERT INTO tblpartidass VALUES (null,?,?,?,?,?,?,?,?)");
+    $sql->execute(array($local, $adversario, $id_campeonato, $data, $link_fotos, $horario, $gols_lyon, $gols_adv));
 }
 ?>
 

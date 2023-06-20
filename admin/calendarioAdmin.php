@@ -55,9 +55,6 @@ $dados = $sql->fetchAll();
     font-size: 86%;
   }
 
-  .dp-menu ul li a {
-    font-weight: bold;
-  }
 
   .oculto {
     display: none;

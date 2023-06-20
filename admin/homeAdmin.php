@@ -1,10 +1,3 @@
-<?php 
-    session_start();
-
-    if (!isset($_SESSION['id']) || !isset($_SESSION['usuario'])) {
-        die("Você não pode acessar essa página porque não está logado!<p><a href=\"login.php\">Entrar</p>");
-    }
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 

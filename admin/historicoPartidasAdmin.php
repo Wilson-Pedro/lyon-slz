@@ -43,14 +43,10 @@ $dados = $sql->fetchAll();
 
     td,
     th {
-        padding: 5px;
+        padding: 2px;
         text-align: center;
         border: solid 1px black;
-        font-size: 12px;
-    }
-
-    .dp-menu ul li a {
-        font-weight: bold;
+        font-size: 63.7%;
     }
 
     .oculto {
@@ -191,7 +187,9 @@ $dados = $sql->fetchAll();
                     <h5>Gols do Lyon:</h5>
                     <input type="number" id="gols_lyon_editado" name="gols_lyon_editado" placeholder="Editar time gols" required><br><br>
                     <h5>Gols do Adversário:</h5>
-                    <input type="number" id="gols_adv_editado" name="gols_adv_editado" placeholder="Editar gols" required><br><br>
+                    <input type="number" id="gols_adv_editado" name="gols_adv_editado" placeholder="Editar time gols" required><br><br>
+                    <h5>Link das fotos:</h5>
+                    <input type="text" id="link_fotos_editado" name="link_fotos_editado" placeholder="Editar gols" required><br><br>
                     <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
                     <button type="button" id="cancelar" name="cancelar">Cancelar</button>
                     <hr>
@@ -214,13 +212,15 @@ $dados = $sql->fetchAll();
             <br><br>
             <?php
             //PROCESSO DE ATUALIZAÇÃO
-            if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['gols_lyon_editado']) && isset($_POST['gols_adv_editado'])) {
+            if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['gols_lyon_editado']) && isset($_POST['gols_adv_editado']) && isset($_POST['link_fotos_editado'])) {
                 $id = $_POST['id_editado'];
                 $gols_lyon = $_POST['gols_lyon_editado'];
                 $gols_adv = $_POST['gols_adv_editado'];
-                $sql = $pdo->prepare("UPDATE tblpartidass SET gols_lyon = :gols_lyon, gols_adv = :gols_adv WHERE id= :id");
+                $link_fotos = $_POST['link_fotos_editado'];
+                $sql = $pdo->prepare("UPDATE tblpartidass SET gols_lyon = :gols_lyon, gols_adv = :gols_adv, link_fotos = :link_fotos WHERE id= :id");
                 $sql->bindValue(':gols_lyon', $gols_lyon);
                 $sql->bindValue(':gols_adv', $gols_adv);
+                $sql->bindValue(':link_fotos', $link_fotos);
                 $sql->bindValue(':id', $id);
                 $sql->execute();
                 echo "
@@ -259,6 +259,7 @@ $dados = $sql->fetchAll();
               <th>JOGOS</th>
               <th>RESULTADO</th>
               <th>DATA</th>
+              <th>FOTOS</th>
               <th>Editar</th>
                   </tr>
                   </thead>";
@@ -269,8 +270,10 @@ $dados = $sql->fetchAll();
                                 <td><abbr title='" . $valor['nome_campeonato'] . "'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
                                 <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                                 <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                                <td> <a href='". $valor['link_fotos'] ."' target='_blank'>fotos</a> </td>
                                 <td><a href='#' class='btn-atualizar' 
                                 data-id='" . $valor['id'] . "' 
+                                data-link_fotos='". $valor['link_fotos'] ."'
                                 data-gols_lyon='" . $valor['gols_lyon'] . "'
                                 data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' 
                                 data-id='" . $valor['id'] . "' 
@@ -301,6 +304,7 @@ $dados = $sql->fetchAll();
         var id = $(this).attr('data-id');
         var gols_lyon = $(this).attr('data-gols_lyon');
         var gols_adv = $(this).attr('data-gols_adv');
+        var link_fotos = $(this).attr('data-link_fotos');
 
         $('#form_salva').addClass('oculto');
         $('#form_deleta').addClass('oculto');
@@ -311,6 +315,7 @@ $dados = $sql->fetchAll();
         $("#id_editado").val(id);
         $("#gols_lyon_editado").val(gols_lyon);
         $("#gols_adv_editado").val(gols_adv);
+        $("#link_fotos_editado").val(link_fotos);
 
     });
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Jun-2023 às 18:17
+-- Tempo de geração: 20-Jun-2023 às 22:46
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -40,7 +40,7 @@ CREATE TABLE `tblcampeonato` (
 
 INSERT INTO `tblcampeonato` (`id_campeonato`, `nome_campeonato`, `local_campeonato`, `data_campeonato`) VALUES
 (13, 'Amistoso', '', '0000-00-00'),
-(17, 'Torneio sub-17', 'Castelinho', '2023-06-22'),
+(17, 'Torneio sub-17', 'Castelinho', '2023-06-21'),
 (18, 'Torneio sub-11', 'Estácio', '2023-06-23');
 
 -- --------------------------------------------------------
@@ -103,11 +103,11 @@ CREATE TABLE `tbljogadoress` (
 --
 
 INSERT INTO `tbljogadoress` (`id`, `nome`, `sobrenome`, `idade`, `id_posicao`, `gols`) VALUES
-(22, 'julio', 'Silva', 13, 10, 3),
+(22, 'julio', 'Silva', 13, 10, 2),
 (24, 'Carlos', 'Alberto', 9, 12, 3),
-(25, 'Mario', 'Lucio', 11, 12, 6),
+(25, 'Mario', 'Lucio', 11, 10, 6),
 (26, 'Lucas', 'Silva', 15, 9, 3),
-(27, 'Rivaldo', 'Vitor', 17, 2, 5);
+(27, 'Rivaldo', 'Vitor', 17, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -145,7 +145,7 @@ CREATE TABLE `tblnoticias` (
 --
 
 INSERT INTO `tblnoticias` (`id`, `titulo`, `descricao`) VALUES
-(1, 'Torneio sub-18', 'Neste mês de Dezembro disputamos, à @copainterbairrosfut7ma Sub-13, onde chegamos até à final, sendo derrotado nos pênaltis. Onde após o jogo, recebemos denúncias que na equipe adversária teria atletas de forma irregular, com idade que não correspondia com à categoria Sub-13 e sim esse atleta sendo Sub-14. Fizemos todos os procedimentos legais e pôr vim, à verdade chegou.  SOMOS CAMPEÕES🤷‍♂️🏆🥇.  Parabéns atletas, comissão e todos aquele que ajudam nossa equipe...');
+(1, 'Nota de Esclarecimento.', 'Neste mês de Dezembro disputamos, à @copainterbairrosfut7ma Sub-13, onde chegamos até à final, sendo derrotado nos pênaltis. Onde após o jogo, recebemos denúncias que na equipe adversária teria atletas de forma irregular, com idade que não correspondia com à categoria Sub-13 e sim esse atleta sendo Sub-14. Fizemos todos os procedimentos legais e pôr vim, à verdade chegou.  SOMOS CAMPEÕES🤷‍♂️🏆🥇.  Parabéns atletas, comissão e todos aquele que ajudam nossa equipe...');
 
 -- --------------------------------------------------------
 
@@ -159,6 +159,7 @@ CREATE TABLE `tblpartidass` (
   `adversario` varchar(255) DEFAULT NULL,
   `id_campeonato` int(10) UNSIGNED NOT NULL,
   `data_partida` date NOT NULL,
+  `link_fotos` varchar(255) NOT NULL,
   `horario` time(6) NOT NULL,
   `gols_lyon` int(11) NOT NULL,
   `gols_adv` int(11) NOT NULL
@@ -168,9 +169,10 @@ CREATE TABLE `tblpartidass` (
 -- Extraindo dados da tabela `tblpartidass`
 --
 
-INSERT INTO `tblpartidass` (`id`, `localidade`, `adversario`, `id_campeonato`, `data_partida`, `horario`, `gols_lyon`, `gols_adv`) VALUES
-(27, 'Estácio', 'Juventus', 18, '2023-06-18', '10:35:00.000000', 0, 0),
-(28, 'Estácio', 'Tiger', 13, '2023-06-14', '12:56:00.000000', 0, 0);
+INSERT INTO `tblpartidass` (`id`, `localidade`, `adversario`, `id_campeonato`, `data_partida`, `link_fotos`, `horario`, `gols_lyon`, `gols_adv`) VALUES
+(28, 'Estácio', 'Tiger', 13, '2023-06-14', 'https://www.youtube.com/watch?v=i6iBAuwBODA', '12:56:00.000000', 1, 0),
+(29, 'Estácio', 'Falcons', 18, '2023-06-23', '', '18:13:00.000000', 0, 0),
+(30, 'Estácio', 'Juventus', 13, '2023-06-14', 'https://www.youtube.com/watch?v=8ku-ix0Ezj4', '18:37:00.000000', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -299,7 +301,7 @@ ALTER TABLE `tblnoticias`
 -- AUTO_INCREMENT de tabela `tblpartidass`
 --
 ALTER TABLE `tblpartidass`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de tabela `tblposicao`

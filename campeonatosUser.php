@@ -180,7 +180,6 @@ $dados = $sql->fetchAll();
                   <thead class=table-dark>
                   <tr>
               <th>CAMPEONATO</th>
-              <th>LOCAL</th>
               <th>DATA</th>
                   </tr>
                   </thead>";
@@ -189,7 +188,6 @@ $dados = $sql->fetchAll();
                     if (strtotime($dataJogo) >= strtotime($data_Atual)) {
                         echo "<tr>
                   <td>" . $valor['nome_campeonato'] . "</td>
-                  <td>" . $valor['local_campeonato'] . "</td>
                   <td>" . date("d/m/y", strtotime($valor['data_campeonato'])) . "</td>
 
             </tr>";

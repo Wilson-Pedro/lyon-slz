@@ -190,8 +190,6 @@ $dados = $sql->fetchAll();
                     <input type="text" class="id_oculto" id="id_editado" name="id_editado" placeholder="ID" required> <br><br>
                     <h5>Nome campeonato:</h5>
                     <input type="text" id="nome_c_editado" name="nome_c_editado" placeholder="Editar time gols" required><br><br>
-                    <h5>Local Campeonato:</h5>
-                    <input type="text" id="local_c_editado" name="local_c_editado" placeholder="Editar gols" required><br><br>
                     <h5>Data Campeonato:</h5>
                     <input type="date" id="data_c_editado" name="data_c_editado" placeholder="Editar gols" required><br><br>
                     <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
@@ -203,14 +201,12 @@ $dados = $sql->fetchAll();
             <br><br>
             <?php
             //PROCESSO DE ATUALIZAÇÃO
-            if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['nome_c_editado']) && isset($_POST['local_c_editado']) && isset($_POST['data_c_editado'])) {
+            if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['nome_c_editado']) && isset($_POST['data_c_editado'])) {
                 $id_campeonato = $_POST['id_editado'];
                 $nome_campeonato = $_POST['nome_c_editado'];
-                $local_campeonato = $_POST['local_c_editado'];
                 $data_campeonato = $_POST['data_c_editado'];
-                $sql = $pdo->prepare("UPDATE tblcampeonato SET nome_campeonato = :nome_campeonato, local_campeonato = :local_campeonato, data_campeonato = :data_campeonato WHERE id_campeonato= :id_campeonato");
+                $sql = $pdo->prepare("UPDATE tblcampeonato SET nome_campeonato = :nome_campeonato, data_campeonato = :data_campeonato WHERE id_campeonato= :id_campeonato");
                 $sql->bindValue(':nome_campeonato', $nome_campeonato);
-                $sql->bindValue(':local_campeonato', $local_campeonato);
                 $sql->bindValue(':data_campeonato', $data_campeonato);
                 $sql->bindValue(':id_campeonato', $id_campeonato);
                 $sql->execute();
@@ -230,7 +226,6 @@ $dados = $sql->fetchAll();
                   <thead class=table-dark>
                   <tr>
               <th>CAMPEONATO</th>
-              <th>LOCAL</th>
               <th>DATA</th>
               <th>Editar</th>
                   </tr>
@@ -240,13 +235,11 @@ $dados = $sql->fetchAll();
                     if (strtotime($dataJogo) >= strtotime($data_Atual)) {
                         echo "<tr>
                   <td>" . $valor['nome_campeonato'] . "</td>
-                  <td>" . $valor['local_campeonato'] . "</td>
                   <td>" . date("d/m/y", strtotime($valor['data_campeonato'])) . "</td>
                   <td>
                   <a href='#' class='btn-atualizar' 
                   data-id='" . $valor['id_campeonato'] . "' 
                   data-nome-c='" . $valor['nome_campeonato'] . "'
-                  data-local-c='" . $valor['local_campeonato'] . "'
                   data-data-c='" . $valor['data_campeonato'] . "'
                   >Atualizar</a></td>
             </tr>";
@@ -272,7 +265,6 @@ $dados = $sql->fetchAll();
     $(".btn-atualizar").click(function() {
         var id = $(this).attr('data-id');
         var nome_campeonato = $(this).attr('data-nome-c');
-        var local_campeonato = $(this).attr('data-local-c');
         var data_campeonato = $(this).attr('data-data-c');
 
         $('#form_salva').addClass('oculto');
@@ -283,7 +275,6 @@ $dados = $sql->fetchAll();
 
         $("#id_editado").val(id);
         $("#nome_c_editado").val(nome_campeonato);
-        $("#local_c_editado").val(local_campeonato);
         $("#data_c_editado").val(data_campeonato);
 
     });

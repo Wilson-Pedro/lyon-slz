@@ -3,11 +3,10 @@ require('../db/conexao.php');
 
 if (isset($_POST['salvar'])) {
     $nome = $_POST['nome_campeonato'];
-    $local = $_POST['local_campeonato'];
     $data = $_POST['data_campeonato'];
 
-    $sql = $pdo->prepare("INSERT INTO tblcampeonato VALUES (null,?,?,?)");
-    $sql->execute(array($nome, $local, $data));
+    $sql = $pdo->prepare("INSERT INTO tblcampeonato VALUES (null,?,?)");
+    $sql->execute(array($nome, $data));
 }
 ?>
 
@@ -220,15 +219,6 @@ if (isset($_POST['salvar'])) {
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaLocal" onclick="limpaCampos0()">Limpar</button>
                 </div><br>
 
-                <!-- LOCAL -->
-                <div class="row">
-                    <div class="form-floating col-md-8">
-                        <input type="text" class="form-control" id="local_campeonato" name="local_campeonato" placeholder="Ex.: Estádio Lourenço Farias. Centro.">
-                        <label for="floatingInput text-center">Local do campeonato</label>
-                    </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaLocal" onclick="limpaCampos1()">Limpar</button>
-                </div><br>
-
                 <!-- JANELAS DE CONFIRMAÇÃO -->
                 <dialog id="cad-partidaConfirmMsg" class="MsgSucesso">
                     <p class="cad-partidaMsgSucesso">Cadastro feito com Sucesso!</p>
@@ -262,12 +252,11 @@ if (isset($_POST['salvar'])) {
         var cad_partidaConfirmMsgErro = document.getElementById('cad-partidaConfirmMsgErro');
         var campeonato = [
             document.getElementById('nome_campeonato'),
-            document.getElementById('local_campeonato'),
             document.getElementById('data_campeonato'),
         ];
         // VALIDAÇÃO DOS CAMPOS DO CAD. DE PARTIDA
         function validaCampos(event) {
-            if (campeonato[0].value == '' || campeonato[1].value == '' || campeonato[2].value == '') {
+            if (campeonato[0].value == '' || campeonato[1].value == '') {
                 alert('Preencha todos os campos para cadastrar uma partida');
             }
             //  else if (typeof partida[0].value === "number") {

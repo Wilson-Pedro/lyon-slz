@@ -237,7 +237,7 @@ if (isset($_POST['salvar'])) {
                         <select class="form-control" name="campeonato" id="campeonato" onchange="campeonatoSelect()">
                             <?php
                             require('../db/conexao.php');
-                            $sql = $pdo->prepare("SELECT id_campeonato, nome_campeonato, local_campeonato, data_campeonato FROM tblcampeonato WHERE data_campeonato >= CURRENT_DATE");
+                            $sql = $pdo->prepare("SELECT * FROM tblcampeonato WHERE data_campeonato >= CURRENT_DATE");
                             $sql->execute();
                             $dados = $sql->fetchAll();
 
@@ -245,7 +245,6 @@ if (isset($_POST['salvar'])) {
 
                             foreach ($dados as $chaves => $valor) {
                                 echo "<option value='" . $valor['id_campeonato'] . "'
-                                data-local='" . $valor['local_campeonato'] . "'
                                 data-data='" . $valor['data_campeonato'] . "'
                                 >" . $valor['nome_campeonato'] . "</option>";
                             }
@@ -371,14 +370,11 @@ if (isset($_POST['salvar'])) {
         function campeonatoSelect() {
             var valorSelecionado = campeonato.value;
             var optionSelecionado = campeonato.options[campeonato.selectedIndex];
-            var local_campeonato = optionSelecionado.getAttribute('data-local');
             var data_campeonato = optionSelecionado.getAttribute('data-data');
             if (valorSelecionado != "") {
-                $("#partidaLocal").val(local_campeonato);
                 $("#partidaData").val(data_campeonato);
 
             } else if (valorSelecionado == "") {
-                $("#partidaLocal").val("");
                 $("#partidaData").val("");
             }
         }

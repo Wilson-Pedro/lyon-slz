@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Jun-2023 às 22:46
+-- Tempo de geração: 20-Jun-2023 às 23:01
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `tblcampeonato` (
   `id_campeonato` int(11) UNSIGNED NOT NULL,
   `nome_campeonato` varchar(255) NOT NULL,
-  `local_campeonato` varchar(255) NOT NULL,
   `data_campeonato` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -38,10 +37,11 @@ CREATE TABLE `tblcampeonato` (
 -- Extraindo dados da tabela `tblcampeonato`
 --
 
-INSERT INTO `tblcampeonato` (`id_campeonato`, `nome_campeonato`, `local_campeonato`, `data_campeonato`) VALUES
-(13, 'Amistoso', '', '0000-00-00'),
-(17, 'Torneio sub-17', 'Castelinho', '2023-06-21'),
-(18, 'Torneio sub-11', 'Estácio', '2023-06-23');
+INSERT INTO `tblcampeonato` (`id_campeonato`, `nome_campeonato`, `data_campeonato`) VALUES
+(13, 'Amistoso', '0000-00-00'),
+(17, 'Torneio sub-17', '2023-06-21'),
+(18, 'Torneio sub-11', '2023-06-23'),
+(19, 'Torneio sub-15', '2023-06-23');
 
 -- --------------------------------------------------------
 
@@ -172,7 +172,8 @@ CREATE TABLE `tblpartidass` (
 INSERT INTO `tblpartidass` (`id`, `localidade`, `adversario`, `id_campeonato`, `data_partida`, `link_fotos`, `horario`, `gols_lyon`, `gols_adv`) VALUES
 (28, 'Estácio', 'Tiger', 13, '2023-06-14', 'https://www.youtube.com/watch?v=i6iBAuwBODA', '12:56:00.000000', 1, 0),
 (29, 'Estácio', 'Falcons', 18, '2023-06-23', '', '18:13:00.000000', 0, 0),
-(30, 'Estácio', 'Juventus', 13, '2023-06-14', 'https://www.youtube.com/watch?v=8ku-ix0Ezj4', '18:37:00.000000', 0, 0);
+(30, 'Estácio', 'Juventus', 13, '2023-06-14', 'https://www.youtube.com/watch?v=8ku-ix0Ezj4', '18:37:00.000000', 0, 0),
+(31, 'Qatar', 'Julius', 19, '2023-06-23', '', '20:57:00.000000', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -265,7 +266,7 @@ ALTER TABLE `tblposicao`
 -- AUTO_INCREMENT de tabela `tblcampeonato`
 --
 ALTER TABLE `tblcampeonato`
-  MODIFY `id_campeonato` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_campeonato` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `tblfotoss`
@@ -301,7 +302,7 @@ ALTER TABLE `tblnoticias`
 -- AUTO_INCREMENT de tabela `tblpartidass`
 --
 ALTER TABLE `tblpartidass`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de tabela `tblposicao`

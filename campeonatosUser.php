@@ -1,7 +1,7 @@
 <?php
 include('db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblcampeonato");
+$sql = $pdo->prepare("SELECT * FROM tblcampeonato ORDER BY tblcampeonato.data_campeonato");
 $sql->execute();
 $dados = $sql->fetchAll();
 

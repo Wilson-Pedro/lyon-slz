@@ -1,7 +1,7 @@
 <?php
 include('db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblpartidass");
+$sql = $pdo->prepare("SELECT * FROM tblpartidass ORDER BY tblpartidass.horario");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -180,6 +180,7 @@ $dados = $sql->fetchAll();
               <th>JOGOS</th>
               <th>RESULTADO</th>
               <th>DATA</th>
+              <th>HORÁRIO</th>
                   </tr>
                   </thead>";
                 foreach ($dados as $chaves => $valor) {
@@ -189,6 +190,7 @@ $dados = $sql->fetchAll();
                   <td>" . "Lyon X " . $valor['adversario'] . "</td>
                   <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                   <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                  <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
                   
             </tr>";
                     }

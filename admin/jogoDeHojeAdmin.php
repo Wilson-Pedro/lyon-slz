@@ -43,7 +43,7 @@ $dados = $sql->fetchAll();
         padding: 5px;
         text-align: center;
         border: solid 1px black;
-        font-size: 12px;
+        font-size: 66%;
     }
 
     .dp-menu ul li a {
@@ -256,6 +256,7 @@ $dados = $sql->fetchAll();
               <th>JOGOS</th>
               <th>RESULTADO</th>
               <th>DATA</th>
+              <th>HORÁRIO</th>
               <th>Editar</th>
                   </tr>
                   </thead>";
@@ -266,6 +267,7 @@ $dados = $sql->fetchAll();
                   <td>" . "Lyon X " . $valor['adversario'] . "</td>
                   <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                   <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                  <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
                   <td><a href='#' class='btn-atualizar' 
                   data-id='" . $valor['id'] . "' 
                   data-gols_lyon='" . $valor['gols_lyon'] . "'

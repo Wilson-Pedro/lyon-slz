@@ -4,7 +4,7 @@ require('db/conexao.php');
 $sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato
 FROM tblpartidass
 JOIN tblcampeonato ON tblpartidass.id_campeonato = tblcampeonato.id_campeonato
-");
+ORDER BY tblpartidass.data_partida");
 $sql->execute();
 $dados = $sql->fetchAll();
 

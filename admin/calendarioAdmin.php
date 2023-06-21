@@ -4,7 +4,7 @@ include('../db/conexao.php');
 $sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato
 FROM tblpartidass
 JOIN tblcampeonato ON tblpartidass.id_campeonato = tblcampeonato.id_campeonato
-");
+ORDER BY tblpartidass.data_partida");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -48,7 +48,7 @@ $dados = $sql->fetchAll();
     padding: 5px;
     text-align: center;
     border: solid 1px black;
-    font-size: 11px;
+    font-size: 65%;
   }
 
   header>nav>ul>li>a {
@@ -283,7 +283,7 @@ $dados = $sql->fetchAll();
             echo "<tr>
                 <td><abbr title='". $valor['nome_campeonato'] ."'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
                 <td>" . $valor['localidade'] . "</td>
-                <td>" . date("d/m", strtotime($valor['data_partida'])) . "</td>
+                <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
                 <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
                 <td><a href='#' class='btn-atualizar' 
                 data-id='" . $valor['id'] . "' 

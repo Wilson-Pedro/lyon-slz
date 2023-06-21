@@ -4,7 +4,7 @@ include('../db/conexao.php');
 $sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato
 FROM tblpartidass
 JOIN tblcampeonato ON tblpartidass.id_campeonato = tblcampeonato.id_campeonato
-");
+ORDER BY tblpartidass.data_partida");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -188,6 +188,17 @@ $dados = $sql->fetchAll();
                     <input type="number" id="gols_lyon_editado" name="gols_lyon_editado" placeholder="Editar time gols" required><br><br>
                     <h5>Gols do Adversário:</h5>
                     <input type="number" id="gols_adv_editado" name="gols_adv_editado" placeholder="Editar time gols" required><br><br>
+                    <h5>Local:</h5>
+                    <input type="text" id="localidade_editado" name="localidade_editado" placeholder="Editar local" required> <br><br>
+                    <h5>Time B:</h5>
+                    <input type="text" id="timeb_editado" name="timeb_editado" placeholder="Editar time B" required><br><br>
+                    <h5>Data:</h5>
+                    <input type="date" id="data_partida_editado" name="data_partida_editado" placeholder="Editar Data" required><br><br>
+                    <h5>Horário:</h5>
+                    <input type="time" id="horario_editado" name="horario_editado" placeholder="Editar horário" required><br><br>
+                    <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
+                    <button type="button" id="cancelar" name="cancelar">Cancelar</button>
+                    <hr>
                     <h5>Link das fotos:</h5>
                     <input type="text" id="link_fotos_editado" name="link_fotos_editado" placeholder="Editar gols" required><br><br>
                     <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
@@ -212,15 +223,23 @@ $dados = $sql->fetchAll();
             <br><br>
             <?php
             //PROCESSO DE ATUALIZAÇÃO
-            if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['gols_lyon_editado']) && isset($_POST['gols_adv_editado']) && isset($_POST['link_fotos_editado'])) {
+            if (isset($_POST['atualizar']) && isset($_POST['id_editado']) && isset($_POST['gols_lyon_editado']) && isset($_POST['gols_adv_editado']) && isset($_POST['link_fotos_editado']) && isset($_POST['localidade_editado']) && isset($_POST['timeb_editado']) && isset($_POST['data_partida_editado']) && isset($_POST['horario_editado'])) {
                 $id = $_POST['id_editado'];
                 $gols_lyon = $_POST['gols_lyon_editado'];
                 $gols_adv = $_POST['gols_adv_editado'];
                 $link_fotos = $_POST['link_fotos_editado'];
-                $sql = $pdo->prepare("UPDATE tblpartidass SET gols_lyon = :gols_lyon, gols_adv = :gols_adv, link_fotos = :link_fotos WHERE id= :id");
+                $localidade = $_POST['localidade_editado'];
+                $timeb = $_POST['timeb_editado'];
+                $data_partida = $_POST['data_partida_editado'];
+                $horario = $_POST['horario_editado'];
+                $sql = $pdo->prepare("UPDATE tblpartidass SET gols_lyon = :gols_lyon, gols_adv = :gols_adv, link_fotos = :link_fotos, localidade = :localidade, adversario = :adversario, data_partida = :data_partida, horario = :horario WHERE id= :id");
                 $sql->bindValue(':gols_lyon', $gols_lyon);
                 $sql->bindValue(':gols_adv', $gols_adv);
                 $sql->bindValue(':link_fotos', $link_fotos);
+                $sql->bindValue(':localidade', $localidade);
+                $sql->bindValue(':adversario', $timeb);
+                $sql->bindValue(':data_partida', $data_partida);
+                $sql->bindValue(':horario', $horario);
                 $sql->bindValue(':id', $id);
                 $sql->execute();
                 echo "
@@ -267,27 +286,32 @@ $dados = $sql->fetchAll();
                     $dataJogo = $valor['data_partida'];
                     if (strtotime($dataJogo) <= strtotime($data_Atual)) {
                         echo "<tr>
-                                <td><abbr title='" . $valor['nome_campeonato'] . "'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
-                                <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
-                                <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-                                <td> 
-                                    <abbr class='abreviacao' title='Não há link para fotos'>
-                                        <a class='link_foto' 
-                                        style='color:red' 
-                                        href='". $valor['link_fotos'] ."' 
-                                        target='_blank'
-                                        >fotos</a> 
-                                    </abbr>
-                                </td>
-                                <td><a href='#' class='btn-atualizar' 
-                                data-id='" . $valor['id'] . "' 
-                                data-link_fotos='". $valor['link_fotos'] ."'
-                                data-gols_lyon='" . $valor['gols_lyon'] . "'
-                                data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' 
-                                data-id='" . $valor['id'] . "' 
-                                data-localidade='" . $valor['localidade'] . "' 
-                                data-timeb='" . $valor['adversario'] . "'
-                                data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
+                            <td><abbr title='" . $valor['nome_campeonato'] . "'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
+                            <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
+                            <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
+                            <td> 
+                                <abbr class='abreviacao' title='Não há link para fotos'>
+                                    <a class='link_foto' 
+                                    style='color:red' 
+                                    href='" . $valor['link_fotos'] . "' 
+                                    target='_blank'
+                                    >fotos</a> 
+                                </abbr>
+                            </td>
+                            <td><a href='#' class='btn-atualizar' 
+                            data-id='" . $valor['id'] . "' 
+                            data-link_fotos='" . $valor['link_fotos'] . "'
+                            data-gols_lyon='" . $valor['gols_lyon'] . "'
+                            data-gols_adv='" . $valor['gols_adv'] . "'
+                            data-localidade='" . $valor['localidade'] . "'
+                            data-timeb='" . $valor['adversario'] . "'
+                            data-data_partida='" . $valor['data_partida'] . "'
+                            data-horario='" . date("H:i", strtotime($valor['horario'])) . "'
+                            >Atualizar</a> | <a href='#' class='btn-deletar' 
+                            data-id='" . $valor['id'] . "' 
+                            data-localidade='" . $valor['localidade'] . "' 
+                            data-timeb='" . $valor['adversario'] . "'
+                            data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
                             </tr>";
                     }
                 }
@@ -313,6 +337,10 @@ $dados = $sql->fetchAll();
         var gols_lyon = $(this).attr('data-gols_lyon');
         var gols_adv = $(this).attr('data-gols_adv');
         var link_fotos = $(this).attr('data-link_fotos');
+        var localidade = $(this).attr('data-localidade');
+        var timeb = $(this).attr('data-timeb');
+        var data_partida = $(this).attr('data-data_partida');
+        var horario = $(this).attr('data-horario');
 
         $('#form_salva').addClass('oculto');
         $('#form_deleta').addClass('oculto');
@@ -324,6 +352,10 @@ $dados = $sql->fetchAll();
         $("#gols_lyon_editado").val(gols_lyon);
         $("#gols_adv_editado").val(gols_adv);
         $("#link_fotos_editado").val(link_fotos);
+        $("#localidade_editado").val(localidade);
+        $("#timeb_editado").val(timeb);
+        $("#data_partida_editado").val(data_partida);
+        $("#horario_editado").val(horario)
 
     });
 
@@ -364,17 +396,16 @@ $dados = $sql->fetchAll();
     });
 
     $(document).ready(function() {
-    var link_fotos = document.getElementsByClassName('link_foto');
-    var abreviacao = document.getElementsByClassName('abreviacao');
-    for (var i = 0; i < link_fotos.length; i++) {
-        var href = link_fotos[i].getAttribute('href');
-        if (href !== '') {
-            link_fotos[i].style.color = 'blue';
-            abreviacao[i].title = '';
+        var link_fotos = document.getElementsByClassName('link_foto');
+        var abreviacao = document.getElementsByClassName('abreviacao');
+        for (var i = 0; i < link_fotos.length; i++) {
+            var href = link_fotos[i].getAttribute('href');
+            if (href !== '') {
+                link_fotos[i].style.color = 'blue';
+                abreviacao[i].title = '';
+            }
         }
-    }
-});
-
+    });
 </script>
 
 </html>

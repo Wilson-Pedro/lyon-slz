@@ -4,7 +4,7 @@ require('db/conexao.php');
 $sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato
 FROM tblpartidass
 JOIN tblcampeonato ON tblpartidass.id_campeonato = tblcampeonato.id_campeonato
-");
+ORDER BY tblpartidass.data_partida");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -159,10 +159,18 @@ $dados = $sql->fetchAll();
           $dataJogo = $valor['data_partida'];
           if (strtotime($dataJogo) <= strtotime($data_Atual)) {
             echo "<tr>
-                  <td><abbr title='". $valor['nome_campeonato'] ."'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
+                  <td><abbr title='" . $valor['nome_campeonato'] . "'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
                   <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                   <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-                  <td> <a href='". $valor['link_fotos'] ."' target='_blank'>fotos</a> </td>
+                  <td> 
+                                    <abbr class='abreviacao' title='Não há link para fotos'>
+                                        <a class='link_foto' 
+                                        style='color:red' 
+                                        href='" . $valor['link_fotos'] . "' 
+                                        target='_blank'
+                                        >fotos</a> 
+                                    </abbr>
+                                </td>
                 
                     </tr>";
           }
@@ -177,8 +185,21 @@ $dados = $sql->fetchAll();
   <footer>
     <p class="mb-0">Escolinha de Futebol LYON SLZ</p>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function(){
+    var link_fotos = document.getElementsByClassName('link_foto');
+    var abreviacao = document.getElementsByClassName('abreviacao');
+    for(var i = 0; i < link_fotos.length; i++){
+      var href = link_fotos[i].getAttribute('href');
+      if(href != ''){
+        link_fotos[i].style.color = 'blue';
+        abreviacao[i].title = '';
+      }
+    }
+  })
+</script>
 
 </html>

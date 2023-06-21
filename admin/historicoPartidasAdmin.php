@@ -270,7 +270,15 @@ $dados = $sql->fetchAll();
                                 <td><abbr title='" . $valor['nome_campeonato'] . "'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
                                 <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                                 <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
-                                <td> <a href='". $valor['link_fotos'] ."' target='_blank'>fotos</a> </td>
+                                <td> 
+                                    <abbr class='abreviacao' title='Não há link para fotos'>
+                                        <a class='link_foto' 
+                                        style='color:red' 
+                                        href='". $valor['link_fotos'] ."' 
+                                        target='_blank'
+                                        >fotos</a> 
+                                    </abbr>
+                                </td>
                                 <td><a href='#' class='btn-atualizar' 
                                 data-id='" . $valor['id'] . "' 
                                 data-link_fotos='". $valor['link_fotos'] ."'
@@ -354,6 +362,19 @@ $dados = $sql->fetchAll();
         $('#form_deleta').addClass('oculto');
         $('#div-delete').addClass('oculto');
     });
+
+    $(document).ready(function() {
+    var link_fotos = document.getElementsByClassName('link_foto');
+    var abreviacao = document.getElementsByClassName('abreviacao');
+    for (var i = 0; i < link_fotos.length; i++) {
+        var href = link_fotos[i].getAttribute('href');
+        if (href !== '') {
+            link_fotos[i].style.color = 'blue';
+            abreviacao[i].title = '';
+        }
+    }
+});
+
 </script>
 
 </html>

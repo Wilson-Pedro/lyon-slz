@@ -228,28 +228,44 @@ if (isset($_POST['salvar'])) {
                     <a href="cadastro.php"><input type="button" value="Ok" class="btn-MsgErro"></a>
                 </dialog>
 
-                <!-- POSIÇÃO -->
-                <div class="row">
-                    <label for="">Posição</label>
-                    <div class="form-floating col-md-8">
-                        <select class="form-control" name="jogadorPosicao" id="jogadorPosicao">
-                            <?php
-                            require('../db/conexao.php');
-                            $sql = $pdo->prepare("SELECT * FROM tblposicao");
-                            $sql->execute();
-                            $dados = $sql->fetchAll();
-
-                            echo "<option value=''></option>";
-
-                            foreach ($dados as $chaves => $valor) {
-                                echo "<option value='" . $valor['id_posicao'] . "'
-                                >" . $valor['nome_posicao'] . "</option>";
-                            }
-                            ?>
+                <!-- MODALIDADE -->
+                <div class='row'>
+                    <label>Modalidade</label>
+                    <div class='form-floating col-md-8'>
+                        <select class='form-control' name='modalidade' id='modalidade' onchange="atualizarSegundoSelect()">
+                            <option value=''></option>
+                            <option value='1'>Futsal</option>
+                            <option value='2'>Futebol</option>
                         </select>
 
                     </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaPosicao" onclick="limpaCampos2()">Limpar</button>
+                    <button type='button' class='btn btn-warning col btn-lg' id='limpaPosicao' onclick='limpaCampos5()'>Limpar</button>
+                </div><br>
+
+                <!-- POSIÇÃO -->
+                <div class='row'>
+                    <label>Posição</label>
+                    <div class='form-floating col-md-8'>
+                        <select class='form-control' name='jogadorPosicao' id='jogadorPosicao'>
+                            <option value=""></option>
+                            <option value="1">Goleiro</option>
+                            <option value="2">Zagueiro</option>
+                            <option value="3">Meio</option>
+                            <option value="4">Lateral</option>
+                            <option value="5">Lateral Direito</option>
+                            <option value="6">Lateral Esquerdo</option>
+                            <option value="10">Ataquante</option>
+                            <option value="11">Centrovante</option>
+                            <option value="13">Goleiro</option>
+                            <option value="14">Fixo</option>
+                            <option value="7">Ala</option>
+                            <option value="8">Ala Direito</option>
+                            <option value="9">Ala Esquerdo</option>
+                            <option value="12">Pivô</option>
+                        </select>
+
+                    </div>
+                    <button type='button' class='btn btn-warning col btn-lg' id='limpaPosicao' onclick='limpaCampos2()'>Limpar</button>
                 </div><br>
 
                 <!-- GOLS -->
@@ -267,6 +283,7 @@ if (isset($_POST['salvar'])) {
             </form>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         var cad_jogadorConfirmMsg = document.getElementById('cad-jogadorConfirmMsg');
         var jogador = [
@@ -274,11 +291,12 @@ if (isset($_POST['salvar'])) {
             document.getElementById('jogadorIdade'),
             document.getElementById('jogadorPosicao'),
             document.getElementById('jogadorGols'),
-            document.getElementById('jogadorSobrenome')
+            document.getElementById('jogadorSobrenome'),
+            document.getElementById('modalidade')
         ];
 
         function validaCampos(event) {
-            if (jogador[0].value == '' || jogador[1].value == '' || jogador[2].value == '' || jogador[3].value == '' || jogador[4].value == '') {
+            if (jogador[0].value == '' || jogador[1].value == '' || jogador[2].value == '' || jogador[3].value == '' || jogador[4].value == '' || jogador[5].value == '') {
                 alert('Preencha todos os campos para cadastrar um jogador');
             } else if (typeof jogador[0].value === "number") {
                 alert('Insira uma nome e sobrenomes válidos');
@@ -317,6 +335,102 @@ if (isset($_POST['salvar'])) {
 
         function limpaCampos4() {
             jogador[4].value = '';
+        }
+
+        // var posicaoFutsal = [5];
+        // var posicaoFutebol = [7];
+
+        var posicaoFutebol = [{
+                id: 1,
+                posicao: 'Goleiro'
+            },
+            {
+                id: 2,
+                posicao: 'Zagueiro'
+            },
+            {
+                id: 3,
+                posicao: 'Meio'
+            },
+            {
+                id: 4,
+                posicao: 'Lateral'
+            },
+            {
+                id: 5,
+                posicao: 'Lateral Direito'
+            },
+            {
+                id: 6,
+                posicao: 'Lateral Esquerdo'
+            },
+            {
+                id: 10,
+                posicao: 'Ataquante'
+            },
+            {
+                id: 11,
+                posicao: 'Centrovante'
+            },
+        ];
+
+        //POSIÇÕES DO FUTSAL
+        var posicaoFutsal = [{
+                id: 13,
+                posicao: 'Goleiro'
+            },
+            {
+                id: 14,
+                posicao: 'Fixo'
+            },
+            {
+                id: 7,
+                posicao: 'Ala'
+            },
+            {
+                id: 8,
+                posicao: 'Ala Direito'
+            },
+            {
+                id: 9,
+                posicao: 'Ala Esquerdo'
+            },
+            {
+                id: 12,
+                posicao: 'Pivô'
+            }
+        ];
+
+        function atualizarSegundoSelect() {
+            var modalidade = document.getElementById("modalidade");
+            var jogadorPosicao = document.getElementById("jogadorPosicao");
+            var opcaoSelecionada = modalidade.value;
+
+            // Limpar as opções do segundo select
+            jogadorPosicao.innerHTML = "";
+
+            // Adicionar as opções de acordo com a seleção no primeiro select
+            if (opcaoSelecionada === "1") {
+                for (var i = 0; i <= 5; i++) {
+                    var option = document.createElement("option");
+                    option.text = posicaoFutsal[i].posicao;
+                    option.value = posicaoFutsal[i].id;
+                    jogadorPosicao.add(option);
+                }
+            } else if (opcaoSelecionada === "2") {
+                for (var i = 0; i <= 7; i++) {
+                    var option = document.createElement("option");
+                    option.text = posicaoFutebol[i].posicao;
+                    option.value = posicaoFutebol[i].id;
+                    jogadorPosicao.add(option);
+                }
+            } else {
+                // Caso a opção selecionada seja "todos", adicionar todas as opções
+                var option = document.createElement("option");
+                option.text = "";
+                option.value = "";
+                jogadorPosicao.add(option);
+            }
         }
     </script>
     <!-- JavaScript Bundle with Popper -->

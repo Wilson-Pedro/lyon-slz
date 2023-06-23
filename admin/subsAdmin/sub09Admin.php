@@ -1,10 +1,10 @@
 <?php
 require('../../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT tbljogadoress.*, tblposicao.nome_posicao 
+$sql = $pdo->prepare("SELECT tbljogadoress.*,tblmodalidade.*, tblposicao.nome_posicao 
 FROM tbljogadoress
-JOIN tblposicao
-ON tbljogadoress.id_posicao = tblposicao.id_posicao
+JOIN tblposicao ON tbljogadoress.id_posicao = tblposicao.id_posicao 
+JOIN tblmodalidade ON tblposicao.id_modalidade = tblmodalidade.id_modalidade
 WHERE idade > 7 AND idade <= 9");
 $sql->execute();
 $dados = $sql->fetchAll();
@@ -161,7 +161,7 @@ $dados = $sql->fetchAll();
           <input type="number" id="idade_editado" name="idade_editado" placeholder="Editar idade" required><br><br>
 
           <h5 class="inputTitulo">Modalidade:</h5>
-          <select class='form-control' name='modalidade' id='modalidade' onchange="atualizarSegundoSelect()">
+          <select class='form-control' name='modalidade_editado' id='modalidade_editado' onchange="atualizarSegundoSelect()">
             <option value=''></option>
             <option value='1'>Futsal</option>
             <option value='2'>Futebol</option>
@@ -283,10 +283,13 @@ $dados = $sql->fetchAll();
           echo "<tr>
                           <td>" . $valor['nome'] . " " . $valor['sobrenome'] . "</td>
                           <td>" . $valor['idade'] . "</td>
-                          <td>" . $valor['nome_posicao'] . "</td>
+                          <td> <abbr title='" . $valor['modalidade'] . "'>" . $valor['nome_posicao'] . "</abbr></td>
                           <td>" . $valor['gols'] . "</td>
-                          <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' 
+                          <td><a href='#' class='btn-atualizar' 
+                          data-id='" . $valor['id'] . "' 
+                          data-nome='" . $valor['nome'] . "' 
                           data-sobrenome='" . $valor['sobrenome'] . "' 
+                          data-modalidade='" . $valor['modalidade'] . "'
                           data-idade='" . $valor['idade'] . "'
                           data-posicao='" . $valor['id_posicao'] . "'
                           data-gols='" . $valor['gols'] . "'>Atualizar</a> |

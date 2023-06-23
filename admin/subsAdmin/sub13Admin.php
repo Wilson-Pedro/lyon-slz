@@ -53,7 +53,7 @@ $dados = $sql->fetchAll();
       display: none;
     }
 
-    .id_oculto{
+    .id_oculto {
       display: none;
     }
 
@@ -160,25 +160,32 @@ $dados = $sql->fetchAll();
           <h5 class="inputTitulo">Idade:</h5>
           <input type="number" id="idade_editado" name="idade_editado" placeholder="Editar idade" required><br><br>
 
+          <h5 class="inputTitulo">Modalidade:</h5>
+          <select class='form-control' name='modalidade' id='modalidade' onchange="atualizarSegundoSelect()">
+            <option value=''></option>
+            <option value='1'>Futsal</option>
+            <option value='2'>Futebol</option>
+          </select>
+
           <h5 class="inputTitulo">Posição:</h5>
-          <!-- <select class="form-control" name="posicao_editado" id="posicao_editado"> -->
-          <?php
-          require('../../db/conexao.php');
-          $sql_p = $pdo->prepare("SELECT * FROM tblposicao");
-          $sql_p->execute();
-          $dados_p = $sql_p->fetchAll();
-          echo "<select class='form-control' name='posicao_editado' id='posicao_editado'>";
+          <select class='form-control' name='posicao_editado' id='posicao_editado'>
+            <option value=""></option>
+            <option value="1" data-posicao='Goleiro'>Goleiro</option>
+            <option value="2" data-posicao='Zagueiro'>Zagueiro</option>
+            <option value="3" data-posicao='Meio'>Meio</option>
+            <option value="4" data-posicao='Lateral'>Lateral</option>
+            <option value="5" data-posicao='Lateral Direito'>Lateral Direito</option>
+            <option value="6" data-posicao='Lateral Esquerdo'>Lateral Esquerdo</option>
+            <option value="10" data-posicao='Ataquante'>Ataquante</option>
+            <option value="11" data-posicao='Centrovante'>Centrovante</option>
+            <option value="13" data-posicao='Goleiro'>Goleiro</option>
+            <option value="14" data-posicao='Fixo'>Fixo</option>
+            <option value="7" data-posicao='Ala'>Ala</option>
+            <option value="8" data-posicao='Ala Direito'>Ala Direito</option>
+            <option value="9" data-posicao='Ala Esquerdo'>Ala Esquerdo</option>
+            <option value="12" data-posicao='Pivô'>Pivô</option>
+          </select>
 
-          echo "<option value=''></option>";
-
-          foreach ($dados_p as $chaves => $valor_p) {
-            echo "<option 
-              value='" . $valor_p['id_posicao'] . "'
-              data-posicao='" . $valor_p['nome_posicao'] . "'
-                                >" . $valor_p['nome_posicao'] . "</option>";
-          }
-          echo "</select>";
-          ?>
 
           <h5 class="inputTitulo">Gols:</h5>
           <input type="number" id="gols_editado" name="gols_editado" placeholder="Editar gols" required><br><br>
@@ -369,6 +376,100 @@ $dados = $sql->fetchAll();
       $('#form_deleta').addClass('oculto');
       $('#div-delete').addClass('oculto');
     });
+
+    //POSIÇÕES DO FUTEBOL
+    var posicaoFutebol = [{
+        id: 1,
+        posicao: 'Goleiro'
+      },
+      {
+        id: 2,
+        posicao: 'Zagueiro'
+      },
+      {
+        id: 3,
+        posicao: 'Meio'
+      },
+      {
+        id: 4,
+        posicao: 'Lateral'
+      },
+      {
+        id: 5,
+        posicao: 'Lateral Direito'
+      },
+      {
+        id: 6,
+        posicao: 'Lateral Esquerdo'
+      },
+      {
+        id: 10,
+        posicao: 'Ataquante'
+      },
+      {
+        id: 11,
+        posicao: 'Centrovante'
+      },
+    ];
+
+    //POSIÇÕES DO FUTSAL
+    var posicaoFutsal = [{
+        id: 13,
+        posicao: 'Goleiro'
+      },
+      {
+        id: 14,
+        posicao: 'Fixo'
+      },
+      {
+        id: 7,
+        posicao: 'Ala'
+      },
+      {
+        id: 8,
+        posicao: 'Ala Direito'
+      },
+      {
+        id: 9,
+        posicao: 'Ala Esquerdo'
+      },
+      {
+        id: 12,
+        posicao: 'Pivô'
+      }
+    ];
+
+    function atualizarSegundoSelect() {
+      var modalidade = document.getElementById("modalidade");
+      var jogadorPosicao = document.getElementById("posicao_editado");
+      var opcaoSelecionada = modalidade.value;
+
+      // Limpar as opções do segundo select
+      jogadorPosicao.innerHTML = "";
+
+      // Adicionar as opções de acordo com a seleção no primeiro select
+      if (opcaoSelecionada === "1") {
+        for (var i = 0; i <= 5; i++) {
+          var option = document.createElement("option");
+          option.text = posicaoFutsal[i].posicao;
+          option.value = posicaoFutsal[i].id;
+          jogadorPosicao.add(option);
+        }
+      } else if (opcaoSelecionada === "2") {
+        for (var i = 0; i <= 7; i++) {
+          var option = document.createElement("option");
+          option.text = posicaoFutebol[i].posicao;
+          option.value = posicaoFutebol[i].id;
+          jogadorPosicao.add(option);
+        }
+      } else {
+        // Caso a opção selecionada seja "todos", adicionar todas as opções
+        var option = document.createElement("option");
+        option.text = "";
+        option.value = "";
+        jogadorPosicao.add(option);
+      }
+    }
   </script>
 </body>
 

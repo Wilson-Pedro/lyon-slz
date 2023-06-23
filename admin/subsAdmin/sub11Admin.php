@@ -162,10 +162,10 @@ $dados = $sql->fetchAll();
           <input type="number" id="idade_editado" name="idade_editado" placeholder="Editar idade" required><br><br>
 
           <h5 class="inputTitulo">Modalidade:</h5>
-          <select class='form-control' name='modalidade' id='modalidade' onchange="atualizarSegundoSelect()">
+          <select class='form-control' name='modalidade_editado' id='modalidade_editado' onchange="atualizarSegundoSelect()">
             <option value=''></option>
-            <option value='1'>Futsal</option>
-            <option value='2'>Futebol</option>
+            <option value='1' data-modalidade='1'>Futsal</option>
+            <option value='2' data-modalidade='2'>Futebol</option>
           </select>
 
           <h5 class="inputTitulo">Posição:</h5>
@@ -198,7 +198,7 @@ $dados = $sql->fetchAll();
       <!-- DELETAR -->
       <form class="oculto" id="form_deleta" method="post">
         <div id="div-delete" class="oculto">
-          <input type="hidden " id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
+          <input type="hidden" class="id_oculto" id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
           <input type="hidden" id="nome_deleta" name="nome_deleta" placeholder="Editar nome" required> <br><br>
 
           <input type="hidden" id="sobrenome_deleta" name="sobrenome_deleta" placeholder="Editar sobrenome" required> <br><br>
@@ -288,6 +288,7 @@ $dados = $sql->fetchAll();
                           <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' 
                           data-sobrenome='" . $valor['sobrenome'] . "' 
                           data-idade='" . $valor['idade'] . "'
+                          data-modalidade='" . $valor['id_modalidade'] . "'
                           data-posicao='" . $valor['id_posicao'] . "'
                           data-gols='" . $valor['gols'] . "'>Atualizar</a> |
                           
@@ -296,6 +297,7 @@ $dados = $sql->fetchAll();
                            data-nome='" . $valor['nome'] . "' 
                            data-sobrenome='" . $valor['sobrenome'] . "'
                            data-idade='" . $valor['idade'] . "'
+                           data-modalidade='" . $valor['id_modalidade'] . "'
                            data-posicao='" . $valor['id_posicao'] . "'
                            data-gols='" . $valor['gols'] . "'>Deletar</a></td>
                       </tr>";
@@ -321,6 +323,7 @@ $dados = $sql->fetchAll();
       var nome = $(this).attr('data-nome');
       var sobrenome = $(this).attr('data-sobrenome');
       var idade = $(this).attr('data-idade');
+      var modalidade = $(this).attr('data-modalidade');
       var posicao = $(this).attr('data-posicao');
       var gols = $(this).attr('data-gols');
 
@@ -334,6 +337,7 @@ $dados = $sql->fetchAll();
       $("#nome_editado").val(nome);
       $("#sobrenome_editado").val(sobrenome);
       $("#idade_editado").val(idade);
+      $("#modalidade_editado").val(modalidade);
       $("#posicao_editado").val(posicao);
       $("#gols_editado").val(gols);
 
@@ -440,7 +444,7 @@ $dados = $sql->fetchAll();
     ];
 
     function atualizarSegundoSelect() {
-      var modalidade = document.getElementById("modalidade");
+      var modalidade = document.getElementById("modalidade_editado");
       var jogadorPosicao = document.getElementById("posicao_editado");
       var opcaoSelecionada = modalidade.value;
 

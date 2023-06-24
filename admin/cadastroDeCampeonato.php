@@ -236,7 +236,7 @@ if (isset($_POST['salvar'])) {
                             <input type="date" class="form-control" name="data_campeonato" id="data_campeonato" placeholder="14/10/2023">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos2()">Limpar</button>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos1()">Limpar</button>
                 </div><br>
 
                 <!-- CADASTRAR PARTIDA -->
@@ -287,10 +287,6 @@ if (isset($_POST['salvar'])) {
 
         function limpaCampos1() {
             campeonato[1].value = '';
-        }
-
-        function limpaCampos2() {
-            campeonato[2].value = '';
         }
     </script>
 </body>

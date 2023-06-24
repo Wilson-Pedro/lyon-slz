@@ -279,7 +279,7 @@ if (isset($_POST['salvar'])) {
 
                 <!-- CADASTRAR JOGADOR -->
                 <input type="submit" id="btn-cadastrar" value="Cadastrar" class="btn btn-success btn-lg" onclick="validaCampos(event)">
-                <input type="reset" value="Limpar Tudo" name="btn-cadastrar" id="btn-cadastrar" class="btn btn-danger btn-lg">
+                <input type="reset" value="Limpar Tudo" name="btn-cadastrar" id="btn-cadastrar" class="btn btn-danger btn-lg" onclick="limparTudo()">
             </form>
         </div>
     </section>
@@ -335,6 +335,16 @@ if (isset($_POST['salvar'])) {
 
         function limpaCampos4() {
             jogador[4].value = '';
+        }
+
+        function limpaCampos5() {
+            jogador[5].value = '';
+            jogador[2].value = '';
+        }
+
+        function limparTudo() {
+            jogador[5].value = '';
+            jogador[2].value = '';
         }
 
         // var posicaoFutsal = [5];
@@ -424,7 +434,7 @@ if (isset($_POST['salvar'])) {
                     option.value = posicaoFutebol[i].id;
                     jogadorPosicao.add(option);
                 }
-            } else {
+            } else if (opcaoSelecionada === ""){
                 // Caso a opção selecionada seja "todos", adicionar todas as opções
                 var option = document.createElement("option");
                 option.text = "";

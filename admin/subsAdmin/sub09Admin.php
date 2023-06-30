@@ -1,4 +1,5 @@
 <?php
+include('../include/verificacaoSubs.php');
 require('../../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT tbljogadoress.*,tblmodalidade.*, tblposicao.nome_posicao 
@@ -10,7 +11,6 @@ $sql->execute();
 $dados = $sql->fetchAll();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 

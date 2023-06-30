@@ -1,5 +1,5 @@
 <?php
-
+include('include/verificacao.php');
 include('../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tblpartidass");

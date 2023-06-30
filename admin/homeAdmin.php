@@ -1,3 +1,6 @@
+<?php
+include('include/verificacao.php');
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,7 +15,6 @@
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/timeANDescudo.css">
   <link rel="stylesheet" href="../fonts/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="lyon.jpg">
   <link rel="shortcut icon" href="../img/favicon/favicon.png" type="image/x-icon">
 
   <title>Escolinha de futebol</title>

@@ -1,3 +1,6 @@
+<?php
+include('admin/include/logout.php');
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 

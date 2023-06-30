@@ -1,5 +1,4 @@
 <?php
-//session_start();
 
 $servidor = "localhost";
 $usuario = "root";
@@ -28,11 +27,16 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
 
         if ($result->num_rows == 1) {
             $usuario = $result->fetch_assoc();
+            session_start();
 
             if (password_verify($senha, $usuario['senha'])) {
                 $_SESSION['id'] = $usuario['id'];
                 $_SESSION['usuario'] = $usuario['usuario'];
-                header('Location: admin/homeAdmin.php');
+                echo "<a style='display:none' href='admin/homeAdmin.php' id='voltar'></a>";
+                echo "<script>";
+                    echo "var voltar = document.getElementById('voltar');";
+                    echo "voltar.click();";
+                echo "</script>";
             }
         } else {
             $invalid = "Ops... e-mail ou senha incorretos!";
@@ -78,7 +82,7 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
             <br>
             <div>
                 <input type="button" id="entrar" name="entrar" class="btn-entrar" onclick="validaCampos()" value="Entrar">
-                <input type="button" value="Limpar" class="btn-entrar" onclick="limpaCampos()">
+                <a href="home.php"><input type="button" value="Voltar" class="btn-entrar"></a>
             </div><br>
             <a href="../admin/index.php"></a>
         </form>

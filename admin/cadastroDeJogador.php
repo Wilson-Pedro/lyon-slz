@@ -1,4 +1,6 @@
 <?php
+include('include/verificacao.php');
+
 require('../db/conexao.php');
 
 if (isset($_POST['salvar'])) {

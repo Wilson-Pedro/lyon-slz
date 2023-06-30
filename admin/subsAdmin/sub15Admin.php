@@ -1,4 +1,5 @@
 <?php
+include('../include/verificacaoSubs.php');
 require('../../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT tbljogadoress.*,tblmodalidade.*, tblposicao.nome_posicao 

@@ -1,5 +1,8 @@
 <?php
-
+include('admin/include/logout.php');
+?>
+<?php
+include('admin/include/logout.php');
 include('db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tblpartidass");

@@ -1,4 +1,8 @@
 <?php
+include('../admin/include/logout.php');
+?>
+
+<?php
 require('../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT tbljogadoress.*,tblmodalidade.*, tblposicao.nome_posicao 

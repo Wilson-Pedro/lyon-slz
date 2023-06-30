@@ -1,4 +1,8 @@
 <?php
+include('admin/include/logout.php');
+?>
+
+<?php
 include('db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tblpartidass ORDER BY tblpartidass.horario");

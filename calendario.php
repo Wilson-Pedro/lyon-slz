@@ -1,4 +1,5 @@
 <?php
+include('admin/include/logout.php');
 require('db/conexao.php');
 
 $sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato

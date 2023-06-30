@@ -1,4 +1,5 @@
 <?php
+include('include/verificacao.php');
 require('../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tbljogadoress");

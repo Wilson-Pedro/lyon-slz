@@ -1,5 +1,7 @@
 <?php
 include('include/verificacao.php');
+?>
+<?php
 include('../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tblfotoss");

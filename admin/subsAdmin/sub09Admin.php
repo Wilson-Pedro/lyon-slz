@@ -60,6 +60,14 @@ $dados = $sql->fetchAll();
     .atualizar {
       text-align: center;
     }
+
+    .deletar-jogador {
+      background-color: red;
+    }
+
+    .deletar-jogador:hover {
+      background-color: rgb(158, 3, 3);
+    }
   </style>
 </head>
 
@@ -191,6 +199,7 @@ $dados = $sql->fetchAll();
           <input type="number" id="gols_editado" name="gols_editado" placeholder="Editar gols" required><br><br>
 
           <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
+          <button type="button" class='deletar-jogador' id='btn-deletar-jogador'>Deletar</button>
           <button type="button" id="cancelar" name="cancelar">Cancelar</button>
           <hr>
         </div>
@@ -292,16 +301,8 @@ $dados = $sql->fetchAll();
                           data-idade='" . $valor['idade'] . "'
                           data-modalidade='" . $valor['id_modalidade'] . "'
                           data-posicao='" . $valor['id_posicao'] . "'
-                          data-gols='" . $valor['gols'] . "'>Atualizar</a> |
-                          
-                           <a href='#' class='btn-deletar' 
-                           data-id='" . $valor['id'] . "' 
-                           data-nome='" . $valor['nome'] . "' 
-                           data-sobrenome='" . $valor['sobrenome'] . "'
-                           data-idade='" . $valor['idade'] . "'
-                           data-modalidade='" . $valor['id_modalidade'] . "'
-                           data-posicao='" . $valor['id_posicao'] . "'
-                           data-gols='" . $valor['gols'] . "'>Deletar</a></td>
+                          data-gols='" . $valor['gols'] . "'
+                          >Editar</a></td>
                       </tr>";
         }
         echo "</table>";
@@ -343,18 +344,6 @@ $dados = $sql->fetchAll();
       $("#posicao_editado").val(posicao);
       $("#gols_editado").val(gols);
 
-    });
-
-    //      DELETAR
-
-    $(".btn-deletar").click(function() {
-      var id = $(this).attr('data-id');
-      var nome = $(this).attr('data-nome');
-      var sobrenome = $(this).attr('data-sobrenome');
-      var idade = $(this).attr('data-idade');
-      var posicao = $(this).attr('data-posicao');
-      var gols = $(this).attr('data-gols');
-
       $("#id_deleta").val(id);
       $("#nome_deleta").val(nome);
       $("#sobrenome_deleta").val(sobrenome);
@@ -362,11 +351,18 @@ $dados = $sql->fetchAll();
       $("#posicao_deleta").val(posicao);
       $("#gols_deleta").val(gols);
 
+    });
+
+    //      DELETAR
+
+    $("#btn-deletar-jogador").click(function() {
+
       $('#form_atualiza').addClass('oculto');
+      $('#div-update').addClass('oculto');
       $('#form_deleta').removeClass('oculto');
       $('#div-delete').removeClass('oculto');
 
-    });
+    })
 
     //CANCELAR
 

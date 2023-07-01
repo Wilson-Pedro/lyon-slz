@@ -11,7 +11,6 @@ $sql->execute();
 $dados = $sql->fetchAll();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -27,15 +26,15 @@ $dados = $sql->fetchAll();
   <link rel="shortcut icon" href="../../img/favicon/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="../../css/update-delete.css">
 
-  <title>Sub09</title>
+  <title>Sub15</title>
   <style>
-    .dp-menu ul li a {
-      font-weight: bold;
-    }
-
     body {
       width: 100%;
       font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .dp-menu ul li a {
+      font-weight: bold;
     }
 
     table {
@@ -60,6 +59,14 @@ $dados = $sql->fetchAll();
 
     .atualizar {
       text-align: center;
+    }
+
+    .deletar-jogador {
+      background-color: red;
+    }
+
+    .deletar-jogador:hover {
+      background-color: rgb(158, 3, 3);
     }
   </style>
 </head>
@@ -169,6 +176,7 @@ $dados = $sql->fetchAll();
           </select>
 
           <h5 class="inputTitulo">Posição:</h5>
+          <!-- <select class="form-control" name="posicao_editado" id="posicao_editado"> -->
           <select class='form-control' name='posicao_editado' id='posicao_editado'>
             <option value=""></option>
             <option value="1" data-posicao='Goleiro'>Goleiro</option>
@@ -187,11 +195,11 @@ $dados = $sql->fetchAll();
             <option value="12" data-posicao='Pivô'>Pivô</option>
           </select>
 
-
           <h5 class="inputTitulo">Gols:</h5>
           <input type="number" id="gols_editado" name="gols_editado" placeholder="Editar gols" required><br><br>
 
           <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
+          <button type="button" class='deletar-jogador' id='btn-deletar-jogador'>Deletar</button>
           <button type="button" id="cancelar" name="cancelar">Cancelar</button>
           <hr>
         </div>
@@ -234,16 +242,16 @@ $dados = $sql->fetchAll();
         $sql->bindValue(':gols', $gols);
         $sql->bindValue(':id', $id);
         $sql->execute();
+        /*
+          $sql = $pdo->prepare("UPDATE tbljogadores SET nome=?,idade=?, posicao=?, gols=? WHERE id=?");
+          $sql->execute(array($nome, $idade, $posicao, $gols, $id));
+          echo "Atualizado " . $sql->rowCount() . "registros!";*/
         echo "
           <script>
           var marcado = document.getElementById('marcado');
           marcado.click();
           </script>
           ";
-        /*
-          $sql = $pdo->prepare("UPDATE tbljogadores SET nome=?,idade=?, posicao=?, gols=? WHERE id=?");
-          $sql->execute(array($nome, $idade, $posicao, $gols, $id));
-          echo "Atualizado " . $sql->rowCount() . "registros!";*/
       }
       ?>
       <?php
@@ -286,21 +294,15 @@ $dados = $sql->fetchAll();
                           <td>" . $valor['idade'] . "</td>
                           <td> <abbr title='" . $valor['modalidade'] . "'>" . $valor['nome_posicao'] . "</abbr></td>
                           <td>" . $valor['gols'] . "</td>
-                          <td><a href='#' class='btn-atualizar' data-id='" . $valor['id'] . "' data-nome='" . $valor['nome'] . "' 
+                          <td><a href='#' class='btn-atualizar' 
+                          data-id='" . $valor['id'] . "' 
+                          data-nome='" . $valor['nome'] . "' 
                           data-sobrenome='" . $valor['sobrenome'] . "' 
                           data-idade='" . $valor['idade'] . "'
                           data-modalidade='" . $valor['id_modalidade'] . "'
                           data-posicao='" . $valor['id_posicao'] . "'
-                          data-gols='" . $valor['gols'] . "'>Atualizar</a> |
-                          
-                           <a href='#' class='btn-deletar' 
-                           data-id='" . $valor['id'] . "' 
-                           data-nome='" . $valor['nome'] . "' 
-                           data-sobrenome='" . $valor['sobrenome'] . "'
-                           data-idade='" . $valor['idade'] . "'
-                           data-modalidade='" . $valor['id_modalidade'] . "'
-                           data-posicao='" . $valor['id_posicao'] . "'
-                           data-gols='" . $valor['gols'] . "'>Deletar</a></td>
+                          data-gols='" . $valor['gols'] . "'
+                          >Editar</a></td>
                       </tr>";
         }
         echo "</table>";
@@ -342,18 +344,6 @@ $dados = $sql->fetchAll();
       $("#posicao_editado").val(posicao);
       $("#gols_editado").val(gols);
 
-    });
-
-    //      DELETAR
-
-    $(".btn-deletar").click(function() {
-      var id = $(this).attr('data-id');
-      var nome = $(this).attr('data-nome');
-      var sobrenome = $(this).attr('data-sobrenome');
-      var idade = $(this).attr('data-idade');
-      var posicao = $(this).attr('data-posicao');
-      var gols = $(this).attr('data-gols');
-
       $("#id_deleta").val(id);
       $("#nome_deleta").val(nome);
       $("#sobrenome_deleta").val(sobrenome);
@@ -361,11 +351,18 @@ $dados = $sql->fetchAll();
       $("#posicao_deleta").val(posicao);
       $("#gols_deleta").val(gols);
 
+    });
+
+    //      DELETAR
+
+    $("#btn-deletar-jogador").click(function() {
+
       $('#form_atualiza').addClass('oculto');
+      $('#div-update').addClass('oculto');
       $('#form_deleta').removeClass('oculto');
       $('#div-delete').removeClass('oculto');
 
-    });
+    })
 
     //CANCELAR
 

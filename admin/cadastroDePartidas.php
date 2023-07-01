@@ -1,5 +1,8 @@
 <?php
 include('include/verificacao.php');
+?>
+
+<?php
 
 require('../db/conexao.php');
 
@@ -239,11 +242,9 @@ if (isset($_POST['salvar'])) {
                         <select class="form-control" name="campeonato" id="campeonato" onchange="campeonatoSelect()">
                             <?php
                             require('../db/conexao.php');
-                            $sql = $pdo->prepare("SELECT * FROM tblcampeonato WHERE data_campeonato >= CURRENT_DATE");
+                            $sql = $pdo->prepare("SELECT * FROM tblcampeonato WHERE data_campeonato >= CURRENT_DATE || tblcampeonato.nome_campeonato = 'Amistoso'");
                             $sql->execute();
                             $dados = $sql->fetchAll();
-
-                            echo "<option value='13'>Amistoso</option>";
 
                             foreach ($dados as $chaves => $valor) {
                                 echo "<option value='" . $valor['id_campeonato'] . "'

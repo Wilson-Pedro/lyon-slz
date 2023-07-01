@@ -1,8 +1,13 @@
 <?php
 include('include/verificacao.php');
+?>
+<?php
 include('../db/conexao.php');
 
-$sql = $pdo->prepare("SELECT * FROM tblpartidass");
+$sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato
+FROM tblpartidass
+JOIN tblcampeonato ON tblpartidass.id_campeonato = tblcampeonato.id_campeonato
+ORDER BY tblpartidass.data_partida");
 $sql->execute();
 $dados = $sql->fetchAll();
 
@@ -96,6 +101,14 @@ $dados = $sql->fetchAll();
 
     .atualizar {
         text-align: center;
+    }
+
+    .deletar-jogador {
+        background-color: red;
+    }
+
+    .deletar-jogador:hover {
+        background-color: rgb(158, 3, 3);
     }
 </style>
 
@@ -191,6 +204,7 @@ $dados = $sql->fetchAll();
                     <h5>Gols do Adversário:</h5>
                     <input type="number" id="gols_adv_editado" name="gols_adv_editado" placeholder="Editar gols" required><br><br>
                     <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
+                    <button type="button" class='deletar-jogador' id='btn-deletar-jogador'>Deletar</button>
                     <button type="button" id="cancelar" name="cancelar">Cancelar</button>
                     <hr>
                 </div>
@@ -198,7 +212,7 @@ $dados = $sql->fetchAll();
             <!-- DELETAR -->
             <form class="oculto" id="form_deleta" method="post">
                 <div id="div-delete" class="oculto">
-                    <input type="hidden " id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
+                    <input class="id_oculto" type="hidden " id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
                     <input type="hidden" id="localidade_deleta" name="localidade_deleta" placeholder="Editar local" required> <br><br>
                     <input type="hidden" id="timeb_deleta" name="timeb_deleta" placeholder="Editar Time B" required><br><br>
                     <input type="hidden" id="data_partida_deleta" name="data_partida_deleta" placeholder="Editar Data" required> <br><br>
@@ -265,18 +279,18 @@ $dados = $sql->fetchAll();
                     $dataJogo = $valor['data_partida'];
                     if (strtotime($dataJogo) == strtotime($data_Atual)) {
                         echo "<tr>
-                  <td>" . "Lyon X " . $valor['adversario'] . "</td>
+                    <td><abbr title='" . $valor['nome_campeonato'] . "'>" . "LyonX" . $valor['adversario'] . "</abbr></td>
                   <td>" . $valor['gols_lyon'] . " x " . $valor['gols_adv'] . "</td>
                   <td>" . date("d/m/y", strtotime($valor['data_partida'])) . "</td>
                   <td>" . date("H:i", strtotime($valor['horario'])) . "</td>
                   <td><a href='#' class='btn-atualizar' 
                   data-id='" . $valor['id'] . "' 
                   data-gols_lyon='" . $valor['gols_lyon'] . "'
-                  data-gols_adv='" . $valor['gols_adv'] . "'>Atualizar</a> | <a href='#' class='btn-deletar' 
-                  data-id='" . $valor['id'] . "' 
+                  data-gols_adv='" . $valor['gols_adv'] . "'
                   data-localidade='" . $valor['localidade'] . "' 
                   data-timeb='" . $valor['adversario'] . "'
-                  data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
+                  data-data_partida='" . $valor['data_partida'] . "'
+                  >Editar</a></td>
             </tr>";
                     }
                 }
@@ -301,6 +315,9 @@ $dados = $sql->fetchAll();
         var id = $(this).attr('data-id');
         var gols_lyon = $(this).attr('data-gols_lyon');
         var gols_adv = $(this).attr('data-gols_adv');
+        var localidade = $(this).attr('data-localidade');
+        var timeb = $(this).attr('data-timeb');
+        var data_partida = $(this).attr('data-data_partida');
 
         $('#form_salva').addClass('oculto');
         $('#form_deleta').addClass('oculto');
@@ -312,26 +329,21 @@ $dados = $sql->fetchAll();
         $("#gols_lyon_editado").val(gols_lyon);
         $("#gols_adv_editado").val(gols_adv);
 
-    });
-
-    //      DELETAR
-
-    $(".btn-deletar").click(function() {
-        var id = $(this).attr('data-id');
-        var localidade = $(this).attr('data-localidade');
-        var timeb = $(this).attr('data-timeb');
-        var data_partida = $(this).attr('data-data_partida');
-        var horario = $(this).attr('data-horario');
-
         $("#id_deleta").val(id);
         $("#localidade_deleta").val(localidade);
         $("#timeb_deleta").val(timeb);
         $("#data_partida_deleta").val(data_partida);
 
+    });
+
+    //      DELETAR
+
+    $("#btn-deletar-jogador").click(function() {
+
         $('#form_atualiza').addClass('oculto');
+        $('#div-update').addClass('oculto');
         $('#form_deleta').removeClass('oculto');
         $('#div-delete').removeClass('oculto');
-
 
     });
 

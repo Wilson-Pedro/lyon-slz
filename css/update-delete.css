@@ -67,10 +67,11 @@ form#form_deleta>div>button {
 
 #cancelar_delete,
 #btn-deletar {
-    background-color: red;
+    background-color: rgb(185, 56, 56);
     margin-left: 3vw;
 }
 
 #cancelar:hover {
     background-color: rgb(158, 3, 3);
 }
+

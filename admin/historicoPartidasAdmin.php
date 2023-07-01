@@ -1,5 +1,7 @@
 <?php
 include('include/verificacao.php');
+?>
+<?php
 include('../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT tblpartidass.*, tblcampeonato.nome_campeonato
@@ -47,7 +49,7 @@ $dados = $sql->fetchAll();
         padding: 2px;
         text-align: center;
         border: solid 1px black;
-        font-size: 63.7%;
+        font-size: 70%;
     }
 
     .oculto {
@@ -95,6 +97,14 @@ $dados = $sql->fetchAll();
 
     .atualizar {
         text-align: center;
+    }
+
+    .deletar-jogador {
+        background-color: red;
+    }
+
+    .deletar-jogador:hover {
+        background-color: rgb(158, 3, 3);
     }
 </style>
 
@@ -197,12 +207,11 @@ $dados = $sql->fetchAll();
                     <input type="date" id="data_partida_editado" name="data_partida_editado" placeholder="Editar Data" required><br><br>
                     <h5>Horário:</h5>
                     <input type="time" id="horario_editado" name="horario_editado" placeholder="Editar horário" required><br><br>
-                    <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
-                    <button type="button" id="cancelar" name="cancelar">Cancelar</button>
-                    <hr>
                     <h5>Link das fotos:</h5>
                     <input type="text" id="link_fotos_editado" name="link_fotos_editado" placeholder="Editar gols" required><br><br>
+                    <hr>
                     <button type="submit" name="atualizar" id="btn-atualizar">Atualizar</button>
+                    <button type="button" class='deletar-jogador' id='btn-deletar-jogador'>Deletar</button>
                     <button type="button" id="cancelar" name="cancelar">Cancelar</button>
                     <hr>
                 </div>
@@ -210,7 +219,7 @@ $dados = $sql->fetchAll();
             <!-- DELETAR -->
             <form class="oculto" id="form_deleta" method="post">
                 <div id="div-delete" class="oculto">
-                    <input type="hidden " id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
+                    <input type="hidden" class="id_oculto" id="id_deleta" name="id_deleta" placeholder="ID" required> <br><br>
                     <input type="hidden" id="localidade_deleta" name="localidade_deleta" placeholder="Editar local" required> <br><br>
                     <input type="hidden" id="timeb_deleta" name="timeb_deleta" placeholder="Editar Time B" required><br><br>
                     <input type="hidden" id="data_partida_deleta" name="data_partida_deleta" placeholder="Editar Data" required> <br><br>
@@ -308,12 +317,7 @@ $dados = $sql->fetchAll();
                             data-timeb='" . $valor['adversario'] . "'
                             data-data_partida='" . $valor['data_partida'] . "'
                             data-horario='" . date("H:i", strtotime($valor['horario'])) . "'
-                            >Atualizar</a> | <a href='#' class='btn-deletar' 
-                            data-id='" . $valor['id'] . "' 
-                            data-localidade='" . $valor['localidade'] . "' 
-                            data-timeb='" . $valor['adversario'] . "'
-                            data-data_partida='" . $valor['data_partida'] . "'>Deletar</a></td>
-                            </tr>";
+                            >Editar</a></tr>";
                     }
                 }
                 echo "</table>";
@@ -358,27 +362,21 @@ $dados = $sql->fetchAll();
         $("#data_partida_editado").val(data_partida);
         $("#horario_editado").val(horario)
 
-    });
-
-    //      DELETAR
-
-    $(".btn-deletar").click(function() {
-        var id = $(this).attr('data-id');
-        var localidade = $(this).attr('data-localidade');
-        var timeb = $(this).attr('data-timeb');
-        var data_partida = $(this).attr('data-data_partida');
-        var horario = $(this).attr('data-horario');
-
         $("#id_deleta").val(id);
         $("#localidade_deleta").val(localidade);
         $("#timeb_deleta").val(timeb);
         $("#data_partida_deleta").val(data_partida);
 
+    });
+
+    //      DELETAR
+
+    $("#btn-deletar-jogador").click(function() {
+
         $('#form_atualiza').addClass('oculto');
+        $('#div-update').addClass('oculto');
         $('#form_deleta').removeClass('oculto');
         $('#div-delete').removeClass('oculto');
-
-
     });
 
     //      OCULTAR

@@ -27,7 +27,7 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
 
         if ($result->num_rows == 1) {
             $usuario = $result->fetch_assoc();
-            session_start();
+            //session_start();
 
             if (password_verify($senha, $usuario['senha'])) {
                 $_SESSION['id'] = $usuario['id'];
@@ -82,7 +82,7 @@ if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
             <br>
             <div>
                 <input type="button" id="entrar" name="entrar" class="btn-entrar" onclick="validaCampos()" value="Entrar">
-                <a href="home.php"><input type="button" value="Voltar" class="btn-entrar"></a>
+                <a href="index.php"><input type="button" value="Voltar" class="btn-entrar"></a>
             </div><br>
             <a href="../admin/index.php"></a>
         </form>

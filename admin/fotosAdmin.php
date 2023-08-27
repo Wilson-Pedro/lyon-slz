@@ -1,5 +1,5 @@
 <?php
-include('include/verificacao.php');
+//include('include/verificacao.php');
 ?>
 <?php
 include('../db/conexao.php');

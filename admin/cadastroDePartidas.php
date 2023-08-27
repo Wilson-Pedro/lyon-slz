@@ -1,5 +1,5 @@
 <?php
-include('include/verificacao.php');
+//include('include/verificacao.php');
 ?>
 
 <?php
@@ -206,7 +206,7 @@ if (isset($_POST['salvar'])) {
 
                             <li><a class="dropdown-item" href="cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
                             <li><a class="dropdown-item" href="cadastroDeNoticia.php"> CADASTRAR NOTÍCIA</a></li>
-                            <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
+                            <li><a class="dropdown-item" href="../index.php">SAIR</a></li>
                         </ul>
                     </li>
 
@@ -284,10 +284,10 @@ if (isset($_POST['salvar'])) {
                     <div class="col-md-8">
                         <label for="text-center" class="form-label">Data</label>
                         <div class="input-group input-group-lg">
-                            <input type="date" class="form-control" name="data" id="partidaData" placeholder="14/10/2023">
+                            <input type="date" min="" class="form-control" name="data" id="partidaData" placeholder="14/10/2023">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos2()">Limpar</button>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
                 </div><br>
 
                 <!-- HORÁRIO -->
@@ -298,7 +298,7 @@ if (isset($_POST['salvar'])) {
                             <input type="time" class="form-control" name="horario" id="partidaHorario" placeholder="14/10/2023 às 11:30">
                         </div>
                     </div>
-                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos3()">Limpar</button>
+                    <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos2()">Limpar</button>
                 </div><br>
 
                 <!-- CADASTRAR PARTIDA -->
@@ -314,16 +314,16 @@ if (isset($_POST['salvar'])) {
     <Script>
         var cad_partidaConfirmMsg = document.getElementById('cad-partidaConfirmMsg');
         var cad_partidaConfirmMsgErro = document.getElementById('cad-partidaConfirmMsgErro');
+        var partidaData = document.getElementById('partidaData');
         var partida = [
             document.getElementById('partidaTimeB'),
             document.getElementById('partidaLocal'),
-            document.getElementById('partidaData'),
             document.getElementById('partidaHorario')
         ];
         // VALIDAÇÃO DOS CAMPOS DO CAD. DE PARTIDA
 
         function validaCampos(event) {
-            if (partida[0].value == '' || partida[1].value == '' || partida[2].value == '' || partida[3].value == '') {
+            if (partida[0].value == '' || partida[1].value == '' || partida[2].value == '' || partidaData.value == '') {
                 alert('Preencha todos os campos para cadastrar uma partida');
             }
             //  else if (typeof partida[0].value === "number") {
@@ -361,7 +361,7 @@ if (isset($_POST['salvar'])) {
         }
 
         function limpaCampos3() {
-            partida[3].value = '';
+            partidaData.value = '';
         }
 
         function limpaCampos4() {
@@ -381,6 +381,14 @@ if (isset($_POST['salvar'])) {
                 $("#partidaData").val("");
             }
         }
+
+        var dataAtual = new Date();
+
+        // Formata a data atual no formato ISO (AAAA-MM-DD)
+        var dataFormatada = dataAtual.toISOString().split('T')[0];
+
+        // Define o valor mínimo do input como a data atual formatada
+        partidaData.min = dataFormatada;
     </script>
 </body>
 

@@ -1,5 +1,5 @@
 <?php
-include('include/verificacao.php');
+//include('include/verificacao.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -118,7 +118,7 @@ include('include/verificacao.php');
                 <li><a class="dropdown-item" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
                 <li><a class="dropdown-item" href="cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
                 <li><a class="dropdown-item" href="cadastroDeNoticia.php"> CADASTRAR NOTÍCIA</a></li>
-                <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
+                <li><a class="dropdown-item" href="../index.php">SAIR</a></li>
               </ul>
             </li>
 

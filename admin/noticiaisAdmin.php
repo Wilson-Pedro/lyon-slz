@@ -1,5 +1,5 @@
 <?php
-include('include/verificacao.php');
+//include('include/verificacao.php');
 ?>
 <?php
 include('../db/conexao.php');
@@ -164,7 +164,7 @@ $dados = $sql->fetchAll();
                 <li><a class="dropdown-item" href="cadastroDePartidas.php">CADASTRAR PARTIDA</a></li>
                 <li><a class="dropdown-item" href="cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
                 <li><a class="dropdown-item" href="cadastroDeNoticia.php"> CADASTRAR NOTÍCIA</a></li>
-                <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
+                <li><a class="dropdown-item" href="../index.php">SAIR</a></li>
               </ul>
             </li>
 
@@ -364,7 +364,7 @@ $dados = $sql->fetchAll();
 
           if ($pla == 1) {
             echo "<br>";
-            echo "<p style='text-align:center' >Atualize o placar nos <a href='jogoDeHoje.php'>Jogos de hoje</a>.</p>";
+            echo "<p style='text-align:center' >Atualize o placar nos <a href='jogoDeHojeAdmin.php'>Jogos de hoje</a>.</p>";
           }
           if ($count == 0) {
             echo "<hr>";

@@ -1,5 +1,5 @@
 <?php
-include('include/verificacao.php');
+//include('include/verificacao.php');
 ?>
 
 <?php
@@ -196,7 +196,7 @@ if (isset($_POST['salvar'])) {
                             <li><a class="dropdown-item" id="marcado" href="cadastroDeCampeonato.php">CADASTRAR CAMPEONATO</a></li>
 
                             <li><a class="dropdown-item" href="cadastroDeNoticia.php"> CADASTRAR NOTÍCIA</a></li>
-                            <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
+                            <li><a class="dropdown-item" href="../index.php">SAIR</a></li>
                         </ul>
                     </li>
 
@@ -238,7 +238,7 @@ if (isset($_POST['salvar'])) {
                 <div class="row">
                     <div class="col-md-8">
                         <div class="input-group input-group-lg">
-                            <input type="date" class="form-control" name="data_campeonato" id="data_campeonato" placeholder="14/10/2023">
+                            <input type="date" min="" class="form-control" name="data_campeonato" id="data_campeonato" placeholder="14/10/2023">
                         </div>
                     </div>
                     <button type="button" class="btn btn-warning col btn-lg" id="limpaData" onclick="limpaCampos1()">Limpar</button>
@@ -255,13 +255,11 @@ if (isset($_POST['salvar'])) {
     <script>
         var cad_partidaConfirmMsg = document.getElementById('cad-partidaConfirmMsg');
         var cad_partidaConfirmMsgErro = document.getElementById('cad-partidaConfirmMsgErro');
-        var campeonato = [
-            document.getElementById('nome_campeonato'),
-            document.getElementById('data_campeonato'),
-        ];
+        var nome_campeonato = document.getElementById('nome_campeonato');
+        var data_campeonato = document.getElementById('data_campeonato');
         // VALIDAÇÃO DOS CAMPOS DO CAD. DE PARTIDA
         function validaCampos(event) {
-            if (campeonato[0].value == '' || campeonato[1].value == '') {
+            if (nome_campeonato.value == '' || data_campeonato.value == '') {
                 alert('Preencha todos os campos para cadastrar uma partida');
             }
             //  else if (typeof partida[0].value === "number") {
@@ -287,12 +285,20 @@ if (isset($_POST['salvar'])) {
         });
         // LIMPA CADA CAMPO
         function limpaCampos0() {
-            campeonato[0].value = '';
+            nome_campeonato.value = '';
         }
 
         function limpaCampos1() {
-            campeonato[1].value = '';
+            data_campeonato.value = '';
         }
+
+        var dataAtual = new Date();
+
+        // Formata a data atual no formato ISO (AAAA-MM-DD)
+        var dataFormatada = dataAtual.toISOString().split('T')[0];
+
+        // Define o valor mínimo do input como a data atual formatada
+        data_campeonato.min = dataFormatada;
     </script>
 </body>
 

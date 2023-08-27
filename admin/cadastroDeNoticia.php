@@ -1,5 +1,5 @@
 <?php
-include('include/verificacao.php');
+//include('include/verificacao.php');
 ?>
 
 <?php
@@ -186,7 +186,7 @@ if (isset($_POST['salvar']) && isset($_POST['titulo']) && isset($_POST['descrica
 
                                 <li><a class="dropdown-item" id="marcado" href="cadastroDeNoticia.php"> CADASTRAR NOTÍCIA</a></li>
 
-                                <li><a class="dropdown-item" href="../home.php">SAIR</a></li>
+                                <li><a class="dropdown-item" href="../index.php">SAIR</a></li>
                             </ul>
                         </li>
 

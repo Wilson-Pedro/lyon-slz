@@ -1,7 +1,5 @@
 <?php
-//include('include/verificacao.php');
-?>
-<?php
+//include('includes/verificacao.php');
 include('../db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tblfotoss");
@@ -217,7 +215,7 @@ if (isset($_POST['deletar'])) {
 
       </div>
       <div id="fotos">
-        <?php include('include/lista-admin.php'); ?>
+        <?php include('includes/lista-admin.php'); ?>
       </div>
   </main>
   </div>

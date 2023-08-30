@@ -1,43 +1,25 @@
 <?php
+//session_start();
 
-$servidor = "localhost";
-$usuario = "root";
-$senha = "";
-$banco = "escolinha_de_futebol";
-
-$mysqli = new mysqli($servidor, $usuario, $senha, $banco);
-
-// Verifica se houve erro na conexão com o banco de dados
-if ($mysqli->connect_error) {
-    die("Falha ao conectar no banco de dados: " . $mysqli->connect_error);
-}
+include('db/conexao.php');
 
 if (isset($_POST['nameLog']) && isset($_POST['senhaLog'])) {
     if (empty($_POST['nameLog']) || empty($_POST['senhaLog'])) {
         echo "<script>alert('Preencha os campos corretamente')</script>";
     } else {
-        $nome = $mysqli->real_escape_string($_POST['nameLog']);
-        $senha = $mysqli->real_escape_string($_POST['senhaLog']);
+        $nome = $_POST['nameLog'];
+        $senha = $_POST['senhaLog'];
 
         $sql_code = "SELECT * FROM tblloginn WHERE usuario = ? LIMIT 1";
-        $stmt = $mysqli->prepare($sql_code);
-        $stmt->bind_param("s", $nome);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $stmt = $pdo->prepare($sql_code);
+        $stmt->execute([$nome]);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result->num_rows == 1) {
-            $usuario = $result->fetch_assoc();
-            //session_start();
-
-            if (password_verify($senha, $usuario['senha'])) {
-                $_SESSION['id'] = $usuario['id'];
-                $_SESSION['usuario'] = $usuario['usuario'];
-                echo "<a style='display:none' href='admin/homeAdmin.php' id='voltar'></a>";
-                echo "<script>";
-                    echo "var voltar = document.getElementById('voltar');";
-                    echo "voltar.click();";
-                echo "</script>";
-            }
+        if ($usuario && password_verify($senha, $usuario['senha'])) {
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['usuario'] = $usuario['usuario'];
+            header("Location: admin/homeAdmin.php"); // Redireciona para a página de admin
+            exit();
         } else {
             $invalid = "Ops... e-mail ou senha incorretos!";
         }

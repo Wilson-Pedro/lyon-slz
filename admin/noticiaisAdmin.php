@@ -1,5 +1,5 @@
 <?php
-//include('include/verificacao.php');
+//include('includes/verificacao.php');
 ?>
 <?php
 include('../db/conexao.php');
@@ -204,7 +204,7 @@ $dados = $sql->fetchAll();
             <div class="carousel-item active">
               <div class="fotoAlterada">
 
-                <?php include('include/fotoNoticiaAdmin.php') ?>
+                <?php include('includes/fotoNoticiaAdmin.php') ?>
 
               </div>
               <div class="carousel-caption d-none d-md-block">
@@ -278,7 +278,7 @@ $dados = $sql->fetchAll();
 
       <?php
       require('../db/conexao.php');
-      include('include/accordionAdmin.php') ?>
+      include('includes/accordionAdmin.php') ?>
     </div>
 
     <!-- CALENÁRIO -->

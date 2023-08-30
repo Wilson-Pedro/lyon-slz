@@ -1,8 +1,5 @@
 <?php
-include('admin/include/logout.php');
-?>
-<?php
-include('admin/include/logout.php');
+include('admin/includes/logout.php');
 include('db/conexao.php');
 
 $sql = $pdo->prepare("SELECT * FROM tblpartidass");
@@ -216,7 +213,7 @@ $dados = $sql->fetchAll();
             <div class="carousel-item active">
               <div class="fotoAlterada">
 
-                <?php include('admin/include/fotoNoticia.php') ?>
+                <?php include('admin/includes/fotoNoticia.php') ?>
 
               </div>
               <div class="carousel-caption d-none d-md-block">
@@ -269,7 +266,7 @@ $dados = $sql->fetchAll();
       <!-- ACCORDION -->
 
       <?php
-      include('admin/include/accordion.php') ?>
+      include('admin/includes/accordion.php') ?>
     </div>
 
 

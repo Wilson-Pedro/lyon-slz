@@ -1,5 +1,5 @@
 <?php
-//include('include/verificacao.php');
+//include('includes/verificacao.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -1,5 +1,5 @@
 <?php
-include('../admin/include/logout.php');
+include('../admin/includes/logout.php');
 ?>
 
 <?php

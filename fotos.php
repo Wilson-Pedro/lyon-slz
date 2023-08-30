@@ -1,5 +1,5 @@
 <?php
-include('admin/include/logout.php');
+include('admin/includes/logout.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -114,7 +114,7 @@ include('admin/include/logout.php');
     </h1>
     <div class="container-fluid mt-3">
       <div id="fotos">
-        <?php include('admin/include/lista.php'); ?>
+        <?php include('admin/includes/lista.php'); ?>
       </div>
   </main>
   </div>
